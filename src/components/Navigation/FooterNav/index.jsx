@@ -9,15 +9,15 @@ export const FooterNav = () => {
       <div className="flex flex-row justify-center gap-5 mb-4">
         <a href="https://www.twitter.com/">
           {" "}
-          <i class="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-twitter"></i>
+          <i className="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-twitter"></i>
         </a>
         <a href="https://www.instagram.com/">
           {" "}
-          <i class="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-instagram"></i>
+          <i className="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-instagram"></i>
         </a>
         <a href="https://www.facebook.com/">
           {" "}
-          <i class="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-facebook"></i>
+          <i className="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-facebook"></i>
         </a>
       </div>
       <p className="text-light-blue text-center font-light pb-4">
