@@ -10,6 +10,11 @@ export default {
         "light-blue": "#E9EFF4",
         "dark-gray": "#565656",
       },
+      screens: {
+        xs: "400px",
+        sm: "616px",
+        md: "725px",
+      },
     },
   },
   plugins: [require("flowbite/plugin")],
