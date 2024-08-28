@@ -2,9 +2,9 @@ import Logo from "../../../assets/images/holidaze-logo.png";
 
 export const HeaderNav = () => {
   return (
-    <nav className="bg-dark-blue">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <img src={Logo} className="w-36 " alt="Holidaze logo" />
+    <nav className="bg-dark-blue fixed w-full max-w-screen-2xl z-20 top-0 start-50">
+      <div className="flex flex-wrap items-center justify-between mx-auto p-4">
+        <img src={Logo} className="w-36 md:w-56" alt="Holidaze logo" />
         <button
           data-collapse-toggle="navbar-default"
           type="button"

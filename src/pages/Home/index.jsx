@@ -5,7 +5,7 @@ export const Home = () => {
   return (
     <>
       <Hero />
-      <section className="mt-3 flex flex-wrap gap-3 sm:gap-5 max-w-7xl mx-auto px-1">
+      <section className="pt-3 flex flex-wrap gap-3 sm:gap-5 mx-auto bg-almost-white">
         <Card />
         <Card />
         <Card />

@@ -2,7 +2,7 @@ export const SearchBar = () => {
   return (
     <>
       <form
-        className="flex items-center justify-center max-w-sm mx-auto mt-4 pb-8"
+        className="flex items-center justify-center w-11/12 max-w-sm mx-auto mt-4 pb-8"
         onSubmit={(e) => e.preventDefault()}
       >
         <label htmlFor="simple-search" className="sr-only">

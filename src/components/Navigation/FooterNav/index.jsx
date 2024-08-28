@@ -3,7 +3,7 @@ import Logo from "../../../assets/images/holidaze-logo.png";
 export const FooterNav = () => {
   return (
     <section className="bg-dark-blue">
-      <div className="">
+      <div>
         <img src={Logo} className="w-24 mx-auto py-4" alt="Holidaze Logo" />
       </div>
       <div className="flex flex-row justify-center gap-5 mb-4">
