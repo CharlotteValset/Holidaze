@@ -9,6 +9,7 @@ export default {
         "soft-pink": "#FFAAA8;",
         "light-blue": "#E9EFF4",
         "dark-gray": "#565656",
+        "almost-white": "#fefefe",
       },
       screens: {
         xs: "400px",
