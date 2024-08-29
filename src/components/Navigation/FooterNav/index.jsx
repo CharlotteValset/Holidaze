@@ -20,7 +20,7 @@ export const FooterNav = () => {
           <i className="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-facebook"></i>
         </a>
       </div>
-      <p className="text-light-blue text-center font-light pb-4">
+      <p className="text-light-blue text-sm text-center font-light pb-4">
         Designed & developed by <span className="text-soft-pink hover:underline cursor-pointer">Charlotte Valset</span>
       </p>
     </section>

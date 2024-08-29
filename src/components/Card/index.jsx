@@ -34,7 +34,7 @@ export const Card = () => {
             <p className="text-base font-medium">
               $ 975 <span className="text-xs font-normal">per night</span>
             </p>
-            <PrimaryButton />
+            <PrimaryButton>View more</PrimaryButton>
           </div>
         </div>
       </div>
