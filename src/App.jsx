@@ -1,6 +1,6 @@
 import "./App.css";
 import { Header } from "../src/components/Layout/Header";
-import { Profile } from "./pages/Profile/index";
+import { LogIn } from "./pages/LogIn/index";
 import { Footer } from "./components/Layout/Footer";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
       <div className="max-w-screen-2xl mx-auto">
         <Header />
-        <Profile />
+        <LogIn />
         <Footer />
       </div>
     </>
