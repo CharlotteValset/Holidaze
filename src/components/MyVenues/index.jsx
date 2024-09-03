@@ -30,18 +30,18 @@ export const MyVenues = () => {
               </p>
             </div>
             <div className="flex justify-between my-4 max-w-64 md:max-w-80">
-              <div className="flex gap-1 text-xs md:text-base">
+              <div className="flex items-center gap-1 text-xs md:text-base">
                 <i className="fa-solid fa-wifi"></i>
                 <p>Wifi</p>
               </div>
-              <div className="flex gap-1 text-xs md:text-base">
+              <div className="flex items-center gap-1 text-xs md:text-base">
                 <i className="fa-solid fa-dog"></i> <p>Pets</p>
               </div>
-              <div className="flex gap-1 text-xs md:text-base">
+              <div className="flex items-center gap-1 text-xs md:text-base">
                 <i className="fa-solid fa-car"></i>
                 <p>Parking</p>
               </div>
-              <div className="flex gap-1 text-xs md:text-base">
+              <div className="flex items-center gap-1 text-xs md:text-base">
                 <i className="fa-solid fa-utensils"></i>
                 <p>Breakfast</p>
               </div>
