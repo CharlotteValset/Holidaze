@@ -1,6 +1,6 @@
 import "./App.css";
 import { Header } from "../src/components/Layout/Header";
-import { ConfirmedBooking } from "./pages/ConfirmedBooking/index";
+import { AddEditVenue } from "./pages/AddEditVenue/index";
 import { Footer } from "./components/Layout/Footer";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
       <div className="max-w-screen-2xl mx-auto">
         <Header />
-        <ConfirmedBooking />
+        <AddEditVenue />
         <Footer />
       </div>
     </>
