@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -66,11 +67,11 @@ export const LogIn = () => {
           <PrimaryButton type="submit">Log in</PrimaryButton>
         </div>
       </form>
-      <div className="w-40 sm:w-52 text-center mb-6 sm:mb-8">
+      <Link to="/signup" aria-label="Sign up" className="w-40 sm:w-52 text-center mb-6 sm:mb-8">
         <TextLink>
           Don’t have an account? <span className="font-medium">Please sign up</span>
         </TextLink>
-      </div>
+      </Link>
     </div>
   );
 };

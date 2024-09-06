@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HeroImage from "../../assets/images/heroImage.png";
 import { PrimaryButton } from "../Buttons/PrimaryButton";
 
@@ -34,7 +35,9 @@ export const Card = () => {
             <p className="text-base font-medium">
               $ 975 <span className="text-xs font-normal">per night</span>
             </p>
-            <PrimaryButton>View more</PrimaryButton>
+            <Link to="/singleVenue">
+              <PrimaryButton>View more</PrimaryButton>
+            </Link>
           </div>
         </div>
       </div>

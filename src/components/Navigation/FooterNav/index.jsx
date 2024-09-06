@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
 import Logo from "../../../assets/images/holidaze-logo.png";
 
 export const FooterNav = () => {
   return (
     <section className="bg-dark-blue">
       <div>
-        <img src={Logo} className="w-24 mx-auto py-4" alt="Holidaze Logo" />
+        <Link to="/" aria-label="Home">
+          {" "}
+          <img src={Logo} className="w-24 mx-auto py-4" alt="Holidaze Logo" />
+        </Link>
       </div>
       <div className="flex flex-row justify-center gap-5 mb-4">
         <a href="https://www.twitter.com/">

@@ -1,17 +1,24 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Header } from "../src/components/Layout/Header";
-import { Contact } from "./pages/Contact/index";
-import { Footer } from "./components/Layout/Footer";
+import "./index.css";
+import { Layout } from "./components/Layout/index";
+import { Home, SingleVenue, SignUp, LogIn, Profile, AddEditVenue, ConfirmedBooking, About, Contact } from "./pages";
 
 function App() {
   return (
-    <>
-      <div className="max-w-screen-2xl mx-auto">
-        <Header />
-        <Contact />
-        <Footer />
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="singleVenue" element={<SingleVenue />} />
+        <Route path="signUp" element={<SignUp />} />
+        <Route path="logIn" element={<LogIn />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="addEditVenue" element={<AddEditVenue />} />
+        <Route path="confirmedBooking" element={<ConfirmedBooking />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+      </Route>
+    </Routes>
   );
 }
 

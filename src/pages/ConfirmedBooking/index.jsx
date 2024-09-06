@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ProfileImage from "../../assets/images/profileImage.png";
 import HeroImage from "../../assets/images/heroImage.png";
 import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
@@ -65,9 +66,9 @@ export const ConfirmedBooking = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center mb-6">
+      <Link to="/" aria-label="home" className="flex flex-col items-center mb-6">
         <PrimaryButton>Return to homepage</PrimaryButton>
-      </div>
+      </Link>
     </>
   );
 };
