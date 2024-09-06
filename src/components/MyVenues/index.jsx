@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import HeroImage from "../../assets/images/heroImage.png";
 import { BookingsAccordion } from "../BookingsAccordion";
 import { PrimaryButton } from "../Buttons/PrimaryButton";
@@ -14,7 +15,9 @@ export const MyVenues = () => {
           <div className="md:w-2/4 md:ml-4">
             <div className="flex justify-between mt-3 md:mt-1 items-center">
               <h2 className="text-[22px] md:text-3xl truncate">Luxury Home</h2>
-              <PrimaryButton>Edit venue</PrimaryButton>
+              <Link to="/addEditVenue" aria-label="Add/edit venue">
+                <PrimaryButton>Edit venue</PrimaryButton>
+              </Link>
             </div>
             <div className="flex gap-1 items-center">
               <i className="fa-solid fa-location-dot text-sm md:text-lg"></i>

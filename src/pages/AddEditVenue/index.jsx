@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -194,7 +195,9 @@ export const AddEditVenue = () => {
           />
           <AddImageForm setImages={setValue} errors={errors} isSubmitted={isSubmitted} />{" "}
           <div className="flex justify-center gap-4 py-6 md:w-60 md:mx-auto md:justify-start">
-            <SecondaryButton>Cancel</SecondaryButton>
+            <Link to="/profile" aria-label="Profile">
+              <SecondaryButton>Cancel</SecondaryButton>
+            </Link>
             <PrimaryButton type="submit">Add venue</PrimaryButton>
           </div>
           <div className="">

@@ -1,10 +1,13 @@
+import { Link } from "react-router-dom";
 import Logo from "../../../assets/images/holidaze-logo.png";
 
 export const HeaderNav = () => {
   return (
     <nav className="bg-dark-blue fixed w-full max-w-screen-2xl z-20 top-0 start-50">
       <div className="flex flex-wrap items-center justify-between mx-auto p-4">
-        <img src={Logo} className="w-36 md:w-56" alt="Holidaze logo" />
+        <Link to="/">
+          <img src={Logo} className="w-36 md:w-56" alt="Holidaze logo" />
+        </Link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
@@ -32,39 +35,64 @@ export const HeaderNav = () => {
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-extralight text-xl flex flex-col text-center p-1 md:p-0 mt-0 bg-dark-blue md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             <li>
-              <a href="#" className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0" aria-current="page">
+              <Link
+                to="/"
+                aria-label="Home"
+                className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0"
+                aria-current="page"
+              >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0">
+              <Link
+                to="/signUp"
+                aria-label="Sign up"
+                className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0"
+              >
                 Sign up
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0">
+              <Link
+                to="/logIn"
+                aria-label="Log in"
+                className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0"
+              >
                 Log in
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0">
+              <Link
+                to="/profile"
+                aria-label="Profile"
+                className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0"
+              >
                 My profile
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0">
+              <Link
+                to="/about"
+                aria-label="About"
+                className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0"
+              >
                 About us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0">
+              <Link
+                to="/contact"
+                aria-label="Contact"
+                className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0"
+              >
                 Contact
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0">
+              <Link to="/" aria-label="Log out" className="block py-2 px-3 text-light-blue hover:text-soft-pink md:p-0">
                 Log out
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

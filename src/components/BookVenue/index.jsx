@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -92,9 +93,9 @@ export const BookVenue = () => {
             <span className="text-base">$</span> 1567
           </p>
         </div>
-        <div className="py-6 flex justify-center">
+        <Link to="/confirmedBooking" aria-label="Confirmed booking" className="py-6 flex justify-center">
           <PrimaryButton type="submit">Book now</PrimaryButton>
-        </div>
+        </Link>
       </form>
     </div>
   );

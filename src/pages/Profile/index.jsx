@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import { ProfileInfo } from "../../components/ProfileInfo";
 import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
 import { SecondaryButton } from "../../components/Buttons/SecondaryButton";
@@ -14,9 +14,13 @@ export const Profile = () => {
       <h1 className="mt-20 text-2xl text-center sm:hidden">My profile</h1>
       <div className="sm:flex sm:justify-between sm:mx-auto sm:max-w-screen-lg sm:mb-4 sm:mt-12 md:mt-20">
         <ProfileInfo />
-        <div className="flex justify-center mt-6 mb-6 mr-2 sm:w-full sm:my-auto sm:justify-end sm:p-2">
+        <Link
+          to="/addEditVenue"
+          aria-label="Add/edit venue"
+          className="flex justify-center mt-6 mb-6 mr-2 sm:w-full sm:my-auto sm:justify-end sm:p-2"
+        >
           <PrimaryButton>+ Add new venue</PrimaryButton>
-        </div>
+        </Link>
       </div>
       <div className="flex justify-center mb-4">
         <TextLink onClick={() => setIsModalOpen(true)}>Want to become a venue manager?</TextLink>{" "}

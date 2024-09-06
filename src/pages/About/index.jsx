@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HolidazeCrew from "../../assets/images/holidazeCrew.jpg";
 import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
 
@@ -23,7 +24,10 @@ export const About = () => {
           <p className="text-center px-2 py-5 max-w-64 font-light">
             Join us at <span className="font-medium">Holidaze</span>, and let’s make your next getaway unforgettable.
           </p>
-          <PrimaryButton className="mb-4">Find your stay</PrimaryButton>
+          <Link to="/" aria-label="Home">
+            {" "}
+            <PrimaryButton className="mb-4">Find your stay</PrimaryButton>
+          </Link>
         </div>
       </div>
     </section>
