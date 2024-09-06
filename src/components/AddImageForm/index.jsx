@@ -1,0 +1,65 @@
+import React, { useState, useEffect } from "react";
+import { PrimaryButton } from "../Buttons/PrimaryButton";
+
+export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
+  const [imageUrls, setImageUrls] = useState([""]);
+
+  const addNewImageUrl = () => {
+    const newImages = [...imageUrls, ""];
+    setImageUrls(newImages);
+    setImages("images", newImages);
+  };
+
+  const updateImageUrl = (index, value) => {
+    const newImages = [...imageUrls];
+    newImages[index] = value;
+    setImageUrls(newImages);
+    setImages("images", newImages);
+  };
+
+  const removeImageUrl = (index) => {
+    const newImages = imageUrls.filter((_, i) => i !== index);
+    setImageUrls(newImages);
+    setImages("images", newImages);
+  };
+
+  useEffect(() => {
+    setImages("images", imageUrls);
+  }, [imageUrls, setImages]);
+
+  return (
+    <div className="flex flex-col mx-auto w-60 my-4 space-y-2">
+      <div className="ps-1">
+        <i className="fa-regular fa-image"></i>
+        <label className="ps-2 sm:text-lg">Image url</label>
+      </div>
+      {imageUrls.map((url, index) => (
+        <div key={index} className="flex items-center space-x-2">
+          <input
+            type="text"
+            value={url}
+            onChange={(e) => updateImageUrl(index, e.target.value)}
+            className="flex-1 rounded-lg h-8 border-gray-300"
+          />
+          <button
+            type="button"
+            onClick={() => removeImageUrl(index)}
+            className="text-sm text-dark-blue hover:text-red-700"
+          >
+            <i className="fa-regular fa-trash-can"></i>
+          </button>
+        </div>
+      ))}
+      <PrimaryButton
+        type="button"
+        className="border-0 hover:underline hover:bg-light-blue hover:text-dark-blue text-left ps-0"
+        onClick={addNewImageUrl}
+      >
+        <i className="fa-solid fa-plus mr-2 text-sm"></i>Add another image
+      </PrimaryButton>
+      {isSubmitted && errors?.images && Array.isArray(errors.images) && errors.images.length > 0 && (
+        <p className="text-red-500 text-sm">{errors.images[0]?.message}</p>
+      )}
+    </div>
+  );
+};
