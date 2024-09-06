@@ -1,6 +1,7 @@
 import React from "react";
 
 export const InputField = ({
+  icon,
   label,
   htmlFor,
   register,
@@ -13,9 +14,9 @@ export const InputField = ({
   errors,
 }) => {
   return (
-    <div className="flex flex-col mx-auto w-60 my-2">
+    <div className="flex flex-col mx-auto w-60 my-4">
       <label htmlFor={htmlFor} className="ps-1 sm:text-lg">
-        {label}
+        {icon && <span className="mr-2">{icon}</span>} {label}
       </label>
       <input
         {...register(registerYup, required ? { required: "This field is required" } : {})}
