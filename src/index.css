@@ -30,3 +30,19 @@ img:hover {
 #numberOfGuests {
   color: #565656#1bcb73;
 }
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #2a3d56;
+  border-color: #2a3d56;
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+  box-shadow: none;
+}
