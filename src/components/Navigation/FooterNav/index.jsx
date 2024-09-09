@@ -7,25 +7,28 @@ export const FooterNav = () => {
       <div>
         <Link to="/" aria-label="Home">
           {" "}
-          <img src={Logo} className="w-24 mx-auto py-4" alt="Holidaze Logo" />
+          <img src={Logo} className="mx-auto w-24 py-4" alt="Holidaze Logo" />
         </Link>
       </div>
-      <div className="flex flex-row justify-center gap-5 mb-4">
+      <div className="mb-4 flex flex-row justify-center gap-5">
         <a href="https://www.twitter.com/">
           {" "}
-          <i className="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-twitter"></i>
+          <i className="fa-brands fa-square-twitter text-4xl text-light-blue hover:text-soft-pink"></i>
         </a>
         <a href="https://www.instagram.com/">
           {" "}
-          <i className="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-instagram"></i>
+          <i className="fa-brands fa-square-instagram text-4xl text-light-blue hover:text-soft-pink"></i>
         </a>
         <a href="https://www.facebook.com/">
           {" "}
-          <i className="text-4xl text-light-blue hover:text-soft-pink fa-brands fa-square-facebook"></i>
+          <i className="fa-brands fa-square-facebook text-4xl text-light-blue hover:text-soft-pink"></i>
         </a>
       </div>
-      <p className="text-light-blue text-sm text-center font-light pb-4">
-        Designed & developed by <span className="text-soft-pink hover:underline cursor-pointer">Charlotte Valset</span>
+      <p className="pb-4 text-center text-sm font-light text-light-blue">
+        Designed & developed by{" "}
+        <span className="cursor-pointer text-soft-pink hover:underline">
+          Charlotte Valset
+        </span>
       </p>
     </section>
   );

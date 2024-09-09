@@ -11,28 +11,35 @@ export const MyVenues = () => {
     <>
       {activeTab === "venues" && (
         <div className="venue-card md:flex">
-          <img src={HeroImage} alt="Luxury Home" className="rounded md:w-2/4 md:object-cover" />
-          <div className="md:w-2/4 md:ml-4">
-            <div className="flex justify-between mt-3 md:mt-1 items-center">
-              <h2 className="text-[22px] md:text-3xl truncate">Luxury Home</h2>
+          <img
+            src={HeroImage}
+            alt="Luxury Home"
+            className="rounded md:w-2/4 md:object-cover"
+          />
+          <div className="md:ml-4 md:w-2/4">
+            <div className="mt-3 flex items-center justify-between md:mt-1">
+              <h2 className="truncate text-[22px] md:text-3xl">Luxury Home</h2>
               <Link to="/addEditVenue" aria-label="Add/edit venue">
                 <PrimaryButton>Edit venue</PrimaryButton>
               </Link>
             </div>
-            <div className="flex gap-1 items-center">
+            <div className="flex items-center gap-1">
               <i className="fa-solid fa-location-dot text-sm md:text-lg"></i>
               <p className="text-sm md:text-lg">Bergen, Norway</p>
             </div>
-            <div className="flex mt-3 items-center justify-between xs:flex-col xs:items-start xs:gap-5 xs:my-5">
+            <div className="mt-3 flex items-center justify-between xs:my-5 xs:flex-col xs:items-start xs:gap-5">
               <div className="flex gap-1">
                 <i className="fa-solid fa-user-group text-sm md:text-lg"></i>
                 <p className="text-sm md:text-lg">12 guests</p>
               </div>
-              <p className="text-lg md:text-xl font-medium">
-                $ 975<span className="text-sm md:text-lg font-normal ml-1">per night</span>
+              <p className="text-lg font-medium md:text-xl">
+                $ 975
+                <span className="ml-1 text-sm font-normal md:text-lg">
+                  per night
+                </span>
               </p>
             </div>
-            <div className="flex justify-between my-4 max-w-64 md:max-w-80">
+            <div className="my-4 flex max-w-64 justify-between md:max-w-80">
               <div className="flex items-center gap-1 text-xs md:text-base">
                 <i className="fa-solid fa-wifi"></i>
                 <p>Wifi</p>
@@ -50,10 +57,11 @@ export const MyVenues = () => {
               </div>
             </div>
             <h3 className="text-lg md:text-xl">Description</h3>
-            <p className="text-base md:text-lg font-light max-w-72 md:max-w-96">
-              Mr. PaddingBottom and Ms. Borderbottom invites you for a royal stay at the plaza
+            <p className="max-w-72 text-base font-light md:max-w-96 md:text-lg">
+              Mr. PaddingBottom and Ms. Borderbottom invites you for a royal
+              stay at the plaza
             </p>
-            <h3 className="text-lg mt-4 mb-1 md:text-xl">Bookings (3)</h3>
+            <h3 className="mb-1 mt-4 text-lg md:text-xl">Bookings (3)</h3>
             <BookingsAccordion />
             <BookingsAccordion />
             <BookingsAccordion />

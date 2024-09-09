@@ -7,19 +7,32 @@ import { TextLink } from "../../components/TextLink";
 
 const schema = yup
   .object({
-    fullName: yup.string().min(3, "Full name should be at least 3 characters.").required(),
+    fullName: yup
+      .string()
+      .min(3, "Full name should be at least 3 characters.")
+      .required(),
     email: yup
       .string()
       .email("Please enter a valid email address")
-      .matches(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/, "Email must be a stud.noroff.no address")
+      .matches(
+        /^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/,
+        "Email must be a stud.noroff.no address",
+      )
       .required("Please enter a valid email address"),
-    password: yup.string().min(8, "Password should be at least 8 characters.").required(),
+    password: yup
+      .string()
+      .min(8, "Password should be at least 8 characters.")
+      .required(),
     profileImage: yup
       .string()
       .nullable()
       .trim()
       .url("Please enter a valid URL")
-      .test("is-https", "URL must start with https://", (value) => !value || value.startsWith("https://")),
+      .test(
+        "is-https",
+        "URL must start with https://",
+        (value) => !value || value.startsWith("https://"),
+      ),
   })
   .required();
 
@@ -37,10 +50,10 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center mt-[90px] sm:mt-[115px] mb-5 bg-light-blue rounded-xl mx-auto w-11/12 max-w-sm">
-      <h1 className="mt-6 mb-3 text-[22px] sm:text-3xl">Sign up here</h1>
+    <div className="mx-auto mb-5 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
+      <h1 className="mb-3 mt-6 text-[22px] sm:text-3xl">Sign up here</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 max-w-xs">
-        <div className="flex flex-col mx-auto w-52 sm:w-60 mt-2 mb-1">
+        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col sm:w-60">
           <label htmlFor="SignUpFullName" className="ps-1 sm:text-lg">
             Full name
           </label>
@@ -50,11 +63,15 @@ export const SignUp = () => {
             })}
             id="SignUpFullName"
             type="text"
-            className="rounded-lg h-8"
+            className="h-8 rounded-lg"
           />
-          {errors.fullName && <p className="text-red-500 text-sm pt-1 ps-1">{errors.fullName.message}</p>}
+          {errors.fullName && (
+            <p className="ps-1 pt-1 text-sm text-red-500">
+              {errors.fullName.message}
+            </p>
+          )}
         </div>
-        <div className="flex flex-col mx-auto w-52 sm:w-60 mt-2 mb-1">
+        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col sm:w-60">
           <label htmlFor="SignUpEmail" className="ps-1 sm:text-lg">
             Email
           </label>
@@ -65,11 +82,15 @@ export const SignUp = () => {
             id="SignUpEmail"
             type="email"
             autoComplete="email"
-            className="rounded-lg h-8"
+            className="h-8 rounded-lg"
           />
-          {errors.email && <p className="text-red-500 text-sm pt-1 ps-1">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="ps-1 pt-1 text-sm text-red-500">
+              {errors.email.message}
+            </p>
+          )}
         </div>
-        <div className="flex flex-col mx-auto w-52 sm:w-60 mt-2 mb-1">
+        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col sm:w-60">
           <label htmlFor="SignUpPassword" className="ps-1 sm:text-lg">
             Password
           </label>
@@ -80,11 +101,15 @@ export const SignUp = () => {
             id="SignUpPassword"
             type="password"
             autoComplete="current-password"
-            className="rounded-lg h-8"
+            className="h-8 rounded-lg"
           />
-          {errors.password && <p className="text-red-500 text-sm pt-1 ps-1">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="ps-1 pt-1 text-sm text-red-500">
+              {errors.password.message}
+            </p>
+          )}
         </div>
-        <div className="flex flex-col mx-auto w-52 sm:w-60 mt-2 mb-3 pb-4">
+        <div className="mx-auto mb-3 mt-2 flex w-52 flex-col pb-4 sm:w-60">
           <label htmlFor="SignUpProfileImage" className="ps-1 sm:text-lg">
             Profile image url
           </label>
@@ -94,17 +119,26 @@ export const SignUp = () => {
             })}
             id="SignUpProfileImage"
             type="text"
-            className="rounded-lg h-8"
+            className="h-8 rounded-lg"
           />
-          {errors.profileImage && <p className="text-red-500 text-sm pt-1 ps-1">{errors.profileImage.message}</p>}
+          {errors.profileImage && (
+            <p className="ps-1 pt-1 text-sm text-red-500">
+              {errors.profileImage.message}
+            </p>
+          )}
         </div>
-        <div className="pb-6 flex justify-center">
+        <div className="flex justify-center pb-6">
           <PrimaryButton type="submit">Sign up</PrimaryButton>
         </div>
       </form>
-      <Link to="/login" aria-label="Log in" className="w-40 sm:w-52 text-center mb-6 sm:mb-8">
+      <Link
+        to="/login"
+        aria-label="Log in"
+        className="mb-6 w-40 text-center sm:mb-8 sm:w-52"
+      >
         <TextLink>
-          Already have an account? <span className="font-medium">Please log in</span>
+          Already have an account?{" "}
+          <span className="font-medium">Please log in</span>
         </TextLink>
       </Link>
     </div>

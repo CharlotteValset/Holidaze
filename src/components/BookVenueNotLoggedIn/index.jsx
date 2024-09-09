@@ -4,15 +4,22 @@ import { TextLink } from "../TextLink";
 
 export const BookVenueNotLoggedIn = () => {
   return (
-    <div className="bg-light-blue w-11/12 h-fit rounded-lg mx-auto xs:mx-0 xs:ml-4 mt-8 mb-5 xs:max-w-xs">
-      <h3 className="text-center pt-6 pb-0 text-2xl font-medium w-52 mx-auto">Please log in to book this venue!</h3>
-      <div className="py-6 flex justify-center">
+    <div className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:mx-0 xs:ml-4 xs:max-w-xs">
+      <h3 className="mx-auto w-52 pb-0 pt-6 text-center text-2xl font-medium">
+        Please log in to book this venue!
+      </h3>
+      <div className="flex justify-center py-6">
         <PrimaryButton>Log in</PrimaryButton>
       </div>
-      <Link to="/signUp" aria-label="Sign up" className="w-40 sm:w-52 text-center pb-6 sm:mb-8 mx-auto">
+      <Link
+        to="/signUp"
+        aria-label="Sign up"
+        className="mx-auto w-40 pb-6 text-center sm:mb-8 sm:w-52"
+      >
         <TextLink>
           {" "}
-          Don’t have an account? <span className="font-medium">Please sign up</span>
+          Don’t have an account?{" "}
+          <span className="font-medium">Please sign up</span>
         </TextLink>
       </Link>
     </div>

@@ -6,9 +6,13 @@ import { PrimaryButton } from "../Buttons/PrimaryButton";
 
 const schema = yup
   .object({
-    checkIn: yup.date("Please add a check-in date").required("Please add a check-in date"),
+    checkIn: yup
+      .date("Please add a check-in date")
+      .required("Please add a check-in date"),
     checkOut: yup.date().required("Please add a check-out date"),
-    numberOfGuests: yup.number("Please add the number of guests").required("Please add the number of guests"),
+    numberOfGuests: yup
+      .number("Please add the number of guests")
+      .required("Please add the number of guests"),
   })
   .required();
 
@@ -25,10 +29,10 @@ export const BookVenue = () => {
     reset();
   };
   return (
-    <div className="bg-light-blue w-11/12 h-fit rounded-lg mx-auto xs:mx-0 xs:ml-4 mt-8 mb-5 xs:max-w-xs">
-      <h3 className="text-center pt-4 pb-2 text-xl">Book this venue!</h3>
-      <form onSubmit={handleSubmit(onSubmit)} className=" mx-auto">
-        <div className="flex flex-col mx-auto w-60 my-2">
+    <div className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:mx-0 xs:ml-4 xs:max-w-xs">
+      <h3 className="pb-2 pt-4 text-center text-xl">Book this venue!</h3>
+      <form onSubmit={handleSubmit(onSubmit)} className="mx-auto">
+        <div className="mx-auto my-2 flex w-60 flex-col">
           <label htmlFor="checkInDate" className="ps-1 sm:text-lg">
             Check-in
           </label>
@@ -39,11 +43,13 @@ export const BookVenue = () => {
             id="checkInDate"
             type="date"
             required
-            className="rounded-lg h-8 border-gray-300 text-center"
+            className="h-8 rounded-lg border-gray-300 text-center"
           />
-          {errors.checkIn && <p className="text-red-500 text-sm">{errors.checkIn.message}</p>}
+          {errors.checkIn && (
+            <p className="text-sm text-red-500">{errors.checkIn.message}</p>
+          )}
         </div>
-        <div className="flex flex-col mx-auto w-60 my-2 ">
+        <div className="mx-auto my-2 flex w-60 flex-col">
           <label htmlFor="checkOutDate" className="ps-1 sm:text-lg">
             Check-out
           </label>
@@ -54,12 +60,14 @@ export const BookVenue = () => {
             id="checkOutDate"
             type="date"
             required
-            className="rounded-lg h-8 border-gray-300 text-center"
+            className="h-8 rounded-lg border-gray-300 text-center"
           />
-          {errors.checkOut && <p className="text-red-500 text-sm">{errors.checkOut.message}</p>}
+          {errors.checkOut && (
+            <p className="text-sm text-red-500">{errors.checkOut.message}</p>
+          )}
         </div>
-        <div className="flex flex-col mx-auto w-60 my-2">
-          <label htmlFor="numberOfGuests" className="ps-1 pb-1 sm:text-lg">
+        <div className="mx-auto my-2 flex w-60 flex-col">
+          <label htmlFor="numberOfGuests" className="pb-1 ps-1 sm:text-lg">
             Number of guests
           </label>
           <select
@@ -67,7 +75,7 @@ export const BookVenue = () => {
               required: true,
             })}
             id="numberOfGuests"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-32 p-2.5 text-center"
+            className="block w-32 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-sm text-gray-900"
           >
             <option>1</option>
             <option>2</option>
@@ -85,15 +93,23 @@ export const BookVenue = () => {
             <option>14</option>
             <option>15</option>
           </select>
-          {errors.numberOfGuests && <p className="text-red-500 text-sm">{errors.numberOfGuests.message}</p>}
+          {errors.numberOfGuests && (
+            <p className="text-sm text-red-500">
+              {errors.numberOfGuests.message}
+            </p>
+          )}
         </div>
-        <div className="flex justify-between w-56 mx-auto mt-6">
+        <div className="mx-auto mt-6 flex w-56 justify-between">
           <p>Total</p>
           <p className="text-xl">
             <span className="text-base">$</span> 1567
           </p>
         </div>
-        <Link to="/confirmedBooking" aria-label="Confirmed booking" className="py-6 flex justify-center">
+        <Link
+          to="/confirmedBooking"
+          aria-label="Confirmed booking"
+          className="flex justify-center py-6"
+        >
           <PrimaryButton type="submit">Book now</PrimaryButton>
         </Link>
       </form>

@@ -2,7 +2,10 @@ import React from "react";
 
 export const TextLink = ({ onClick, children }) => {
   return (
-    <a onClick={onClick} className="text-sm sm:text-base hover:underline cursor-pointer">
+    <a
+      onClick={onClick}
+      className="cursor-pointer text-sm hover:underline sm:text-base"
+    >
       {children}
     </a>
   );

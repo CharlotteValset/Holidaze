@@ -2,25 +2,25 @@ export const SearchBar = () => {
   return (
     <>
       <form
-        className="flex items-center justify-center w-11/12 max-w-xs mx-auto mt-4 pb-8"
+        className="mx-auto mt-4 flex w-11/12 max-w-xs items-center justify-center pb-8"
         onSubmit={(e) => e.preventDefault()}
       >
         <label htmlFor="simple-search" className="sr-only">
           Search
         </label>
-        <div className="flex flex-row w-72 xs:w-96">
+        <div className="flex w-72 flex-row xs:w-96">
           <input
             type="text"
             id="simple-search"
-            className="bg-gray-50 rounded-l-xl border-gray-300 text-gray-900 text-sm block w-full ps-3 p-2.5 "
+            className="block w-full rounded-l-xl border-gray-300 bg-gray-50 p-2.5 ps-3 text-sm text-gray-900"
             placeholder="Search"
           />
           <button
             type="submit"
-            className="p-2.5 text-dark-blue bg-soft-pink rounded-r-xl hover:bg-dark-blue hover:text-soft-pink font-medium text-sm px-3 py-2 text-center"
+            className="rounded-r-xl bg-soft-pink p-2.5 px-3 py-2 text-center text-sm font-medium text-dark-blue hover:bg-dark-blue hover:text-soft-pink"
           >
             <svg
-              className="w-4 h-4"
+              className="h-4 w-4"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

@@ -4,18 +4,24 @@ import { PrimaryButton } from "../Buttons/PrimaryButton";
 
 export const Card = () => {
   return (
-    <article className="my-1 w-11/12 mx-auto sm:w-72 rounded-xl bg-light-blue">
+    <article className="mx-auto my-1 w-11/12 rounded-xl bg-light-blue sm:w-72">
       <div className="flex flex-col">
         <div className="">
-          <img className="w-full max-h-72 object-cover rounded-t-xl" src={HeroImage} alt="image" />
+          <img
+            className="max-h-72 w-full rounded-t-xl object-cover"
+            src={HeroImage}
+            alt="image"
+          />
         </div>
-        <div className="px-2 m-1">
+        <div className="m-1 px-2">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-normal tracking-tight cursor-text truncate text-dark-blue">Luxury Home</h2>
+            <h2 className="cursor-text truncate text-xl font-normal tracking-tight text-dark-blue">
+              Luxury Home
+            </h2>
             <div className="flex items-center">
-              <span className="flex flex-row items-center text-dark-blue text-xs font-normal px-2 py-0.5 rounded">
+              <span className="flex flex-row items-center rounded px-2 py-0.5 text-xs font-normal text-dark-blue">
                 <svg
-                  className="w-3 h-3 text-dark-blue me-2"
+                  className="me-2 h-3 w-3 text-dark-blue"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -31,7 +37,7 @@ export const Card = () => {
             <i className="fa-solid fa-location-dot text-xs"></i>
             <p className="text-xs">Bergen, Norway</p>
           </div>
-          <div className="flex justify-between items-center my-2">
+          <div className="my-2 flex items-center justify-between">
             <p className="text-base font-medium">
               $ 975 <span className="text-xs font-normal">per night</span>
             </p>

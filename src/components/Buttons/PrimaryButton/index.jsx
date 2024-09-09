@@ -1,11 +1,17 @@
 import React from "react";
 
-export const PrimaryButton = ({ type = "button", onClick, className, children, ...rest }) => {
+export const PrimaryButton = ({
+  type = "button",
+  onClick,
+  className,
+  children,
+  ...rest
+}) => {
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`text-base md:text-lg border rounded-lg border-dark-blue px-3 py-0.5 hover:bg-dark-blue hover:text-light-blue ${className}`}
+      className={`rounded-lg border border-dark-blue px-3 py-0.5 text-base hover:bg-dark-blue hover:text-light-blue md:text-lg ${className}`}
       {...rest}
     >
       {children}

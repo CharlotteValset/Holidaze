@@ -13,17 +13,27 @@ import { TextLink } from "../../components/TextLink";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Venue title is required"),
-  description: Yup.string().required("Description of venue is required").min(20, "Must be at least 20 characters"),
+  description: Yup.string()
+    .required("Description of venue is required")
+    .min(20, "Must be at least 20 characters"),
   city: Yup.string().required("City is required"),
   country: Yup.string().required("Country is required"),
   wifi: Yup.boolean(),
   pets: Yup.boolean(),
   breakfast: Yup.boolean(),
   parking: Yup.boolean(),
-  maxGuests: Yup.number().required("Please add maximum allowed guests").min(1, "Minimum 1 guest required"),
-  pricePrNight: Yup.number().required("Please add price per night").min(1, "Price per night must be at least 1"),
+  maxGuests: Yup.number()
+    .required("Please add maximum allowed guests")
+    .min(1, "Minimum 1 guest required"),
+  pricePrNight: Yup.number()
+    .required("Please add price per night")
+    .min(1, "Price per night must be at least 1"),
   images: Yup.array()
-    .of(Yup.string().url("Invalid URL").required("At least one image is required"))
+    .of(
+      Yup.string()
+        .url("Invalid URL")
+        .required("At least one image is required"),
+    )
     .min(1, "At least one image is required"),
 });
 
@@ -54,10 +64,12 @@ export const AddEditVenue = () => {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-light-blue mt-[100px] mb-8 md:mt-[120px] w-11/12 md:max-w-screen-md rounded-lg mx-auto md:flex md:justify-around"
+        className="mx-auto mb-8 mt-[100px] w-11/12 rounded-lg bg-light-blue md:mt-[120px] md:flex md:max-w-screen-md md:justify-around"
       >
-        <div className="md:pt-4 md:w-80 md:pb-8">
-          <h1 className="pt-4 mb-2 text-[22px] sm:text-3xl text-center md:text-left md:mb-4 md:ps-11">Add new venue</h1>
+        <div className="md:w-80 md:pb-8 md:pt-4">
+          <h1 className="mb-2 pt-4 text-center text-[22px] sm:text-3xl md:mb-4 md:ps-11 md:text-left">
+            Add new venue
+          </h1>
           <InputField
             label="Title"
             htmlFor="venueTitle"
@@ -66,10 +78,10 @@ export const AddEditVenue = () => {
             required={true}
             id="venueTitle"
             type="text"
-            className="rounded-lg h-8 border-gray-300"
+            className="h-8 rounded-lg border-gray-300"
             errors={errors}
           />
-          <div className="flex flex-col mx-auto w-60 my-2">
+          <div className="mx-auto my-2 flex w-60 flex-col">
             <label htmlFor="venueDescription" className="ps-1 sm:text-lg">
               Description
             </label>
@@ -80,9 +92,13 @@ export const AddEditVenue = () => {
               })}
               id="venueDescription"
               rows="4"
-              className="block p-2.5 w-full rounded-lg border border-gray-300"
+              className="block w-full rounded-lg border border-gray-300 p-2.5"
             ></textarea>
-            {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+            {errors.description && (
+              <p className="text-sm text-red-500">
+                {errors.description.message}
+              </p>
+            )}
           </div>
           <InputField
             label="City"
@@ -92,7 +108,7 @@ export const AddEditVenue = () => {
             required={true}
             id="venueCity"
             type="text"
-            className="rounded-lg h-8 border-gray-300"
+            className="h-8 rounded-lg border-gray-300"
             errors={errors}
           />
           <InputField
@@ -103,10 +119,10 @@ export const AddEditVenue = () => {
             required={true}
             id="venueCountry"
             type="text"
-            className="rounded-lg h-8 border-gray-300"
+            className="h-8 rounded-lg border-gray-300"
             errors={errors}
           />
-          <div className="flex justify-between my-4 max-w-60 mx-auto">
+          <div className="mx-auto my-4 flex max-w-60 justify-between">
             <div>
               <Checkbox
                 register={register}
@@ -145,12 +161,12 @@ export const AddEditVenue = () => {
             </div>
           </div>
         </div>
-        <div className="md:pt-[73px] md:w-80">
+        <div className="md:w-80 md:pt-[73px]">
           {" "}
-          <div className="flex flex-col mx-auto w-60 my-4">
+          <div className="mx-auto my-4 flex w-60 flex-col">
             <div className="ps-1">
               <i className="fa-solid fa-user-group"></i>
-              <label htmlFor="venueMaxGuests" className="ps-2 pb-1 sm:text-lg">
+              <label htmlFor="venueMaxGuests" className="pb-1 ps-2 sm:text-lg">
                 Max guests
               </label>
             </div>
@@ -159,7 +175,7 @@ export const AddEditVenue = () => {
                 required: "Please select the maximum number of guests.",
               })}
               id="venueMaxGuests"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block h-8 w-36 p-1.5 text-center"
+              className="block h-8 w-36 rounded-lg border border-gray-300 bg-gray-50 p-1.5 text-center text-sm text-gray-900"
             >
               <option value=""></option>
               <option value="1">1</option>
@@ -178,7 +194,9 @@ export const AddEditVenue = () => {
               <option value="14">14</option>
               <option value="15">15</option>
             </select>
-            {errors.maxGuests && <p className="text-red-500 text-sm">{errors.maxGuests.message}</p>}
+            {errors.maxGuests && (
+              <p className="text-sm text-red-500">{errors.maxGuests.message}</p>
+            )}
           </div>
           <InputField
             icon={<i className="fa-regular fa-dollar-sign ps-1"></i>}
@@ -190,18 +208,24 @@ export const AddEditVenue = () => {
             min="1"
             id="venuePricePrNight"
             type="number"
-            className="rounded-lg h-8 border-gray-300 text-center max-w-36"
+            className="h-8 max-w-36 rounded-lg border-gray-300 text-center"
             errors={errors}
           />
-          <AddImageForm setImages={setValue} errors={errors} isSubmitted={isSubmitted} />{" "}
-          <div className="flex justify-center gap-4 py-6 md:w-60 md:mx-auto md:justify-start">
+          <AddImageForm
+            setImages={setValue}
+            errors={errors}
+            isSubmitted={isSubmitted}
+          />{" "}
+          <div className="flex justify-center gap-4 py-6 md:mx-auto md:w-60 md:justify-start">
             <Link to="/profile" aria-label="Profile">
               <SecondaryButton>Cancel</SecondaryButton>
             </Link>
             <PrimaryButton type="submit">Add venue</PrimaryButton>
           </div>
           <div className="">
-            <TextLink onClick={() => setIsModalOpen(true)}>Delete venue?</TextLink>{" "}
+            <TextLink onClick={() => setIsModalOpen(true)}>
+              Delete venue?
+            </TextLink>{" "}
             {isModalOpen && (
               <Modal
                 isOpen={isModalOpen}
@@ -209,8 +233,13 @@ export const AddEditVenue = () => {
                 title="Are you sure you want to delete this venue?"
                 footer={
                   <>
-                    <SecondaryButton onClick={() => setIsModalOpen(false)}>Delete venue</SecondaryButton>
-                    <PrimaryButton onClick={() => setIsModalOpen(false)} className="">
+                    <SecondaryButton onClick={() => setIsModalOpen(false)}>
+                      Delete venue
+                    </SecondaryButton>
+                    <PrimaryButton
+                      onClick={() => setIsModalOpen(false)}
+                      className=""
+                    >
                       Keep venue
                     </PrimaryButton>
                   </>
