@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { PrimaryButton } from "../Buttons/PrimaryButton";
 
 export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
   const [imageUrls, setImageUrls] = useState([""]);
