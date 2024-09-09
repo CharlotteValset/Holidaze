@@ -7,7 +7,7 @@ import { BookVenueNotLoggedIn } from "../../components/BookVenueNotLoggedIn";
 
 export const SingleVenue = () => {
   return (
-    <section className="mx-auto mt-[90px] max-w-screen-lg lg:mt-[110px]">
+    <section className="mx-auto mt-[10px] max-w-screen-lg md:mt-[40px] lg:mt-[30px]">
       <Link
         to="/"
         aria-label="Home"
