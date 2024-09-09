@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
 import { TextLink } from "../../components/TextLink";
+import { InputField } from "../../components/InputField";
 
 const schema = yup
   .object({
@@ -40,38 +41,33 @@ export const LogIn = () => {
       <h1 className="mb-3 mt-6 text-[22px] sm:text-3xl">Please log in</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 max-w-xs">
         <div className="mx-auto my-1 flex w-52 flex-col sm:w-60">
-          <label htmlFor="LogInEmail" className="ps-1 sm:text-lg">
-            Email
-          </label>
-          <input
-            {...register("email", {
-              required: true,
-            })}
+          <InputField
+            label="Email"
+            htmlFor="LogInEmail"
+            register={register}
+            registerYup="email"
+            required={true}
             id="LogInEmail"
             type="email"
+            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            errors={errors}
             autoComplete="email"
-            className="h-8 rounded-lg"
           />
-          {errors.email && (
-            <p className="text-sm text-red-500">{errors.email.message}</p>
-          )}
         </div>
         <div className="mx-auto my-3 flex w-52 flex-col pb-4 sm:w-60">
-          <label htmlFor="LogInPassword" className="ps-1 sm:text-lg">
-            Password
-          </label>
-          <input
-            {...register("password", {
-              required: true,
-            })}
+          <InputField
+            label="Password"
+            htmlFor="LogInPassword"
+            register={register}
+            registerYup="password"
+            required={true}
             id="LogInPassword"
             type="password"
+            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            errors={errors}
+            togglePassword={true}
             autoComplete="current-password"
-            className="h-8 rounded-lg"
           />
-          {errors.password && (
-            <p className="text-sm text-red-500">{errors.password.message}</p>
-          )}
         </div>
         <div className="flex justify-center pb-6">
           <PrimaryButton type="submit">Log in</PrimaryButton>
@@ -90,27 +86,3 @@ export const LogIn = () => {
     </div>
   );
 };
-
-/* import React, { useState } from "react";
-
-export const LogIn = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  // Toggle the password visibility
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
-
-  return (
-    <div className="relative flex items-center mt-52">
-      <input
-        type={showPassword ? "text" : "password"}
-        placeholder="Enter your password"
-        className="border rounded p-2 w-full"
-      />
-      <button type="button" onClick={togglePasswordVisibility} className="absolute right-2 text-gray-600">
-        {showPassword ? "Hide" : "Show"}
-      </button>
-    </div>
-  );
-}; */

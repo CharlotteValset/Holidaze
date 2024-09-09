@@ -1,40 +1,40 @@
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
 import { TextLink } from "../../components/TextLink";
+import { InputField } from "../../components/InputField";
 
-const schema = yup
-  .object({
-    fullName: yup
-      .string()
-      .min(3, "Full name should be at least 3 characters.")
-      .required(),
-    email: yup
-      .string()
-      .email("Please enter a valid email address")
-      .matches(
-        /^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/,
-        "Email must be a stud.noroff.no address",
-      )
-      .required("Please enter a valid email address"),
-    password: yup
-      .string()
-      .min(8, "Password should be at least 8 characters.")
-      .required(),
-    profileImage: yup
-      .string()
-      .nullable()
-      .trim()
-      .url("Please enter a valid URL")
-      .test(
-        "is-https",
-        "URL must start with https://",
-        (value) => !value || value.startsWith("https://"),
-      ),
-  })
-  .required();
+const schema = yup.object({
+  fullName: yup
+    .string()
+    .min(3, "Full name should be at least 3 characters.")
+    .required(),
+  email: yup
+    .string()
+    .email("Please enter a valid email address")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/,
+      "Email must be a stud.noroff.no address",
+    )
+    .required("Please enter a valid email address"),
+  password: yup
+    .string()
+    .min(8, "Password should be at least 8 characters.")
+    .required(),
+  profileImage: yup
+    .string()
+    .nullable()
+    .trim()
+    .url("Please enter a valid URL")
+    .test(
+      "is-https",
+      "URL must start with https://",
+      (value) => !value || value.startsWith("https://"),
+    ),
+});
 
 export const SignUp = () => {
   const {
@@ -49,83 +49,62 @@ export const SignUp = () => {
     reset();
   };
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   return (
     <div className="mx-auto mb-5 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
       <h1 className="mb-3 mt-6 text-[22px] sm:text-3xl">Sign up here</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 max-w-xs">
-        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col sm:w-60">
-          <label htmlFor="SignUpFullName" className="ps-1 sm:text-lg">
-            Full name
-          </label>
-          <input
-            {...register("fullName", {
-              required: true,
-            })}
-            id="SignUpFullName"
+        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col gap-2 sm:w-60">
+          <InputField
+            label="Full name"
+            htmlFor="FullName"
+            register={register}
+            registerYup="fullName"
+            required={true}
+            id="FullName"
             type="text"
-            className="h-8 rounded-lg"
+            className="my-1 h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            errors={errors}
           />
-          {errors.fullName && (
-            <p className="ps-1 pt-1 text-sm text-red-500">
-              {errors.fullName.message}
-            </p>
-          )}
-        </div>
-        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col sm:w-60">
-          <label htmlFor="SignUpEmail" className="ps-1 sm:text-lg">
-            Email
-          </label>
-          <input
-            {...register("email", {
-              required: true,
-            })}
+          <InputField
+            label="Email"
+            htmlFor="SignUpEmail"
+            register={register}
+            registerYup="email"
+            required={true}
             id="SignUpEmail"
             type="email"
-            autoComplete="email"
-            className="h-8 rounded-lg"
+            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            errors={errors}
           />
-          {errors.email && (
-            <p className="ps-1 pt-1 text-sm text-red-500">
-              {errors.email.message}
-            </p>
-          )}
-        </div>
-        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col sm:w-60">
-          <label htmlFor="SignUpPassword" className="ps-1 sm:text-lg">
-            Password
-          </label>
-          <input
-            {...register("password", {
-              required: true,
-            })}
+          <InputField
+            label="Password"
+            htmlFor="SignUpPassword"
+            register={register}
+            registerYup="password"
+            required={true}
             id="SignUpPassword"
             type="password"
-            autoComplete="current-password"
-            className="h-8 rounded-lg"
+            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            errors={errors}
+            togglePassword={true}
           />
-          {errors.password && (
-            <p className="ps-1 pt-1 text-sm text-red-500">
-              {errors.password.message}
-            </p>
-          )}
-        </div>
-        <div className="mx-auto mb-3 mt-2 flex w-52 flex-col pb-4 sm:w-60">
-          <label htmlFor="SignUpProfileImage" className="ps-1 sm:text-lg">
-            Profile image url
-          </label>
-          <input
-            {...register("profileImage", {
-              required: true,
-            })}
+          <InputField
+            label="Image url"
+            htmlFor="SignUpProfileImage"
+            register={register}
+            registerYup="profileImage"
+            required={false}
             id="SignUpProfileImage"
-            type="text"
-            className="h-8 rounded-lg"
+            type="url"
+            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            errors={errors}
           />
-          {errors.profileImage && (
-            <p className="ps-1 pt-1 text-sm text-red-500">
-              {errors.profileImage.message}
-            </p>
-          )}
         </div>
         <div className="flex justify-center pb-6">
           <PrimaryButton type="submit">Sign up</PrimaryButton>
