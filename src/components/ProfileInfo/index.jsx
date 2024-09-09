@@ -1,10 +1,31 @@
 import React, { useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import ProfileImage from "../../assets/images/profileImage.png";
 import { Modal } from "../Modal";
 import { PrimaryButton } from "../Buttons/PrimaryButton";
+import { InputField } from "../InputField";
+
+const editProfileImageSchema = yup.object({
+  editImg: yup.string().url("Invalid URL"),
+});
 
 export const ProfileInfo = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({ resolver: yupResolver(editProfileImageSchema) });
+
+  const onSubmit = (data) => {
+    console.log("object");
+    console.log(data);
+    reset();
+  };
 
   return (
     <article className="my-4 sm:ml-4 sm:mt-8 sm:flex sm:w-full sm:flex-row-reverse sm:justify-end">
@@ -35,26 +56,37 @@ export const ProfileInfo = () => {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             title="Edit profile image"
-            footer={
-              <PrimaryButton
-                onClick={() => setIsModalOpen(false)}
-                className="mx-5"
-              >
-                Save
-              </PrimaryButton>
-            }
           >
             <img
               src={ProfileImage}
               alt="Profile"
               className="mx-auto h-40 w-40 rounded-full"
             />
-            <div className="mx-auto my-6 flex w-56 flex-col">
-              <label htmlFor="EditProfileImg" className="ps-1">
-                Image Url
-              </label>
-              <input type="text" id="EditProfileImg" className="rounded-lg" />
-            </div>
+            <FormProvider>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col justify-center"
+              >
+                <InputField
+                  label="Image url"
+                  htmlFor="editProfileImg"
+                  register={register}
+                  registerYup="editImg"
+                  required={false}
+                  id="editProfileImg"
+                  type="url"
+                  className="h-8 rounded-lg border-gray-300"
+                  errors={errors}
+                />
+                <PrimaryButton
+                  type="submit"
+                  onClick={() => setIsModalOpen(false)}
+                  className="mx-auto text-center"
+                >
+                  Save
+                </PrimaryButton>
+              </form>
+            </FormProvider>
           </Modal>
         )}
       </div>
