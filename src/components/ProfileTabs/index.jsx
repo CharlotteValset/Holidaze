@@ -10,12 +10,14 @@ export const ProfileTabs = () => {
   };
 
   return (
-    <div className="mx-auto p-1 max-w-screen-lg">
-      <ul className="flex justify-start font-medium text-center text-gray-500">
+    <div className="mx-auto max-w-screen-lg p-1">
+      <ul className="flex justify-start text-center font-medium text-gray-500">
         <li className="me-2">
           <button
-            className={`inline-block p-3 font-normal rounded-t-lg md:text-lg ${
-              activeTab === "bookings" ? "text-dark-blue bg-light-blue" : "text-gray-500"
+            className={`inline-block rounded-t-lg p-3 font-normal md:text-lg ${
+              activeTab === "bookings"
+                ? "bg-light-blue text-dark-blue"
+                : "text-gray-500"
             }`}
             onClick={() => handleTabClick("bookings")}
           >
@@ -24,8 +26,10 @@ export const ProfileTabs = () => {
         </li>
         <li className="me-2">
           <button
-            className={`inline-block p-3 font-normal rounded-t-lg md:text-lg ${
-              activeTab === "venues" ? "text-dark-blue bg-light-blue" : "text-gray-500"
+            className={`inline-block rounded-t-lg p-3 font-normal md:text-lg ${
+              activeTab === "venues"
+                ? "bg-light-blue text-dark-blue"
+                : "text-gray-500"
             }`}
             onClick={() => handleTabClick("venues")}
           >
@@ -34,16 +38,18 @@ export const ProfileTabs = () => {
         </li>
       </ul>
 
-      <div className="bg-light-blue p-3 rounded-tr-lg rounded-b-lg mb-3">
+      <div className="mb-3 rounded-b-lg rounded-tr-lg bg-light-blue p-3">
         {activeTab === "bookings" && (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-10">
             <MyBookings />
             <MyBookings />
             <MyBookings />
           </div>
         )}
         {activeTab === "venues" && (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-10">
+            <MyVenues />
+            <MyVenues />
             <MyVenues />
             <MyVenues />
           </div>

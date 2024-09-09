@@ -2,7 +2,17 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./index.css";
 import { Layout } from "./components/Layout/index";
-import { Home, SingleVenue, SignUp, LogIn, Profile, AddEditVenue, ConfirmedBooking, About, Contact } from "./pages";
+import {
+  Home,
+  SingleVenue,
+  SignUp,
+  LogIn,
+  Profile,
+  AddEditVenue,
+  ConfirmedBooking,
+  About,
+  Contact,
+} from "./pages";
 
 function App() {
   return (

@@ -7,19 +7,19 @@ import { BookVenueNotLoggedIn } from "../../components/BookVenueNotLoggedIn";
 
 export const SingleVenue = () => {
   return (
-    <section className="mt-[90px] lg:mt-[110px] max-w-screen-lg mx-auto">
+    <section className="mx-auto mt-[10px] max-w-screen-lg md:mt-[40px] lg:mt-[30px]">
       <Link
         to="/"
         aria-label="Home"
-        className="flex flex-row mt-20 ms-6 md:ms-10 items-center gap-1 hover:text-soft-pink"
+        className="ms-6 mt-20 flex flex-row items-center gap-1 hover:text-soft-pink md:ms-10"
       >
         <i className="fa-solid fa-chevron-left"></i>
-        <p className="hover:underline cursor-pointer sm:text-lg">Back</p>
+        <p className="cursor-pointer hover:underline sm:text-lg">Back</p>
       </Link>
       <div>
         <Gallery />
       </div>
-      <div className="flex flex-col md:flex-row md:max-w-screen-lg md:justify-between md:mx-10">
+      <div className="flex flex-col md:mx-10 md:max-w-screen-lg md:flex-row md:justify-between">
         <VenueInfo />
         <BookVenue />
       </div>

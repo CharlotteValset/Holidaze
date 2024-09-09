@@ -9,13 +9,19 @@ export const MyBookings = () => {
     <>
       {activeTab === "bookings" && (
         <div className="bookings-card md:flex">
-          <img src={HeroImage} alt="Luxury Home" className="rounded md:w-2/4 md:object-cover" />
-          <div className="max-w-sm md:w-2/4 md:ml-2 md:mt-1 md:max-w-none">
-            <div className="flex justify-between items-center px-2">
-              <h2 className="text-[22px] md:text-3xl truncate">Modern Beach House</h2>
-              <span className="flex flex-row items-center text-dark-blue text-sm md:text-base font-normal px-2 py-0.5 rounded">
+          <img
+            src={HeroImage}
+            alt="Luxury Home"
+            className="rounded md:w-2/4 md:object-cover"
+          />
+          <div className="max-w-sm md:ml-2 md:mt-1 md:w-2/4 md:max-w-none">
+            <div className="flex items-center justify-between px-2">
+              <h2 className="truncate text-[22px] md:text-3xl">
+                Modern Beach House
+              </h2>
+              <span className="flex flex-row items-center rounded px-2 py-0.5 text-sm font-normal text-dark-blue md:text-base">
                 <svg
-                  className="w-3 h-3 text-dark-blue me-2"
+                  className="me-2 h-3 w-3 text-dark-blue"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -26,15 +32,19 @@ export const MyBookings = () => {
                 4.6
               </span>
             </div>
-            <div className="flex gap-1 items-center px-2 pb-2">
+            <div className="flex items-center gap-1 px-2 pb-2">
               <i className="fa-solid fa-location-dot text-sm"></i>
               <p className="text-sm md:text-lg">Bergen, Norway</p>
             </div>
-            <div className="px-2 pt-1 pb-3">
+            <div className="px-2 pb-3 pt-1">
               <div className="flex justify-between">
                 <p className="md:text-lg">Owner:</p>
                 <div className="flex flex-row items-center gap-1">
-                  <img src={ProfileImage} alt="" className="w-6 h-6 rounded-full" />
+                  <img
+                    src={ProfileImage}
+                    alt=""
+                    className="h-6 w-6 rounded-full"
+                  />
                   <p className="font-medium md:text-lg">Mr. Pixel</p>
                 </div>
               </div>

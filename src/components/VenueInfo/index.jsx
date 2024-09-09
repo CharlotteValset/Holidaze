@@ -2,13 +2,13 @@ import ProfileImage from "../../assets/images/profileImage.png";
 
 export const VenueInfo = () => {
   return (
-    <div className="w-11/12 mx-auto">
-      <div className="sm:w-full sm:mr-3">
-        <div className="flex justify-between mt-3 md:mt-1 items-center md:w-80">
-          <h2 className="text-[22px] md:text-3xl truncate">Luxury Home</h2>
-          <span className="flex flex-row items-center text-dark-blue text-sm md:text-base font-normal px-2 py-0.5 rounded">
+    <div className="mx-auto w-11/12">
+      <div className="sm:mr-3 sm:w-full">
+        <div className="mt-3 flex items-center justify-between md:mt-1 md:w-80">
+          <h2 className="truncate text-[22px] md:text-3xl">Luxury Home</h2>
+          <span className="flex flex-row items-center rounded px-2 py-0.5 text-sm font-normal text-dark-blue md:text-base">
             <svg
-              className="w-3 h-3 text-dark-blue me-2"
+              className="me-2 h-3 w-3 text-dark-blue"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
@@ -19,48 +19,58 @@ export const VenueInfo = () => {
             4.6
           </span>
         </div>
-        <div className="flex gap-1 items-center">
+        <div className="flex items-center gap-1">
           <i className="fa-solid fa-location-dot text-sm md:text-lg"></i>
           <p className="text-sm md:text-lg">Bergen, Norway</p>
         </div>
-        <div className="flex mt-3 items-center justify-between md:flex-col sm:items-start sm:gap-5 sm:my-5">
+        <div className="mt-3 flex items-center justify-between sm:my-5 sm:items-start sm:gap-5 md:flex-col">
           <div className="flex gap-1">
             <i className="fa-solid fa-user-group text-sm md:text-lg"></i>
             <p className="text-sm md:text-lg">12 guests</p>
           </div>
-          <p className="text-lg md:text-xl font-medium">
-            $ 975<span className="text-sm md:text-lg font-normal ml-1">per night</span>
+          <p className="text-lg font-medium md:text-xl">
+            $ 975
+            <span className="ml-1 text-sm font-normal md:text-lg">
+              per night
+            </span>
           </p>
         </div>
-        <div className="flex justify-between my-4 max-w-64 md:max-w-80">
-          <div className="flex items-center gap-1 text-xs md:text-base bg-light-blue px-1 py-0.5 rounded">
+        <div className="my-4 flex max-w-64 justify-between md:max-w-80">
+          <div className="flex items-center gap-1 rounded bg-light-blue px-1 py-0.5 text-xs md:text-base">
             <i className="fa-solid fa-wifi"></i>
             <p>Wifi</p>
           </div>
-          <div className="flex items-center gap-1 text-xs md:text-base bg-light-blue px-1 py-0.5  rounded">
+          <div className="flex items-center gap-1 rounded bg-light-blue px-1 py-0.5 text-xs md:text-base">
             <i className="fa-solid fa-dog"></i> <p>Pets</p>
           </div>
-          <div className="flex items-center gap-1 text-xs md:text-base bg-light-blue px-1 py-0.5 rounded">
+          <div className="flex items-center gap-1 rounded bg-light-blue px-1 py-0.5 text-xs md:text-base">
             <i className="fa-solid fa-car"></i>
             <p>Parking</p>
           </div>
-          <div className="flex items-center gap-1 text-xs md:text-base bg-light-blue px-1 py-0.5  rounded">
+          <div className="flex items-center gap-1 rounded bg-light-blue px-1 py-0.5 text-xs md:text-base">
             <i className="fa-solid fa-utensils"></i>
             <p>Breakfast</p>
           </div>
         </div>
-        <h3 className="text-lg md:text-xl mt-6">Description</h3>
-        <p className="text-base md:text-lg font-light w-72 xs:w-11/12">
-          Mr. PaddingBottom and Ms. Borderbottom invites you for a royal stay at the plaza. og så skriver vi litt mer om
-          huset her det har mange bad et deilig stort kjøkken osv
+        <h3 className="mt-6 text-lg md:text-xl">Description</h3>
+        <p className="w-72 text-base font-light xs:w-11/12 md:text-lg">
+          Mr. PaddingBottom and Ms. Borderbottom invites you for a royal stay at
+          the plaza. og så skriver vi litt mer om huset her det har mange bad et
+          deilig stort kjøkken osv
         </p>
         <div className="my-4">
           <h3 className="text-lg md:text-xl">Owner</h3>
           <div className="flex flex-row items-center">
-            <img src={ProfileImage} className="rounded-full h-10 w-10 ml-1" alt="" />
+            <img
+              src={ProfileImage}
+              className="ml-1 h-10 w-10 rounded-full"
+              alt=""
+            />
             <div className="flex flex-col items-start ps-2">
               <p className="font-light sm:text-2xl">Diane Borderbottom</p>
-              <p className="text-dark-gray text-sm font-light sm:text-xl">mrsBorderbottom@email.com</p>
+              <p className="text-sm font-light text-dark-gray sm:text-xl">
+                mrsBorderbottom@email.com
+              </p>
             </div>
           </div>
         </div>

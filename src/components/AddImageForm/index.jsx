@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { PrimaryButton } from "../Buttons/PrimaryButton";
 
 export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
   const [imageUrls, setImageUrls] = useState([""]);
@@ -28,7 +27,7 @@ export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
   }, [imageUrls, setImages]);
 
   return (
-    <div className="flex flex-col mx-auto w-60 my-4 space-y-2">
+    <div className="mx-auto my-4 flex w-60 flex-col space-y-2">
       <div className="ps-1">
         <i className="fa-regular fa-image"></i>
         <label className="ps-2 sm:text-lg">Image url</label>
@@ -39,7 +38,7 @@ export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
             type="text"
             value={url}
             onChange={(e) => updateImageUrl(index, e.target.value)}
-            className="flex-1 rounded-lg h-8 border-gray-300"
+            className="h-8 flex-1 rounded-lg border-gray-300"
           />
           <button
             type="button"
@@ -50,16 +49,20 @@ export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
           </button>
         </div>
       ))}
-      <PrimaryButton
+      <button
         type="button"
-        className="border-0 hover:underline hover:bg-light-blue hover:text-dark-blue text-left ps-0"
+        className="border-0 ps-0 text-left hover:bg-light-blue hover:text-dark-blue hover:underline"
         onClick={addNewImageUrl}
       >
-        <i className="fa-solid fa-plus mr-2 text-sm"></i>Add another image
-      </PrimaryButton>
-      {isSubmitted && errors?.images && Array.isArray(errors.images) && errors.images.length > 0 && (
-        <p className="text-red-500 text-sm">{errors.images[0]?.message}</p>
-      )}
+        <i className="fa-solid fa-plus mr-2 text-sm"></i>
+        Add another image
+      </button>
+      {isSubmitted &&
+        errors?.images &&
+        Array.isArray(errors.images) &&
+        errors.images.length > 0 && (
+          <p className="text-sm text-red-500">{errors.images[0]?.message}</p>
+        )}
     </div>
   );
 };

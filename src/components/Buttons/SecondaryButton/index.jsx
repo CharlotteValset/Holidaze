@@ -4,7 +4,7 @@ export const SecondaryButton = ({ onClick, children }) => {
   return (
     <button
       onClick={onClick}
-      className="text-base md:text-lg border rounded-lg px-3 py-0.5 bg-soft-pink hover:bg-dark-blue hover:text-soft-pink"
+      className="rounded-lg border bg-soft-pink px-3 py-0.5 text-base hover:bg-dark-blue hover:text-soft-pink md:text-lg"
     >
       {children}
     </button>

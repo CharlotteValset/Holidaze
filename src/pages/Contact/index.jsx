@@ -9,13 +9,21 @@ import ContactImage from "../../assets/images/contactImage.jpg";
 
 const contactSchema = yup
   .object({
-    contactName: yup.string().required("Please enter your name").min(3, "Name should be at least 3 characters"),
-    contactEmail: yup.string().email("Email must be a valid email address").required("Please enter your email address"),
+    contactName: yup
+      .string()
+      .required("Please enter your name")
+      .min(3, "Name should be at least 3 characters"),
+    contactEmail: yup
+      .string()
+      .email("Email must be a valid email address")
+      .required("Please enter your email address"),
     contactSubject: yup
       .string()
       .required("Please enter a subject title")
       .min(3, "Subject title should be at least 3 characters"),
-    contactMessage: yup.string().min(20, "Message should be at least 20 characters"),
+    contactMessage: yup
+      .string()
+      .min(20, "Message should be at least 20 characters"),
   })
   .required();
 
@@ -36,18 +44,24 @@ export const Contact = () => {
   };
 
   return (
-    <section className="mt-[70px] md:mt-[110px] max-w-screen-lg mx-auto md:flex md:flex-row-reverse md:gap-6 mb-6">
+    <section className="mx-auto mb-6 mt-[70px] max-w-screen-lg md:mt-[110px] md:flex md:flex-row-reverse md:gap-6">
       <div className="md:w-7/12">
-        <img className="w-full md:h-full md:object-cover md:p-4" src={ContactImage} alt="" />
+        <img
+          className="w-full md:h-full md:object-cover md:p-4"
+          src={ContactImage}
+          alt=""
+        />
       </div>
-      <div className="flex flex-col items-center mb-4 md:w-5/12">
-        <h1 className="w-11/12 text-center text-[22px] md:text-3xl py-3 md:text-left md:ml-24">Contact us</h1>
-        <p className="w-11/12 py-2 text-center md:text-left text-lg md:text-xl md:ml-24 font-light">
+      <div className="mb-4 flex flex-col items-center md:w-5/12">
+        <h1 className="w-11/12 py-3 text-center text-[22px] md:ml-24 md:text-left md:text-3xl">
+          Contact us
+        </h1>
+        <p className="w-11/12 py-2 text-center text-lg font-light md:ml-24 md:text-left md:text-xl">
           Please don’t hesitate to reach out!
         </p>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-light-blue w-11/12 h-fit rounded-lg mx-auto xs:mx-0 xs:ml-4 mt-8 mb-5 xs:max-w-xs md:ml-3"
+          className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:mx-0 xs:ml-4 xs:max-w-xs md:ml-3"
         >
           <InputField
             label="Name"
@@ -57,7 +71,7 @@ export const Contact = () => {
             required={true}
             id="contactName"
             type="text"
-            className="rounded-lg h-8 border-gray-300"
+            className="h-8 rounded-lg border-gray-300"
             errors={errors}
           />
           <InputField
@@ -68,7 +82,7 @@ export const Contact = () => {
             required={true}
             id="contactEmail"
             type="email"
-            className="rounded-lg h-8 border-gray-300"
+            className="h-8 rounded-lg border-gray-300"
             errors={errors}
           />
           <InputField
@@ -79,10 +93,10 @@ export const Contact = () => {
             required={true}
             id="contactSubject"
             type="text"
-            className="rounded-lg h-8 border-gray-300"
+            className="h-8 rounded-lg border-gray-300"
             errors={errors}
           />
-          <div className="flex flex-col mx-auto w-60 my-2">
+          <div className="mx-auto my-2 flex w-60 flex-col">
             <label htmlFor="contactMessage" className="ps-1 sm:text-lg">
               Message
             </label>
@@ -93,18 +107,25 @@ export const Contact = () => {
               })}
               id="contactMessage"
               rows="4"
-              className="block p-2.5 w-full rounded-lg border border-gray-300"
+              className="block w-full rounded-lg border border-gray-300 p-2.5"
             ></textarea>
-            {errors.contactMessage && <p className="text-red-500 text-sm">{errors.contactMessage.message}</p>}
+            {errors.contactMessage && (
+              <p className="text-sm text-red-500">
+                {errors.contactMessage.message}
+              </p>
+            )}
           </div>
           <div className="flex justify-center py-3">
             <PrimaryButton type="submit">Send</PrimaryButton>
           </div>
           {infoMessage && (
-            <InfoMessage className="mt-4 mb-8 sm:text-xl text-center space-y-3">
-              <p className="w-40 mx-auto">Thank you for reaching out to us!</p>
+            <InfoMessage className="mb-8 mt-4 space-y-3 text-center sm:text-xl">
+              <p className="mx-auto w-40">Thank you for reaching out to us!</p>
               <i className="fa-solid fa-heart text-soft-pink"></i>
-              <p className="w-44 mx-auto"> We will get in touch as soon as possible.</p>
+              <p className="mx-auto w-44">
+                {" "}
+                We will get in touch as soon as possible.
+              </p>
             </InfoMessage>
           )}
         </form>
