@@ -40,14 +40,16 @@ export const ProfileTabs = () => {
 
       <div className="mb-3 rounded-b-lg rounded-tr-lg bg-light-blue p-3">
         {activeTab === "bookings" && (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-10">
             <MyBookings />
             <MyBookings />
             <MyBookings />
           </div>
         )}
         {activeTab === "venues" && (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-10">
+            <MyVenues />
+            <MyVenues />
             <MyVenues />
             <MyVenues />
           </div>

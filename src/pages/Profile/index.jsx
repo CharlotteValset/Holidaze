@@ -12,7 +12,7 @@ export const Profile = () => {
   return (
     <>
       <h1 className="mt-20 text-center text-2xl sm:hidden">My profile</h1>
-      <div className="sm:mx-auto sm:mb-4 sm:mt-12 sm:flex sm:max-w-screen-lg sm:justify-between md:mt-20">
+      <div className="mx-auto flex w-full max-w-screen-lg flex-col sm:mt-16 sm:flex-row sm:justify-around md:mt-20">
         <ProfileInfo />
         <Link
           to="/addEditVenue"
@@ -24,7 +24,7 @@ export const Profile = () => {
       </div>
       <div className="mb-4 flex justify-center">
         <TextLink onClick={() => setIsModalOpen(true)}>
-          Want to become a venue manager?
+          <p>Want to become a venue manager?</p>
         </TextLink>{" "}
         {isModalOpen && (
           <Modal

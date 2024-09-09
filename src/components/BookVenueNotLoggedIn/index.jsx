@@ -14,7 +14,7 @@ export const BookVenueNotLoggedIn = () => {
       <Link
         to="/signUp"
         aria-label="Sign up"
-        className="mx-auto w-40 pb-6 text-center sm:mb-8 sm:w-52"
+        className="mx-auto flex w-40 pb-6 text-center sm:mb-8 sm:w-52"
       >
         <TextLink>
           {" "}

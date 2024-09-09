@@ -50,13 +50,14 @@ export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
           </button>
         </div>
       ))}
-      <PrimaryButton
+      <button
         type="button"
         className="border-0 ps-0 text-left hover:bg-light-blue hover:text-dark-blue hover:underline"
         onClick={addNewImageUrl}
       >
-        <i className="fa-solid fa-plus mr-2 text-sm"></i>Add another image
-      </PrimaryButton>
+        <i className="fa-solid fa-plus mr-2 text-sm"></i>
+        Add another image
+      </button>
       {isSubmitted &&
         errors?.images &&
         Array.isArray(errors.images) &&
