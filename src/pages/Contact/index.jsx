@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { InputField } from "../../components/InputField";
-import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
-import { InfoMessage } from "../../components/InfoMessage";
+import { InputField } from "../../components/form_elements/InputField";
+import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
+import { InfoMessage } from "../../components/ui_elements/InfoMessage";
 import ContactImage from "../../assets/images/contactImage.jpg";
 
 const contactSchema = yup

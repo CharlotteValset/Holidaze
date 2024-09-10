@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ProfileInfo } from "../../components/ProfileInfo";
-import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
-import { SecondaryButton } from "../../components/Buttons/SecondaryButton";
-import { ProfileTabs } from "../../components/ProfileTabs";
-import { TextLink } from "../../components/TextLink";
-import { Modal } from "../../components/Modal";
+import { ProfileInfo } from "../../components/profile/ProfileInfo";
+import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
+import { SecondaryButton } from "../../components/ui_elements/Buttons/SecondaryButton";
+import { ProfileTabs } from "../../components/profile/ProfileTabs";
+import { TextLink } from "../../components/ui_elements/TextLink";
+import { Modal } from "../../components/ui_elements/Modal";
 
 export const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

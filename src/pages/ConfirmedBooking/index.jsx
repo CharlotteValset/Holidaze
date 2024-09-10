@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProfileImage from "../../assets/images/profileImage.png";
 import HeroImage from "../../assets/images/heroImage.png";
-import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
+import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 
 export const ConfirmedBooking = () => {
   return (
