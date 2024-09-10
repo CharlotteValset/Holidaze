@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { Gallery } from "../../components/Gallery";
-import { VenueInfo } from "../../components/VenueInfo";
-import { BookVenue } from "../../components/BookVenue";
-import { VenueManagerOwnPageView } from "../../components/VenueManagerOwnPageView";
-import { BookVenueNotLoggedIn } from "../../components/BookVenueNotLoggedIn";
+import { Gallery } from "../../components/ui_elements/Gallery";
+import { VenueInfo } from "../../components/venues/VenueInfo";
+import { BookVenue } from "../../components/forms/BookVenue";
+import { VenueManagerOwnPageView } from "../../components/venues/VenueManagerOwnPageView";
+import { BookVenueNotLoggedIn } from "../../components/bookings/BookVenueNotLoggedIn";
 
 export const SingleVenue = () => {
   return (

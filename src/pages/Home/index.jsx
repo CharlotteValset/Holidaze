@@ -1,5 +1,5 @@
-import { Hero } from "../../components/Hero";
-import { Card } from "../../components/Card";
+import { Hero } from "../../components/ui_elements/Hero";
+import { Card } from "../../components/ui_elements/Card";
 
 export const Home = () => {
   return (

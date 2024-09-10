@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { InputField } from "../../components/InputField";
-import { Checkbox } from "../../components/Checkbox";
-import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
-import { SecondaryButton } from "../../components/Buttons/SecondaryButton";
-import { AddImageForm } from "../../components/AddImageForm";
-import { Modal } from "../../components/Modal";
-import { TextLink } from "../../components/TextLink";
+import { InputField } from "../../components/form_elements/InputField";
+import { Checkbox } from "../../components/form_elements/Checkbox";
+import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
+import { SecondaryButton } from "../../components/ui_elements/Buttons/SecondaryButton";
+import { AddImageForm } from "../../components/forms/AddImageForm";
+import { Modal } from "../../components/ui_elements/Modal";
+import { TextLink } from "../../components/ui_elements/TextLink";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Venue title is required"),

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import { Layout } from "./components/Layout/index";
+import { Layout } from "./components/nav/Layout";
 import {
   Home,
   SingleVenue,

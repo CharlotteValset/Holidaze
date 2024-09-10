@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
-import { TextLink } from "../../components/TextLink";
-import { InputField } from "../../components/InputField";
+import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
+import { TextLink } from "../../components/ui_elements/TextLink";
+import { InputField } from "../../components/form_elements/InputField";
 
 const schema = yup.object({
   fullName: yup
