@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
+import { register as registerUser } from "../../js/api/auth/register.jsx";
 
 const schema = yup.object({
   fullName: yup
@@ -37,6 +38,7 @@ const schema = yup.object({
 });
 
 export const SignUp = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -44,9 +46,25 @@ export const SignUp = () => {
     reset,
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      const { fullName, email, password, profileImage } = data;
+
+      const response = await registerUser(
+        fullName,
+        email,
+        password,
+        profileImage,
+      );
+
+      console.log("registration success! :", response);
+      navigate("/login");
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("registration failed!");
+    } finally {
+      reset();
+    }
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -123,27 +141,3 @@ export const SignUp = () => {
     </div>
   );
 };
-
-/* import React, { useState } from "react";
-
-export const LogIn = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  // Toggle the password visibility
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
-
-  return (
-    <div className="relative flex items-center mt-52">
-      <input
-        type={showPassword ? "text" : "password"}
-        placeholder="Enter your password"
-        className="border rounded p-2 w-full"
-      />
-      <button type="button" onClick={togglePasswordVisibility} className="absolute right-2 text-gray-600">
-        {showPassword ? "Hide" : "Show"}
-      </button>
-    </div>
-  );
-}; */
