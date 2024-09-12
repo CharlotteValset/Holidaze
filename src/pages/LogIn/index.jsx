@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
+import { login as loginUser } from "../../js/api/auth/login.jsx";
 
 const schema = yup
   .object({
@@ -24,6 +25,7 @@ const schema = yup
   .required();
 
 export const LogIn = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -31,9 +33,20 @@ export const LogIn = () => {
     reset,
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      const { email, password } = data;
+
+      const response = await loginUser(email, password);
+
+      console.log("Login success! :", response);
+      navigate("/");
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Login failed!");
+    } finally {
+      reset();
+    }
   };
 
   return (
