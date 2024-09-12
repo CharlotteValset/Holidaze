@@ -75,7 +75,7 @@ export const ProfileInfo = () => {
                   required={false}
                   id="editProfileImg"
                   type="url"
-                  className="h-8 rounded-lg border-gray-300"
+                  className="h-8 w-full rounded-lg border-gray-300"
                   errors={errors}
                 />
                 <PrimaryButton
