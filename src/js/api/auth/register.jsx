@@ -1,5 +1,5 @@
 import { API_Base_Url, API_Auth, API_Register_Url } from "../constants";
-import { authFetch } from "../fetch";
+import { authFetch } from "../authFetch";
 
 export const register = async (name, email, password, profileImg) => {
   const response = await authFetch(API_Base_Url + API_Auth + API_Register_Url, {

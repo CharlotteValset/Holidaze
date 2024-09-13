@@ -1,6 +1,6 @@
 import { API_Base_Url, API_Auth, API_Login_Url } from "../constants";
 import { save } from "../../storage/save";
-import { authFetch } from "../fetch";
+import { authFetch } from "../authFetch";
 
 export const login = async (email, password) => {
   const response = await authFetch(API_Base_Url + API_Auth + API_Login_Url, {
