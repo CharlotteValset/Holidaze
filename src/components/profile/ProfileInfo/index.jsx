@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import ProfileImage from "../../../assets/images/profileImage.png";
+import noAvatarImg from "../../../assets/images/no_ProfileImg.png";
 import { Modal } from "../../ui_elements/Modal";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import { InputField } from "../../form_elements/InputField";
@@ -11,7 +11,7 @@ const editProfileImageSchema = yup.object({
   editImg: yup.string().url("Invalid URL"),
 });
 
-export const ProfileInfo = () => {
+export const ProfileInfo = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
@@ -27,17 +27,21 @@ export const ProfileInfo = () => {
     reset();
   };
 
+  const userName = data?.name || "Profile name not available";
+  const isVenueManager = data.venueManager ? "Venue Manager" : "";
+  const avatarImg = data?.avatar?.url || noAvatarImg;
+
   return (
     <article className="my-4 sm:ml-4 sm:mt-8 sm:flex sm:w-full sm:flex-row-reverse sm:justify-end">
       <div className="mx-auto mb-3 flex flex-col items-center sm:ml-4 sm:w-max sm:items-start sm:justify-center">
-        <p className="font-light sm:text-2xl">Diane Borderbottom</p>
+        <p className="font-light sm:text-2xl">{userName}</p>
         <p className="text-sm font-light text-dark-gray sm:text-xl">
-          Venue manager
+          {isVenueManager}
         </p>
       </div>
       <div className="flex flex-col items-center sm:w-36">
         <img
-          src={ProfileImage}
+          src={avatarImg}
           alt="Profile Image"
           className="mx-auto h-20 w-20 rounded-full sm:h-32 sm:w-32"
         />
@@ -58,7 +62,7 @@ export const ProfileInfo = () => {
             title="Edit profile image"
           >
             <img
-              src={ProfileImage}
+              src={avatarImg}
               alt="Profile"
               className="mx-auto h-40 w-40 rounded-full"
             />
