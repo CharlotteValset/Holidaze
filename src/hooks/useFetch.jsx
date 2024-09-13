@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { authFetch } from "../js/api/fetch";
+import { authFetch } from "../js/api/authFetch";
 
 export function useFetch(url) {
   const [data, setData] = useState([]);
