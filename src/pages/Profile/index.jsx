@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ProfileInfo } from "../../components/profile/ProfileInfo";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
-import { SecondaryButton } from "../../components/ui_elements/Buttons/SecondaryButton";
 import { ProfileTabs } from "../../components/profile/ProfileTabs";
-import { TextLink } from "../../components/ui_elements/TextLink";
-import { Modal } from "../../components/ui_elements/Modal";
 import { useFetch } from "../../hooks/useFetch";
 import { API_Url, profile_Url } from "../../js/api/constants";
 import { load } from "../../js/storage/load";
+import { BecomeVenueManager } from "../../components/profile/BecomeVenueManager";
 
 export const Profile = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const userProfile = load("profile");
 
   const userId = userProfile?.name;
@@ -45,33 +41,7 @@ export const Profile = () => {
             <PrimaryButton>+ Add new venue</PrimaryButton>
           </Link>
         </div>
-        <div className="mb-4 flex justify-center">
-          <TextLink onClick={() => setIsModalOpen(true)}>
-            <p>
-              {!data?.venueManager ? "Want to become a venue Manager?" : ""}
-            </p>
-          </TextLink>{" "}
-          {isModalOpen && (
-            <Modal
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-              title="I want to become a venue manager"
-              footer={
-                <>
-                  <SecondaryButton onClick={() => setIsModalOpen(false)}>
-                    No
-                  </SecondaryButton>
-                  <PrimaryButton
-                    onClick={() => setIsModalOpen(false)}
-                    className="mx-5"
-                  >
-                    Yes
-                  </PrimaryButton>
-                </>
-              }
-            ></Modal>
-          )}
-        </div>
+        <BecomeVenueManager />
         <ProfileTabs />
       </>
     );
