@@ -4,7 +4,7 @@ import { API_Key } from "./constants";
 export const headers = (hasBody = false) => {
   const headers = new Headers();
 
-  const accessToken = load("accsessToken");
+  const accessToken = load("accessToken");
 
   if (accessToken) {
     headers.append("Authorization", `Bearer ${accessToken}`);
