@@ -3,20 +3,10 @@ import { Link } from "react-router-dom";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import ImagePlaceholder from "../../../assets/images/no_img.png";
 
-const updateImageUrlFromDomains = (media) => {
-  return media.url;
-};
-
 export const Card = ({ data }) => {
-  const imageArray = data.media;
+  const imageArray = data?.media;
 
-  const imageUrl =
-    Array.isArray(imageArray) &&
-    imageArray.length > 0 &&
-    imageArray[0] !== "null" &&
-    imageArray[0].url
-      ? updateImageUrlFromDomains(imageArray[0])
-      : ImagePlaceholder;
+  const imageUrl = imageArray?.[0]?.url ?? ImagePlaceholder;
 
   const location =
     data.location?.city && data.location?.country
