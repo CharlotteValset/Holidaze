@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -10,6 +10,8 @@ import { SecondaryButton } from "../../components/ui_elements/Buttons/SecondaryB
 import { AddImageForm } from "../../components/forms/AddImageForm";
 import { Modal } from "../../components/ui_elements/Modal";
 import { TextLink } from "../../components/ui_elements/TextLink";
+import { usePost } from "../../hooks/usePost";
+import { all_Venues, API_Url } from "../../js/api/constants";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Venue title is required"),
@@ -54,8 +56,33 @@ export const AddEditVenue = () => {
     formState: { errors, isSubmitted },
   } = methods;
 
-  const onSubmit = (data) => {
-    console.log("Form submitted:", data);
+  const { postData, response, isLoading, hasError } = usePost(
+    API_Url + all_Venues,
+  );
+
+  const navigate = useNavigate();
+  const onSubmit = async (data) => {
+    const payload = {
+      name: data.title,
+      description: data.description,
+      media: data.images.map((url) => ({ url, alt: "Venue image" })),
+      price: data.pricePrNight,
+      maxGuests: data.maxGuests,
+      meta: {
+        wifi: data.wifi || false,
+        parking: data.parking || false,
+        breakfast: data.breakfast || false,
+        pets: data.pets || false,
+      },
+      location: {
+        city: data.city,
+        country: data.country,
+      },
+    };
+    postData(payload);
+    console.log("Form submitted:", payload);
+    navigate("/profile");
+    window.location.reload();
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -220,7 +247,9 @@ export const AddEditVenue = () => {
             <Link to="/profile" aria-label="Profile">
               <SecondaryButton>Cancel</SecondaryButton>
             </Link>
-            <PrimaryButton type="submit">Add venue</PrimaryButton>
+            <PrimaryButton type="submit" disabled={isLoading}>
+              {isLoading ? "Submitting..." : "Add venue"}
+            </PrimaryButton>{" "}
           </div>
           <div className="">
             <TextLink onClick={() => setIsModalOpen(true)}>
@@ -248,6 +277,11 @@ export const AddEditVenue = () => {
             )}
           </div>
         </div>
+        {hasError && (
+          <p className="text-red-500">
+            Failed to create venue. Please try again.
+          </p>
+        )}
       </form>
     </FormProvider>
   );
