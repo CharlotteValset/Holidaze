@@ -18,9 +18,8 @@ export function usePut(url) {
         body: JSON.stringify(data),
       });
 
-      // Check if the response is not OK (status code outside of 200-299)
       if (!response.ok) {
-        const errorText = await response.text(); // Read error text for debugging
+        const errorText = await response.text();
         throw new Error(`Error: ${response.status} - ${errorText}`);
       }
 
