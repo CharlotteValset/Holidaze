@@ -1,18 +1,24 @@
 import React, { useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import noAvatarImg from "../../../assets/images/no_ProfileImg.png";
+import { usePut } from "../../../hooks/usePut";
 import { Modal } from "../../ui_elements/Modal";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import { InputField } from "../../form_elements/InputField";
+import { API_Url, profile_Url } from "../../../js/api/constants";
+import { load } from "../../../js/storage/load";
 
 const editProfileImageSchema = yup.object({
-  editImg: yup.string().url("Invalid URL"),
+  editImg: yup.string().url("Invalid URL").required("Image URL is required"),
 });
 
 export const ProfileInfo = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const userProfile = load("profile");
+  const userId = userProfile?.name;
 
   const {
     register,
@@ -21,9 +27,36 @@ export const ProfileInfo = ({ data }) => {
     reset,
   } = useForm({ resolver: yupResolver(editProfileImageSchema) });
 
+  const { putData, response, isLoading, hasError } = usePut(
+    `${API_Url}${profile_Url}/${userId}`,
+  );
+
+  const handleEditProfileImage = async (formData) => {
+    console.log("Starting handleEditProfileImage with data:", formData);
+
+    try {
+      const updateData = {
+        avatar: {
+          url: formData.editImg,
+          alt: "Profile image",
+        },
+      };
+
+      await putData(updateData);
+
+      if (!hasError) {
+        setIsModalOpen(false);
+        window.location.reload();
+      } else {
+        console.error("Error updating profile image:", response);
+      }
+    } catch (error) {
+      console.error("Unexpected error during API call:", error);
+    }
+  };
+
   const onSubmit = (data) => {
-    console.log("object");
-    console.log(data);
+    handleEditProfileImage(data);
     reset();
   };
 
@@ -66,31 +99,25 @@ export const ProfileInfo = ({ data }) => {
               alt="Profile"
               className="mx-auto h-40 w-40 rounded-full"
             />
-            <FormProvider>
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col justify-center pt-4"
-              >
-                <InputField
-                  label="Image url"
-                  htmlFor="editProfileImg"
-                  register={register}
-                  registerYup="editImg"
-                  required={false}
-                  id="editProfileImg"
-                  type="url"
-                  className="h-9 w-full rounded-lg border-gray-300"
-                  errors={errors}
-                />
-                <PrimaryButton
-                  type="submit"
-                  onClick={() => setIsModalOpen(false)}
-                  className="mx-auto mt-4 text-center"
-                >
-                  Save
-                </PrimaryButton>
-              </form>
-            </FormProvider>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col justify-center pt-4"
+            >
+              <InputField
+                label="Image url"
+                htmlFor="editProfileImg"
+                register={register}
+                registerYup="editImg"
+                required={false}
+                id="editProfileImg"
+                type="url"
+                className="h-9 w-full rounded-lg border-gray-300"
+                errors={errors}
+              />
+              <PrimaryButton type="submit" className="mx-auto mt-4 text-center">
+                Save
+              </PrimaryButton>
+            </form>
           </Modal>
         )}
       </div>
