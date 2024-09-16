@@ -7,12 +7,17 @@ import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButto
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
 import { register as registerUser } from "../../js/api/auth/register.jsx";
+import { Checkbox } from "../../components/form_elements/Checkbox";
 
 const schema = yup.object({
   fullName: yup
     .string()
     .min(3, "Full name should be at least 3 characters.")
-    .required(),
+    .matches(
+      /^[a-zA-Z0-9_]+$/,
+      "Full name can only contain letters, numbers, and underscores.",
+    )
+    .required("Full name is required."),
   email: yup
     .string()
     .email("Please enter a valid email address")
