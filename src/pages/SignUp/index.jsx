@@ -74,10 +74,10 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="mx-auto mb-5 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
+    <div className="mx-auto mb-12 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
       <h1 className="mb-3 mt-6 text-[22px] sm:text-3xl">Sign up here</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 max-w-xs">
-        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col gap-2 sm:w-60">
+        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col sm:w-60">
           <InputField
             label="Full name"
             htmlFor="FullName"
@@ -86,7 +86,7 @@ export const SignUp = () => {
             required={true}
             id="FullName"
             type="text"
-            className="my-1 h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="my-1 h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
           />
           <InputField
@@ -97,7 +97,7 @@ export const SignUp = () => {
             required={true}
             id="SignUpEmail"
             type="email"
-            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
           />
           <InputField
@@ -108,7 +108,7 @@ export const SignUp = () => {
             required={true}
             id="SignUpPassword"
             type="password"
-            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
             togglePassword={true}
           />
@@ -120,11 +120,11 @@ export const SignUp = () => {
             required={false}
             id="SignUpProfileImage"
             type="url"
-            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
           />
         </div>
-        <div className="flex justify-center pb-6">
+        <div className="flex justify-center pb-6 pt-3">
           <PrimaryButton type="submit">Sign up</PrimaryButton>
         </div>
       </form>

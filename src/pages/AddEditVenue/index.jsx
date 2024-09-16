@@ -105,7 +105,7 @@ export const AddEditVenue = () => {
             required={true}
             id="venueTitle"
             type="text"
-            className="h-8 rounded-lg border-gray-300"
+            className="h-9 w-60 rounded-lg border-gray-300"
             errors={errors}
           />
           <div className="mx-auto my-2 flex w-60 flex-col">
@@ -135,7 +135,7 @@ export const AddEditVenue = () => {
             required={true}
             id="venueCity"
             type="text"
-            className="h-8 rounded-lg border-gray-300"
+            className="h-9 w-44 rounded-lg border-gray-300 sm:w-48"
             errors={errors}
           />
           <InputField
@@ -146,7 +146,7 @@ export const AddEditVenue = () => {
             required={true}
             id="venueCountry"
             type="text"
-            className="h-8 rounded-lg border-gray-300"
+            className="h-9 w-44 rounded-lg border-gray-300 sm:w-48"
             errors={errors}
           />
           <div className="mx-auto my-4 flex max-w-60 justify-between">
@@ -202,7 +202,7 @@ export const AddEditVenue = () => {
                 required: "Please select the maximum number of guests.",
               })}
               id="venueMaxGuests"
-              className="block h-8 w-36 rounded-lg border border-gray-300 bg-gray-50 p-1.5 text-center text-sm text-gray-900"
+              className="block h-9 w-36 rounded-lg border border-gray-300 bg-gray-50 p-1.5 text-center text-sm text-gray-900"
             >
               <option value=""></option>
               <option value="1">1</option>
@@ -235,7 +235,7 @@ export const AddEditVenue = () => {
             min="1"
             id="venuePricePrNight"
             type="number"
-            className="h-8 max-w-36 rounded-lg border-gray-300 text-center"
+            className="h-9 max-w-36 rounded-lg border-gray-300 text-center"
             errors={errors}
           />
           <AddImageForm

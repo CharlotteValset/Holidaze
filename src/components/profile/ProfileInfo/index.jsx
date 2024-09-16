@@ -69,7 +69,7 @@ export const ProfileInfo = ({ data }) => {
             <FormProvider>
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col justify-center"
+                className="flex flex-col justify-center pt-4"
               >
                 <InputField
                   label="Image url"
@@ -79,13 +79,13 @@ export const ProfileInfo = ({ data }) => {
                   required={false}
                   id="editProfileImg"
                   type="url"
-                  className="h-8 w-full rounded-lg border-gray-300"
+                  className="h-9 w-full rounded-lg border-gray-300"
                   errors={errors}
                 />
                 <PrimaryButton
                   type="submit"
                   onClick={() => setIsModalOpen(false)}
-                  className="mx-auto text-center"
+                  className="mx-auto mt-4 text-center"
                 >
                   Save
                 </PrimaryButton>

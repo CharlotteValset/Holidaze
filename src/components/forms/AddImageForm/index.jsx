@@ -38,7 +38,7 @@ export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
             type="text"
             value={url}
             onChange={(e) => updateImageUrl(index, e.target.value)}
-            className="h-8 flex-1 rounded-lg border-gray-300"
+            className="h-9 w-52 flex-1 rounded-lg border-gray-300 sm:w-60"
           />
           <button
             type="button"
