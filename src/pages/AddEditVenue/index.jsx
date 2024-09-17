@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -9,9 +9,11 @@ import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButto
 import { SecondaryButton } from "../../components/ui_elements/Buttons/SecondaryButton";
 import { AddImageForm } from "../../components/forms/AddImageForm";
 import { Modal } from "../../components/ui_elements/Modal";
-import { TextLink } from "../../components/ui_elements/TextLink";
 import { usePost } from "../../hooks/usePost";
 import { all_Venues, API_Url } from "../../js/api/constants";
+import { useEffect } from "react";
+import { usePut } from "../../hooks/usePut";
+import { useDelete } from "../../hooks/useDelete";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Venue title is required"),
@@ -56,11 +58,47 @@ export const AddEditVenue = () => {
     formState: { errors, isSubmitted },
   } = methods;
 
-  const { postData, response, isLoading, hasError } = usePost(
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const venue = location.state?.venue || {};
+  const isEdit = location.state?.isEdit || false;
+  const venueId = venue.id;
+
+  const { postData, postResponse, isPostLoading, hasError } = usePost(
     API_Url + all_Venues,
   );
+  const {
+    putData,
+    response: putResponse,
+    isLoading: isPutLoading,
+    hasError: hasPutError,
+  } = usePut(`${API_Url + all_Venues}/${venueId}`);
+  const {
+    deleteData,
+    response: deleteResponse,
+    isLoading: isDeleteLoading,
+    hasError: hasDeleteError,
+  } = useDelete(`${API_Url + all_Venues}/${venueId}`);
 
-  const navigate = useNavigate();
+  const [imageUrls, setImageUrls] = useState([""]);
+
+  useEffect(() => {
+    if (isEdit && venue) {
+      setValue("title", venue.name);
+      setValue("description", venue.description);
+      setValue("city", venue.location.city || "");
+      setValue("country", venue.location.country || "");
+      setValue("wifi", venue.meta.wifi || false);
+      setValue("pets", venue.meta.pets || false);
+      setValue("breakfast", venue.meta.breakfast || false);
+      setValue("parking", venue.meta.parking || false);
+      setValue("maxGuests", venue.maxGuests || 1);
+      setValue("pricePrNight", venue.price || 1);
+      setImageUrls(venue.media?.map((media) => media.url) || [""]);
+    }
+  }, [isEdit, venue, setValue]);
+
   const onSubmit = async (data) => {
     const payload = {
       name: data.title,
@@ -79,13 +117,30 @@ export const AddEditVenue = () => {
         country: data.country,
       },
     };
-    postData(payload);
-    console.log("Form submitted:", payload);
-    navigate("/profile");
-    window.location.reload();
+
+    if (isEdit) {
+      await putData(payload);
+      console.log("Venue updated:", payload);
+      navigate("/profile");
+    } else {
+      await postData(payload);
+      console.log("New venue submitted:", payload);
+      navigate("/profile");
+    }
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDelete = async () => {
+    setIsModalOpen(false);
+    await deleteData();
+    if (!hasDeleteError) {
+      console.log("DELETED");
+      navigate("/profile");
+    } else {
+      console.error("Failed to delete venue.");
+    }
+  };
 
   return (
     <FormProvider {...methods}>
@@ -95,7 +150,7 @@ export const AddEditVenue = () => {
       >
         <div className="md:w-80 md:pb-8 md:pt-4">
           <h1 className="mb-2 pt-4 text-center text-[22px] sm:text-3xl md:mb-4 md:ps-11 md:text-left">
-            Add new venue
+            {isEdit ? "Edit Venue" : "Add new venue"}
           </h1>
           <InputField
             label="Title"
@@ -239,47 +294,70 @@ export const AddEditVenue = () => {
             errors={errors}
           />
           <AddImageForm
+            isEdit={isEdit}
+            venue={venue}
             setImages={setValue}
             errors={errors}
             isSubmitted={isSubmitted}
-          />{" "}
+          />
           <div className="flex justify-center gap-4 py-6 md:mx-auto md:w-60 md:justify-start">
-            <Link to="/profile" aria-label="Profile">
-              <SecondaryButton>Cancel</SecondaryButton>
-            </Link>
-            <PrimaryButton type="submit" disabled={isLoading}>
-              {isLoading ? "Submitting..." : "Add venue"}
-            </PrimaryButton>{" "}
-          </div>
-          <div className="">
-            <TextLink onClick={() => setIsModalOpen(true)}>
-              Delete venue?
-            </TextLink>{" "}
-            {isModalOpen && (
+            <SecondaryButton
+              type="button"
+              onClick={() => {
+                if (isEdit) {
+                  setIsModalOpen(true);
+                } else {
+                  navigate("/profile");
+                }
+              }}
+            >
+              {isEdit ? "Delete" : "Cancel"}
+            </SecondaryButton>
+            {isModalOpen && isEdit && (
               <Modal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                onClose={() => {
+                  setIsModalOpen(false);
+                }}
                 title="Are you sure you want to delete this venue?"
                 footer={
                   <>
-                    <SecondaryButton onClick={() => setIsModalOpen(false)}>
+                    <SecondaryButton
+                      type="button"
+                      onClick={async () => {
+                        await handleDelete();
+                      }}
+                    >
                       Delete venue
                     </SecondaryButton>
                     <PrimaryButton
-                      onClick={() => setIsModalOpen(false)}
-                      className=""
+                      type="button"
+                      onClick={() => {
+                        setIsModalOpen(false);
+                      }}
                     >
                       Keep venue
                     </PrimaryButton>
                   </>
                 }
-              ></Modal>
+              />
             )}
+            <PrimaryButton
+              type="submit"
+              disabled={isPostLoading || isPutLoading}
+            >
+              {isPostLoading || isPutLoading
+                ? "Submitting..."
+                : isEdit
+                  ? "Save changes"
+                  : "Add venue"}
+            </PrimaryButton>
           </div>
         </div>
-        {hasError && (
+        {hasError && hasPutError && (
           <p className="text-red-500">
-            Failed to create venue. Please try again.
+            Failed to {isEdit ? "update" : "create"} the venue. Please try
+            again.{" "}
           </p>
         )}
       </form>

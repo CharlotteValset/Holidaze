@@ -15,7 +15,6 @@ export const BecomeVenueManager = ({}) => {
   const userProfile = load("profile");
   const userId = userProfile?.name;
 
-  // Fetch the profile data on mount to ensure up-to-date information
   const {
     data: profileData,
     isLoading: isProfileLoading,
@@ -26,7 +25,6 @@ export const BecomeVenueManager = ({}) => {
     `${API_Url}${profile_Url}/${userId}`,
   );
 
-  // Set isVenueManager state based on fetched profile data
   useEffect(() => {
     if (profileData && profileData.venueManager !== undefined) {
       setIsVenueManager(profileData.venueManager);
@@ -36,7 +34,6 @@ export const BecomeVenueManager = ({}) => {
   const handleBecomeManager = async () => {
     await putData({ venueManager: true });
 
-    // Update local state if PUT request was successful
     if (!putError) {
       setIsVenueManager(true);
     }
@@ -92,53 +89,3 @@ export const BecomeVenueManager = ({}) => {
     </div>
   );
 };
-
-/* export const BecomeVenueManager = ({ data }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const userProfile = load("profile");
-
-  const userId = userProfile?.name;
-
-  const { putData, response, isLoading, hasError } = usePut(
-    `${API_Url}${profile_Url}/${userId}`,
-  );
-  const handleBecomeManager = () => {
-    putData({ venueManager: true });
-    setIsModalOpen(false);
-  };
-
-  return (
-    <div className="mb-4 flex justify-center">
-      <TextLink onClick={() => setIsModalOpen(true)}>
-        <p>{!data?.venueManager ? "Want to become a venue Manager?" : ""}</p>
-      </TextLink>
-      {isModalOpen && (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          title="I want to become a venue manager"
-          footer={
-            <>
-              <SecondaryButton onClick={() => setIsModalOpen(false)}>
-                No
-              </SecondaryButton>
-              <PrimaryButton
-                onClick={handleBecomeManager}
-                className="mx-5"
-                disabled={isLoading}
-              >
-                {isLoading ? "Processing..." : "Yes"}
-              </PrimaryButton>
-            </>
-          }
-        ></Modal>
-      )}
-      {hasError && (
-        <p className="text-red-500">
-          Failed to update profile. Please try again.
-        </p>
-      )}
-    </div>
-  );
-}; */

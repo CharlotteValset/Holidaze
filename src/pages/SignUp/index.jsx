@@ -7,7 +7,6 @@ import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButto
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
 import { register as registerUser } from "../../js/api/auth/register.jsx";
-import { Checkbox } from "../../components/form_elements/Checkbox";
 
 const schema = yup.object({
   fullName: yup

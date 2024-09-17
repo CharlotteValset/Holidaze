@@ -21,17 +21,23 @@ export const MyVenues = ({ data }) => {
 
         return (
           <div key={index} className="venue-card my-4 pb-6 md:flex">
-            <img
-              src={venueImageUrl}
-              alt="Venue"
-              className="rounded md:w-2/4 md:object-cover"
-            />
+            <div className="">
+              <img
+                src={venueImageUrl}
+                alt="Venue"
+                className="h-52 w-full rounded-lg object-cover xs:h-72 sm:h-96 md:h-[350px] md:w-[420px] lg:h-[450px] lg:w-[600px]"
+              />
+            </div>
             <div className="md:ml-4 md:w-2/4">
               <div className="mt-3 flex items-center justify-between md:mt-1">
                 <h2 className="truncate text-[22px] md:text-3xl">
                   {venueTitle}
                 </h2>
-                <Link to="/addEditVenue" aria-label="Add/edit venue">
+                <Link
+                  to="/addEditVenue"
+                  state={{ venue, isEdit: true }}
+                  aria-label="Edit venue"
+                >
                   <PrimaryButton>Edit venue</PrimaryButton>
                 </Link>
               </div>
@@ -51,7 +57,7 @@ export const MyVenues = ({ data }) => {
                   </span>
                 </p>
               </div>
-              <div className="my-4 flex max-w-64 justify-between md:max-w-80">
+              <div className="my-4 flex max-w-64 justify-start gap-2 md:max-w-80">
                 {venue.meta?.wifi && (
                   <div className="flex items-center gap-1 rounded bg-light-blue px-1 py-0.5 text-xs md:text-base">
                     <i className="fa-solid fa-wifi"></i>

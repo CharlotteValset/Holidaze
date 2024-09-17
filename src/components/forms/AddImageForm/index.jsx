@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
+export const AddImageForm = ({ setImages, errors, isSubmitted, venue }) => {
   const [imageUrls, setImageUrls] = useState([""]);
+
+  useEffect(() => {
+    setImageUrls(venue.media?.map((media) => media.url) || [""]);
+  }, [venue]);
 
   const addNewImageUrl = () => {
     const newImages = [...imageUrls, ""];
@@ -34,6 +38,13 @@ export const AddImageForm = ({ setImages, errors, isSubmitted }) => {
       </div>
       {imageUrls.map((url, index) => (
         <div key={index} className="flex items-center space-x-2">
+          {url && (
+            <img
+              src={url}
+              alt={`Thumbnail ${index + 1}`}
+              className="mr-2 h-9 w-9 rounded object-cover"
+            />
+          )}
           <input
             type="text"
             value={url}
