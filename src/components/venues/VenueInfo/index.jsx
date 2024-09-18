@@ -15,9 +15,9 @@ export const VenueInfo = ({ data }) => {
   return (
     <div className="mx-auto w-11/12">
       <div className="sm:mr-3 sm:w-full">
-        <div className="mt-3 flex items-center justify-between md:mt-1 md:w-80">
-          <h2 className="truncate text-[22px] md:text-3xl">{data.name}</h2>
-          <span className="flex flex-row items-center rounded px-2 py-0.5 text-sm font-normal text-dark-blue md:text-base">
+        <div className="mt-3 flex justify-between align-middle md:mt-1 lg:gap-3">
+          <h2 className="text-base sm:text-[22px] md:text-3xl">{data.name}</h2>
+          <span className="flex flex-row items-baseline rounded px-2 py-0.5 align-top text-sm font-normal text-dark-blue md:text-base">
             <svg
               className="me-2 h-3 w-3 text-dark-blue"
               aria-hidden="true"
@@ -73,7 +73,7 @@ export const VenueInfo = ({ data }) => {
           )}
         </div>
         <h3 className="mt-6 text-lg md:text-xl">Description</h3>
-        <p className="w-72 text-base font-light xs:w-11/12 md:text-lg">
+        <p className="w-64 text-base font-light xs:w-11/12 md:text-lg">
           {data.description}
         </p>
         <div className="my-4">
