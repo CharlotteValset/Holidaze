@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import { InputField } from "../../form_elements/InputField";
+import { BookVenueNotLoggedIn } from "../../../components/bookings/BookVenueNotLoggedIn";
+import { load } from "../../../js/storage/load";
 
 const schema = yup
   .object({
@@ -29,10 +31,13 @@ export const BookVenue = () => {
     console.log(data);
     reset();
   };
+
+  const token = load("accessToken");
+
   return (
     <div className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:mx-0 xs:ml-4 xs:max-w-xs">
       <h3 className="pb-2 pt-4 text-center text-xl">Book this venue!</h3>
-      <form onSubmit={handleSubmit(onSubmit)} className="mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-48">
         <InputField
           label="Check-in"
           htmlFor="checkInDate"
@@ -55,7 +60,7 @@ export const BookVenue = () => {
           className="h-8 rounded-lg border-gray-300 text-center"
           errors={errors}
         />
-        <div className="mx-auto my-2 flex w-60 flex-col">
+        <div className="mx-auto my-2 flex flex-col">
           <label htmlFor="numberOfGuests" className="pb-1 ps-1 sm:text-lg">
             Number of guests
           </label>
@@ -94,14 +99,17 @@ export const BookVenue = () => {
             <span className="text-base">$</span> 1567
           </p>
         </div>
-        <Link
-          to="/confirmedBooking"
-          aria-label="Confirmed booking"
-          className="flex justify-center py-6"
-        >
-          <PrimaryButton type="submit">Book now</PrimaryButton>{" "}
-          {/* Go to login if not logged in */}
-        </Link>
+        {token ? (
+          <Link
+            to="/confirmedBooking"
+            aria-label="Confirmed booking"
+            className="flex justify-center py-6"
+          >
+            <PrimaryButton type="submit">Book now</PrimaryButton>
+          </Link>
+        ) : (
+          <BookVenueNotLoggedIn />
+        )}
       </form>
     </div>
   );
