@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const SearchBar = ({ onSearch, searchResults }) => {
+export const SearchBar = ({ onSearch }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (event) => {
@@ -11,7 +11,7 @@ export const SearchBar = ({ onSearch, searchResults }) => {
 
   return (
     <>
-      <div className="mx-auto mt-4 flex w-11/12 max-w-xs items-center justify-center pb-2">
+      <div className="mx-auto mt-4 flex w-11/12 max-w-xs items-center justify-center">
         <label htmlFor="simple-search" className="sr-only">
           Search
         </label>
@@ -46,14 +46,6 @@ export const SearchBar = ({ onSearch, searchResults }) => {
             <span className="sr-only">Search</span>
           </button>
         </div>
-      </div>
-
-      <div>
-        {searchResults.length === 0 && inputValue.trim() !== "" ? (
-          <p className="mx-auto w-56 ps-2 text-sm text-soft-pink xs:w-80">
-            No results matched
-          </p>
-        ) : null}
       </div>
     </>
   );

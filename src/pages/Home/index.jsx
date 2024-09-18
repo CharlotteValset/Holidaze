@@ -27,7 +27,7 @@ export const Home = () => {
   let content;
 
   if (isLoading) {
-    content = <div>Hellooo loading</div>;
+    content = <div>Loading...</div>;
   } else if (hasError) {
     content = <div>Error when trying to load the page</div>;
   } else {
@@ -40,14 +40,21 @@ export const Home = () => {
 
   return (
     <>
-      <Hero
-        searchTerm={searchTerm}
-        onSearch={handleSearch}
-        searchResults={searchResults}
-      />
-      <section className="mx-auto grid w-11/12 grid-cols-1 gap-3 bg-almost-white py-3 sm:grid-cols-2 lg:max-w-screen-2xl lg:grid-cols-3 xl:grid-cols-4">
-        {content}
-      </section>
+      <Hero searchTerm={searchTerm} onSearch={handleSearch} />
+      {searchTerm.trim() !== "" && searchResults.length === 0 ? (
+        <div className="mx-auto my-4 w-96 rounded-lg bg-light-blue p-4 xs:w-80">
+          <p className="p-3 text-center font-semibold text-dark-blue">
+            Hmm... No matches for "{searchTerm}".
+          </p>
+          <p className="p-3 text-center text-dark-blue">
+            Don't give up! Try searching for something else.
+          </p>
+        </div>
+      ) : (
+        <section className="mx-auto grid w-11/12 grid-cols-1 gap-3 bg-almost-white py-3 sm:grid-cols-2 lg:max-w-screen-2xl lg:grid-cols-3 xl:grid-cols-4">
+          {content}
+        </section>
+      )}
     </>
   );
 };
