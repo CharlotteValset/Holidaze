@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import DatePicker from "react-date-picker";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
@@ -38,28 +39,8 @@ export const BookVenue = () => {
     <div className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:mx-0 xs:ml-4 xs:max-w-xs">
       <h3 className="pb-2 pt-4 text-center text-xl">Book this venue!</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-48">
-        <InputField
-          label="Check-in"
-          htmlFor="checkInDate"
-          register={register}
-          registerYup="checkIn"
-          required={true}
-          id="checkInDate"
-          type="date"
-          className="h-8 rounded-lg border-gray-300 text-center"
-          errors={errors}
-        />
-        <InputField
-          label="Check-out"
-          htmlFor="checkOutDate"
-          register={register}
-          registerYup="checkOut"
-          required={true}
-          id="checkOutDate"
-          type="date"
-          className="h-8 rounded-lg border-gray-300 text-center"
-          errors={errors}
-        />
+        <DatePicker />
+
         <div className="mx-auto my-2 flex flex-col">
           <label htmlFor="numberOfGuests" className="pb-1 ps-1 sm:text-lg">
             Number of guests
