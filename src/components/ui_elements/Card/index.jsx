@@ -14,11 +14,11 @@ export const Card = ({ data }) => {
       : "Location not available";
 
   return (
-    <article className="mx-auto my-1 w-11/12 rounded-xl bg-light-blue sm:w-72">
+    <article className="sm:w-74 mx-auto my-1 w-full rounded-xl bg-light-blue md:w-[300px] xl:w-72">
       <div className="flex flex-col">
         <div className="">
           <img
-            className="h-48 w-full rounded-t-xl object-cover"
+            className="h-48 w-full rounded-t-xl object-cover xs:h-72 sm:h-48"
             src={imageUrl}
             alt="image"
           />

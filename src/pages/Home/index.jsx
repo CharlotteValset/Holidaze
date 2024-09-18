@@ -45,7 +45,7 @@ export const Home = () => {
         onSearch={handleSearch}
         searchResults={searchResults}
       />
-      <section className="mx-auto flex max-w-screen-xl flex-wrap gap-3 bg-almost-white pt-3 sm:gap-5">
+      <section className="mx-auto grid w-11/12 grid-cols-1 gap-3 bg-almost-white py-3 sm:grid-cols-2 lg:max-w-screen-2xl lg:grid-cols-3 xl:grid-cols-4">
         {content}
       </section>
     </>

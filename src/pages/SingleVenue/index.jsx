@@ -6,7 +6,6 @@ import { Gallery } from "../../components/ui_elements/Gallery";
 import { VenueInfo } from "../../components/venues/VenueInfo";
 import { BookVenue } from "../../components/forms/BookVenue";
 import { VenueManagerOwnPageView } from "../../components/venues/VenueManagerOwnPageView";
-import { BookVenueNotLoggedIn } from "../../components/bookings/BookVenueNotLoggedIn";
 import { load } from "../../js/storage/load";
 
 export const SingleVenue = () => {
@@ -17,7 +16,6 @@ export const SingleVenue = () => {
     hasError,
   } = useFetch(`${API_Url}${all_Venues}/${id}?_owner=true`);
 
-  const token = load("accessToken");
   const userProfile = load("profile");
   const userEmail = userProfile?.email;
   const venueOwner = singleVenue?.owner?.email;
@@ -46,14 +44,10 @@ export const SingleVenue = () => {
         </div>
         <div className="flex flex-col md:mx-10 md:max-w-screen-lg md:flex-row md:justify-between">
           <VenueInfo data={singleVenue} key={singleVenue.id} />
-          {token ? (
-            userEmail && venueOwner && userEmail === venueOwner ? (
-              <VenueManagerOwnPageView venue={singleVenue} />
-            ) : (
-              <BookVenue />
-            )
+          {userEmail && venueOwner && userEmail === venueOwner ? (
+            <VenueManagerOwnPageView venue={singleVenue} />
           ) : (
-            <BookVenueNotLoggedIn />
+            <BookVenue />
           )}
         </div>
       </>
