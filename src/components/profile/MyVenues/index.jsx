@@ -89,8 +89,6 @@ export const MyVenues = ({ data }) => {
               </p>
               <h3 className="mb-1 mt-4 text-lg md:text-xl">Bookings (3)</h3>
               <BookingsAccordion />
-              <BookingsAccordion />
-              <BookingsAccordion />
             </div>
           </div>
         );
