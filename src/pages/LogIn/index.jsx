@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
+import { login as loginUser } from "../../js/api/auth/login.jsx";
 
 const schema = yup
   .object({
@@ -24,6 +25,7 @@ const schema = yup
   .required();
 
 export const LogIn = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -31,13 +33,24 @@ export const LogIn = () => {
     reset,
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      const { email, password } = data;
+
+      const response = await loginUser(email, password);
+
+      console.log("Login success! :", response);
+      navigate("/");
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Login failed!");
+    } finally {
+      reset();
+    }
   };
 
   return (
-    <div className="mx-auto mb-5 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
+    <div className="mx-auto mb-12 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
       <h1 className="mb-3 mt-6 text-[22px] sm:text-3xl">Please log in</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 max-w-xs">
         <div className="mx-auto my-1 flex w-52 flex-col sm:w-60">
@@ -49,7 +62,7 @@ export const LogIn = () => {
             required={true}
             id="LogInEmail"
             type="email"
-            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
             autoComplete="email"
           />
@@ -63,7 +76,7 @@ export const LogIn = () => {
             required={true}
             id="LogInPassword"
             type="password"
-            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
             togglePassword={true}
             autoComplete="current-password"

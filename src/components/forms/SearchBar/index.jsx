@@ -1,10 +1,17 @@
-export const SearchBar = () => {
+import { useState } from "react";
+
+export const SearchBar = ({ onSearch, searchResults }) => {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (event) => {
+    const term = event.target.value;
+    setInputValue(term);
+    onSearch(term);
+  };
+
   return (
     <>
-      <form
-        className="mx-auto mt-4 flex w-11/12 max-w-xs items-center justify-center pb-8"
-        onSubmit={(e) => e.preventDefault()}
-      >
+      <div className="mx-auto mt-4 flex w-11/12 max-w-xs items-center justify-center pb-2">
         <label htmlFor="simple-search" className="sr-only">
           Search
         </label>
@@ -14,9 +21,11 @@ export const SearchBar = () => {
             id="simple-search"
             className="block w-full rounded-l-xl border-gray-300 bg-gray-50 p-2.5 ps-3 text-sm text-gray-900"
             placeholder="Search"
+            value={inputValue}
+            onChange={handleInputChange}
           />
           <button
-            type="submit"
+            type="button"
             className="rounded-r-xl bg-soft-pink p-2.5 px-3 py-2 text-center text-sm font-medium text-dark-blue hover:bg-dark-blue hover:text-soft-pink"
           >
             <svg
@@ -37,7 +46,15 @@ export const SearchBar = () => {
             <span className="sr-only">Search</span>
           </button>
         </div>
-      </form>
+      </div>
+
+      <div>
+        {searchResults.length === 0 && inputValue.trim() !== "" ? (
+          <p className="mx-auto w-56 ps-2 text-sm text-soft-pink xs:w-80">
+            No results matched
+          </p>
+        ) : null}
+      </div>
     </>
   );
 };

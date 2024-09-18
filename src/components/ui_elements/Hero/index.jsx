@@ -1,9 +1,9 @@
 import HeroImage from "../../../assets/images/heroImage.png";
 import { SearchBar } from "../../forms/SearchBar";
 
-export const Hero = () => {
+export const Hero = ({ onSearch, searchResults }) => {
   return (
-    <section className="mt-16 rounded-bl-3xl bg-dark-blue md:mt-20">
+    <section className="mt-16 max-w-screen-2xl rounded-bl-3xl bg-dark-blue md:mt-20">
       <div className="mx-auto md:flex md:flex-row-reverse">
         <div className="w-full md:w-2/4">
           <img
@@ -16,7 +16,7 @@ export const Hero = () => {
           <h1 className="mx-auto w-36 py-4 text-center text-2xl text-light-blue xs:w-52 xs:text-3xl xs:font-light md:w-60 md:text-4xl lg:mb-10 lg:w-72 lg:text-5xl">
             Find your next adventure!
           </h1>
-          <SearchBar />
+          <SearchBar onSearch={onSearch} searchResults={searchResults} />
         </div>
       </div>
     </section>

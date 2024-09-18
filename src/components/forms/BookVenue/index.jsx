@@ -99,7 +99,8 @@ export const BookVenue = () => {
           aria-label="Confirmed booking"
           className="flex justify-center py-6"
         >
-          <PrimaryButton type="submit">Book now</PrimaryButton>
+          <PrimaryButton type="submit">Book now</PrimaryButton>{" "}
+          {/* Go to login if not logged in */}
         </Link>
       </form>
     </div>

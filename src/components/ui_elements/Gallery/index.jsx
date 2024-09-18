@@ -1,30 +1,34 @@
 import React, { useState } from "react";
-import HouseImage from "../../../assets/images/heroImage.png";
+import PlaceholderImage from "../../../assets/images/no_img.png";
 
-export const Gallery = () => {
-  const [largeImage, setLargeImage] = useState(HouseImage);
+export const Gallery = ({ data }) => {
+  const mediaUrls = data.media?.map((mediaItem) => mediaItem.url) || [];
 
-  const smallImages = [HouseImage, HouseImage, HouseImage, HouseImage];
+  const initialImageUrl = mediaUrls[0] || PlaceholderImage;
+
+  const [largeImage, setLargeImage] = useState(initialImageUrl);
+
+  const smallImages = mediaUrls.length > 0 ? mediaUrls : [PlaceholderImage];
 
   const handleImageClick = (imageSrc) => {
     setLargeImage(imageSrc);
   };
 
   return (
-    <div className="mx-auto mt-5 grid w-11/12 gap-4 lg:grid-flow-col">
-      <div className="">
+    <div className="mx-auto my-5 w-11/12 gap-4">
+      <div className="flex-1">
         <img
-          className="w-full rounded-lg"
+          className="h-44 w-full rounded-lg object-cover xs:h-52 sm:h-80 md:h-96 lg:h-[500px]"
           src={largeImage}
           alt="Large display"
         />
       </div>
 
-      <div className="grid grid-cols-4 gap-2 lg:w-40 lg:grid-cols-1 lg:grid-rows-4 lg:gap-7">
+      <div className="flex flex-row justify-start gap-3 pt-3">
         {smallImages.map((imageSrc, index) => (
           <div key={index} className="group relative">
             <img
-              className={`h-auto cursor-pointer rounded-lg transition-opacity duration-300 ${
+              className={`h-12 w-12 cursor-pointer rounded object-cover transition-opacity duration-300 sm:h-24 sm:w-24 ${
                 largeImage === imageSrc ? "selected opacity-100" : "opacity-70"
               }`}
               src={imageSrc}

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,12 +6,17 @@ import * as yup from "yup";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
+import { register as registerUser } from "../../js/api/auth/register.jsx";
 
 const schema = yup.object({
   fullName: yup
     .string()
     .min(3, "Full name should be at least 3 characters.")
-    .required(),
+    .matches(
+      /^[a-zA-Z0-9_]+$/,
+      "Full name can only contain letters, numbers, and underscores.",
+    )
+    .required("Full name is required."),
   email: yup
     .string()
     .email("Please enter a valid email address")
@@ -37,6 +42,7 @@ const schema = yup.object({
 });
 
 export const SignUp = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -44,9 +50,25 @@ export const SignUp = () => {
     reset,
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      const { fullName, email, password, profileImage } = data;
+
+      const response = await registerUser(
+        fullName,
+        email,
+        password,
+        profileImage,
+      );
+
+      console.log("registration success! :", response);
+      navigate("/login");
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("registration failed!");
+    } finally {
+      reset();
+    }
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -56,10 +78,10 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="mx-auto mb-5 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
+    <div className="mx-auto mb-12 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
       <h1 className="mb-3 mt-6 text-[22px] sm:text-3xl">Sign up here</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 max-w-xs">
-        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col gap-2 sm:w-60">
+        <div className="mx-auto mb-1 mt-2 flex w-52 flex-col sm:w-60">
           <InputField
             label="Full name"
             htmlFor="FullName"
@@ -68,7 +90,7 @@ export const SignUp = () => {
             required={true}
             id="FullName"
             type="text"
-            className="my-1 h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="my-1 h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
           />
           <InputField
@@ -79,7 +101,7 @@ export const SignUp = () => {
             required={true}
             id="SignUpEmail"
             type="email"
-            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
           />
           <InputField
@@ -90,7 +112,7 @@ export const SignUp = () => {
             required={true}
             id="SignUpPassword"
             type="password"
-            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
             togglePassword={true}
           />
@@ -102,11 +124,11 @@ export const SignUp = () => {
             required={false}
             id="SignUpProfileImage"
             type="url"
-            className="h-8 w-52 rounded-lg border-gray-300 sm:w-60"
+            className="h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
           />
         </div>
-        <div className="flex justify-center pb-6">
+        <div className="flex justify-center pb-6 pt-3">
           <PrimaryButton type="submit">Sign up</PrimaryButton>
         </div>
       </form>
@@ -123,27 +145,3 @@ export const SignUp = () => {
     </div>
   );
 };
-
-/* import React, { useState } from "react";
-
-export const LogIn = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  // Toggle the password visibility
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
-
-  return (
-    <div className="relative flex items-center mt-52">
-      <input
-        type={showPassword ? "text" : "password"}
-        placeholder="Enter your password"
-        className="border rounded p-2 w-full"
-      />
-      <button type="button" onClick={togglePasswordVisibility} className="absolute right-2 text-gray-600">
-        {showPassword ? "Hide" : "Show"}
-      </button>
-    </div>
-  );
-}; */
