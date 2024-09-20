@@ -16,7 +16,7 @@ export const VenueInfo = ({ data }) => {
     <div className="mx-auto w-11/12">
       <div className="sm:mr-3 sm:w-full">
         <div className="mt-3 flex justify-between align-middle md:mt-1 lg:gap-3">
-          <h2 className="text-base sm:text-[22px] md:text-3xl">{data.name}</h2>
+          <h2 className="text-lg sm:text-[22px] md:text-3xl">{data.name}</h2>
           <span className="flex flex-row items-baseline rounded px-2 py-0.5 align-top text-sm font-normal text-dark-blue md:text-base">
             <svg
               className="me-2 h-3 w-3 text-dark-blue"
@@ -31,17 +31,17 @@ export const VenueInfo = ({ data }) => {
           </span>
         </div>
         <div className="flex items-center gap-1">
-          <i className="fa-solid fa-location-dot text-sm md:text-lg"></i>
-          <p className="text-sm md:text-lg">{location}</p>
+          <i className="fa-solid fa-location-dot text-sm md:text-base"></i>
+          <p className="text-base md:text-lg">{location}</p>
         </div>
         <div className="mt-3 flex items-center justify-between sm:my-5 sm:items-start sm:gap-5 md:flex-col">
           <div className="flex gap-1">
-            <i className="fa-solid fa-user-group text-sm md:text-lg"></i>
-            <p className="text-sm md:text-lg">{maxGuests} guests</p>
+            <i className="fa-solid fa-user-group text-sm md:text-base"></i>
+            <p className="text-base md:text-lg">{maxGuests} guests</p>
           </div>
-          <p className="text-lg font-medium md:text-xl">
+          <p className="text-lg font-medium md:text-2xl">
             $ {data.price}
-            <span className="ml-1 text-sm font-normal md:text-lg">
+            <span className="ml-1 text-base font-normal md:text-lg">
               per night
             </span>
           </p>
@@ -72,21 +72,21 @@ export const VenueInfo = ({ data }) => {
             </div>
           )}
         </div>
-        <h3 className="mt-6 text-lg md:text-xl">Description</h3>
-        <p className="w-64 text-base font-light xs:w-11/12 md:text-lg">
+        <h3 className="mb-1 mt-6 text-xl md:text-xl">Description</h3>
+        <p className="w-64 ps-0.5 text-lg font-light xs:w-11/12 md:text-lg">
           {data.description}
         </p>
         <div className="my-4">
-          <h3 className="text-lg md:text-xl">Owner</h3>
+          <h3 className="mb-1 text-xl md:text-xl">Owner</h3>
           <div className="flex flex-row items-center">
             <img
               src={ownerAvatarUrl}
-              className="ml-1 h-10 w-10 rounded-full"
+              className="mr-1 h-14 w-14 rounded-full sm:mr-2 sm:h-16 sm:w-16"
               alt={"Owner Image"}
             />
             <div className="flex flex-col items-start ps-2">
-              <p className="font-light sm:text-2xl">{ownerName}</p>
-              <p className="text-sm font-light text-dark-gray sm:text-xl">
+              <p className="text-lg font-light sm:text-2xl">{ownerName}</p>
+              <p className="text-base font-light text-dark-gray sm:text-xl">
                 {ownerEmail}
               </p>
             </div>

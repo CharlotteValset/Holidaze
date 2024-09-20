@@ -25,11 +25,11 @@ export const Card = ({ data }) => {
         </div>
         <div className="m-1 px-2">
           <div className="flex items-center justify-between">
-            <h2 className="cursor-text truncate text-xl font-normal tracking-tight text-dark-blue">
+            <h2 className="cursor-text truncate text-2xl font-normal tracking-tight text-dark-blue">
               {data.name}
             </h2>
-            <div className="flex items-center">
-              <span className="flex flex-row items-center rounded px-2 py-0.5 text-xs font-normal text-dark-blue">
+            <div className="flex">
+              <span className="flex flex-row items-baseline rounded px-2 py-0.5 text-base font-normal text-dark-blue">
                 <svg
                   className="me-2 h-3 w-3 text-dark-blue"
                   aria-hidden="true"
@@ -43,14 +43,14 @@ export const Card = ({ data }) => {
               </span>
             </div>
           </div>
-          <div className="flex gap-1">
-            <i className="fa-solid fa-location-dot text-xs"></i>
-            <p className="text-xs">{location}</p>
+          <div className="flex items-center gap-1">
+            <i className="fa-solid fa-location-dot text-sm"></i>
+            <p className="text-base">{location}</p>
           </div>
           <div className="my-2 flex items-center justify-between">
-            <p className="text-base font-medium">
+            <p className="text-lg font-medium">
               $ {data.price}{" "}
-              <span className="text-xs font-normal">per night</span>
+              <span className="text-base font-normal">per night</span>
             </p>
             <Link to={`/singleVenue/${data.id}`}>
               <PrimaryButton>View more</PrimaryButton>
