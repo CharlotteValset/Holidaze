@@ -12,6 +12,9 @@ export const VenueInfo = ({ data }) => {
   const ownerName = data.owner?.name || "Owner name not available";
   const ownerEmail = data.owner?.email || "Owner email not available";
 
+  const price = data.price || 0;
+  const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
   return (
     <div className="mx-auto w-11/12">
       <div className="sm:mr-3 sm:w-full">
@@ -40,7 +43,7 @@ export const VenueInfo = ({ data }) => {
             <p className="text-sm md:text-lg">{maxGuests} guests</p>
           </div>
           <p className="text-lg font-medium md:text-xl">
-            $ {data.price}
+            $ {formattedPrice}
             <span className="ml-1 text-sm font-normal md:text-lg">
               per night
             </span>

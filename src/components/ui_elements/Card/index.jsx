@@ -13,6 +13,9 @@ export const Card = ({ data }) => {
       ? `${data.location.city}, ${data.location.country}`
       : "Location not available";
 
+  const price = data.price || 0;
+  const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
   return (
     <article className="sm:w-74 mx-auto my-1 w-full rounded-xl bg-light-blue md:w-[300px] xl:w-72">
       <div className="flex flex-col">
@@ -49,7 +52,7 @@ export const Card = ({ data }) => {
           </div>
           <div className="my-2 flex items-center justify-between">
             <p className="text-base font-medium">
-              $ {data.price}{" "}
+              $ {formattedPrice}{" "}
               <span className="text-xs font-normal">per night</span>
             </p>
             <Link to={`/singleVenue/${data.id}`}>
