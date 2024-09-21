@@ -55,7 +55,7 @@ export const SingleVenue = () => {
   }
 
   return (
-    <section className="mx-auto mt-[10px] max-w-screen-lg md:mt-[40px] lg:mt-[30px]">
+    <section className="mx-auto mt-[10px] w-11/12 max-w-screen-lg md:mt-[40px] lg:mt-[30px]">
       {content}
     </section>
   );
