@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import ProfileImage from "../../assets/images/no_ProfileImg.png";
 import placeholderImage from "../../assets/images/no_img.png";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
+import { formatPrice } from "../../js/utils/formatPrice";
 
 export const ConfirmedBooking = () => {
   const location = useLocation();
@@ -11,8 +12,7 @@ export const ConfirmedBooking = () => {
     return <p>Booking details are missing. Please try again.</p>;
   }
 
-  const price = totalPrice || 0;
-  const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const formattedPrice = formatPrice(totalPrice);
 
   return (
     <>

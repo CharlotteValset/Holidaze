@@ -1,4 +1,5 @@
 import ProfileImage from "../../../assets/images/no_ProfileImg.png";
+import { formatPrice } from "../../../js/utils/formatPrice";
 
 export const VenueInfo = ({ data }) => {
   const location =
@@ -13,7 +14,7 @@ export const VenueInfo = ({ data }) => {
   const ownerEmail = data.owner?.email || "Owner email not available";
 
   const price = data.price || 0;
-  const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const formattedPrice = formatPrice(price);
 
   return (
     <div className="mx-auto w-11/12">
