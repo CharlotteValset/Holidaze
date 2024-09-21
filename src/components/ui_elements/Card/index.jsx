@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import ImagePlaceholder from "../../../assets/images/no_img.png";
+import { formatPrice } from "../../../js/utils/formatPrice";
 
 export const Card = ({ data }) => {
   const imageArray = data?.media;
@@ -12,6 +13,9 @@ export const Card = ({ data }) => {
     data.location?.city && data.location?.country
       ? `${data.location.city}, ${data.location.country}`
       : "Location not available";
+
+  const price = data.price || 0;
+  const formattedPrice = formatPrice(price);
 
   return (
     <article className="sm:w-74 mx-auto my-1 w-full rounded-xl bg-light-blue md:w-[300px] xl:w-72">
@@ -49,7 +53,7 @@ export const Card = ({ data }) => {
           </div>
           <div className="my-2 flex items-center justify-between">
             <p className="text-base font-medium">
-              $ {data.price}{" "}
+              $ {formattedPrice}{" "}
               <span className="text-xs font-normal">per night</span>
             </p>
             <Link to={`/singleVenue/${data.id}`}>

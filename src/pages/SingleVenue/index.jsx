@@ -42,12 +42,12 @@ export const SingleVenue = () => {
         <div>
           <Gallery data={singleVenue} key={singleVenue.id} />
         </div>
-        <div className="flex flex-col md:mx-10 md:max-w-screen-lg md:flex-row md:justify-between">
+        <div className="flex flex-col md:mx-5 md:max-w-screen-lg md:flex-row md:justify-between">
           <VenueInfo data={singleVenue} key={singleVenue.id} />
           {userEmail && venueOwner && userEmail === venueOwner ? (
             <VenueManagerOwnPageView venue={singleVenue} />
           ) : (
-            <BookVenue />
+            <BookVenue data={singleVenue} />
           )}
         </div>
       </>

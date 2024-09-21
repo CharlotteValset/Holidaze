@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ImagePlaceholder from "../../../assets/images/no_img.png";
+import { formatPrice } from "../../../js/utils/formatPrice";
 import { BookingsAccordion } from "../../bookings/BookingsAccordion";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 
@@ -17,7 +18,9 @@ export const MyVenues = ({ data }) => {
             : "Location not available";
         const maxGuests = venue?.maxGuests || "Max guests not available";
         const price = venue?.price;
+
         const venueDescription = venue?.description || "No description added";
+        const formattedPrice = formatPrice(price);
 
         return (
           <div key={index} className="venue-card my-4 pb-6 md:flex">
@@ -51,7 +54,7 @@ export const MyVenues = ({ data }) => {
                   <p className="text-sm md:text-lg">{maxGuests} guests</p>
                 </div>
                 <p className="text-lg font-medium md:text-xl">
-                  $ {price}
+                  $ {formattedPrice}
                   <span className="ml-1 text-sm font-normal md:text-lg">
                     per night
                   </span>

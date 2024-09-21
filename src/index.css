@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: "Jost", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -22,15 +26,6 @@ img:hover {
   cursor: pointer;
 }
 
-.selected {
-  opacity: 1 !important;
-}
-#checkInDate,
-#checkOutDate,
-#numberOfGuests {
-  color: #565656#1bcb73;
-}
-
 input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -45,4 +40,67 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:focus {
   outline: none;
   box-shadow: none;
+}
+
+.react-datepicker__input-container {
+  width: 190px !important;
+}
+
+.react-datepicker__day,
+h2.react-datepicker__current-month,
+.react-datepicker__day-name {
+  color: #2a3d56;
+}
+/* Selected date */
+.react-datepicker__day--selected {
+  background-color: #2aca52 !important; /* bg-red-600 */
+  color: #ffffff !important; /* text-white */
+}
+
+/* Hovered date */
+.react-datepicker__day:hover {
+  background-color: #ffaaa8 !important; /* light red for hover */
+  color: #2a3d56 !important; /* dark blue for text */
+}
+
+/* Disabled dates */
+.react-datepicker__day--disabled {
+  background-color: rgb(255, 255, 255) !important; /* white background */
+  color: #edecec !important; /* light red for disabled dates */
+  cursor: not-allowed;
+}
+
+/* Today's date */
+.react-datepicker__day--today {
+  background-color: #e9eff4 !important; /* bg-gray-200 */
+  font-weight: bold;
+  border: 1px solid #2a3d56; /* Dark blue border */
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Hovering date in range selection */
+.react-datepicker__day--in-selecting-range {
+  background-color: #ffffff !important; /* light yellow-green for hover */
+  color: #2a3d56 !important; /* text-white */
+}
+.react-datepicker__day--in-selecting-range:hover {
+  background-color: #ffaaa8 !important; /* light yellow-green for hover */
+  color: #2a3d56 !important; /* text-white */
+}
+
+/* Dates in the selected range */
+.react-datepicker__day--in-range {
+  background-color: #2a3d56 !important; /* bg-light blue */
+  color: #e9eff4 !important; /* dark blue text */
+}
+
+/* Hovering a date in the range */
+.react-datepicker__day--in-range:hover {
+  background-color: #ffaaa8 !important; /* hover light red */
+  color: #2a3d56 !important; /* dark blue text */
+}
+
+/* Datepicker header (Month/Year) */
+.react-datepicker__header {
+  background-color: #e9eff4 !important; /* bg-gray-200 */
 }
