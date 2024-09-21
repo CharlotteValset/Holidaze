@@ -11,6 +11,7 @@ import { load } from "../../../js/storage/load";
 import { all_Venues, API_Url, bookings_Url } from "../../../js/api/constants";
 import { usePost } from "../../../hooks/usePost";
 import { useFetch } from "../../../hooks/useFetch";
+import { formatDate } from "../../../js/utils/formatDate";
 
 const schema = yup
   .object({
@@ -83,13 +84,6 @@ export const BookVenue = ({ data }) => {
       .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     setTotalPrice(formattedPrice);
   }, [selectedCheckInDate, selectedCheckOutDate, pricePerNight, totalOfNights]);
-
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
 
   const onSubmit = async (formData) => {
     if (data.maxGuests < formData.numberOfGuests) {
