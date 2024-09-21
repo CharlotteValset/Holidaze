@@ -10,6 +10,7 @@ export const usePost = (url) => {
     try {
       setIsLoading(true);
       setHasError(false);
+
       const response = await authFetch(url, {
         method: "POST",
         headers: {
@@ -17,11 +18,20 @@ export const usePost = (url) => {
         },
         body: JSON.stringify(data),
       });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.message || "Error posting data");
+      }
+
       const json = await response.json();
       setResponse(json);
+
+      return json;
     } catch (error) {
       console.error("Error:", error);
       setHasError(true);
+      return undefined;
     } finally {
       setIsLoading(false);
     }

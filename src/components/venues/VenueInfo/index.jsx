@@ -1,4 +1,5 @@
 import ProfileImage from "../../../assets/images/no_ProfileImg.png";
+import { formatPrice } from "../../../js/utils/formatPrice";
 
 export const VenueInfo = ({ data }) => {
   const location =
@@ -11,6 +12,9 @@ export const VenueInfo = ({ data }) => {
   const ownerAvatarUrl = data.owner?.avatar?.url || ProfileImage;
   const ownerName = data.owner?.name || "Owner name not available";
   const ownerEmail = data.owner?.email || "Owner email not available";
+
+  const price = data.price || 0;
+  const formattedPrice = formatPrice(price);
 
   return (
     <div className="mx-auto w-11/12">
@@ -40,7 +44,7 @@ export const VenueInfo = ({ data }) => {
             <p className="text-base md:text-lg">{maxGuests} guests</p>
           </div>
           <p className="text-lg font-medium md:text-2xl">
-            $ {data.price}
+                       $ {formattedPrice}
             <span className="ml-1 text-base font-normal md:text-lg">
               per night
             </span>
