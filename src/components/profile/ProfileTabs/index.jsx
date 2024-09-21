@@ -63,7 +63,7 @@ export const ProfileTabs = () => {
             {hasBookings && (
               <li className="me-2">
                 <button
-                  className={`inline-block rounded-t-lg p-3 font-normal md:text-lg ${
+                  className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
                     activeTab === "bookings"
                       ? "bg-light-blue text-dark-blue"
                       : "text-gray-500"
@@ -77,7 +77,7 @@ export const ProfileTabs = () => {
             {hasVenues && (
               <li className="me-2">
                 <button
-                  className={`inline-block rounded-t-lg p-3 font-normal md:text-lg ${
+                  className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
                     activeTab === "venues"
                       ? "bg-light-blue text-dark-blue"
                       : "text-gray-500"
