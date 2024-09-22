@@ -6,7 +6,7 @@ import { formatPrice } from "../../js/utils/formatPrice";
 
 export const ConfirmedBooking = () => {
   const location = useLocation();
-  const { payload, venue, totalPrice } = location.state || {}; // Destructure payload and venue data
+  const { payload, venue, totalPrice } = location.state || {};
 
   if (!payload || !venue || !totalPrice) {
     return <p>Booking details are missing. Please try again.</p>;

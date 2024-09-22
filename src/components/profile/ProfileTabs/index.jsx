@@ -25,7 +25,9 @@ export const ProfileTabs = () => {
     data: bookingsData,
     isLoading: isBookingsLoading,
     hasError: hasBookingsError,
-  } = useFetch(`${API_Url}${profile_Url}/${userId}${bookings_Url}`);
+  } = useFetch(
+    `${API_Url}${profile_Url}/${userId}${bookings_Url}?_booking=true`,
+  );
 
   const {
     data: venuesData,
@@ -98,7 +100,7 @@ export const ProfileTabs = () => {
             )}
             {activeTab === "venues" && hasVenues && (
               <div className="flex flex-col gap-10">
-                <MyVenues data={venuesData} key={venuesData} />
+                <MyVenues venuesData={venuesData} key={venuesData} />{" "}
               </div>
             )}
           </div>
