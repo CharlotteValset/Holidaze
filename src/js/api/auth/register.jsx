@@ -8,7 +8,7 @@ export const register = async (name, email, password, profileImg) => {
       name,
       email,
       password,
-      avatar: { url: profileImg },
+      avatar: profileImg,
     }),
   });
 
