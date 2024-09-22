@@ -3,6 +3,7 @@ import { Hero } from "../../components/ui_elements/Hero";
 import { Card } from "../../components/ui_elements/Card";
 import { useFetch } from "../../hooks/useFetch";
 import { all_Venues, API_Url } from "../../js/api/constants";
+import { Loader } from "../../components/ui_elements/Loader";
 
 export const Home = () => {
   const { data, isLoading, hasError } = useFetch(API_Url + all_Venues);
@@ -27,7 +28,11 @@ export const Home = () => {
   let content;
 
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = (
+      <div className="">
+        <Loader />
+      </div>
+    );
   } else if (hasError) {
     content = <div>Error when trying to load the page</div>;
   } else {
