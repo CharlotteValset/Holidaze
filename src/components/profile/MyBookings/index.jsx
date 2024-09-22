@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import ProfileImage from "../../../assets/images/profileImage.png";
+import React, { useState } from "react";
 import PlaceholderImage from "../../../assets/images/no_img.png";
 import { API_Url, profile_Url, bookings_Url } from "../../../js/api/constants";
 import { useFetch } from "../../../hooks/useFetch";
 import { load } from "../../../js/storage/load";
 import { formatPrice } from "../../../js/utils/formatPrice";
+import { formatDate } from "../../../js/utils/formatDate";
 
 export const MyBookings = () => {
   const [activeTab, setActiveTab] = useState("bookings");
@@ -20,17 +20,6 @@ export const MyBookings = () => {
     `${API_Url}${profile_Url}/${userId}${bookings_Url}?_venue=true&_customer=true`,
   );
 
-  const formatDate = (date) => {
-    const validDate = new Date(date);
-    if (isNaN(validDate.getTime())) {
-      return "Invalid Date";
-    }
-    const year = validDate.getFullYear();
-    const month = String(validDate.getMonth() + 1).padStart(2, "0");
-    const day = String(validDate.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
-
   let content;
 
   if (isLoading) {
@@ -44,8 +33,13 @@ export const MyBookings = () => {
       <div className="bookings-container">
         {bookings.map((booking) => {
           const { id, dateFrom, dateTo, guests, venue } = booking;
-          const formattedDateFrom = formatDate(dateFrom);
-          const formattedDateTo = formatDate(dateTo);
+
+          const formattedDateFrom = dateFrom
+            ? formatDate(new Date(dateFrom))
+            : "Date unavailable";
+          const formattedDateTo = dateTo
+            ? formatDate(new Date(dateTo))
+            : "Date unavailable";
 
           const venueImageUrl = venue?.media?.[0]?.url || PlaceholderImage;
           const venueName = venue?.name || "Unnamed Venue";

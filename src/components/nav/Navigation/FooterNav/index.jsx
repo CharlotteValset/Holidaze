@@ -26,9 +26,12 @@ export const FooterNav = () => {
       </div>
       <p className="pb-4 text-center text-sm font-light text-light-blue">
         Designed & developed by{" "}
-        <span className="cursor-pointer text-soft-pink hover:underline">
+        <a
+          href="https://www.charlottevalset.no"
+          className="cursor-pointer text-soft-pink hover:underline"
+        >
           Charlotte Valset
-        </span>
+        </a>
       </p>
     </section>
   );

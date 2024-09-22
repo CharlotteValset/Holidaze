@@ -76,7 +76,7 @@ export const ProfileInfo = ({ data }) => {
         <img
           src={avatarImg}
           alt="Profile Image"
-          className="mx-auto h-20 w-20 rounded-full sm:h-32 sm:w-32"
+          className="mx-auto h-20 w-20 rounded-full object-cover sm:h-32 sm:w-32"
         />
         <div className="flex cursor-pointer items-center gap-1 sm:justify-center">
           <i className="fa-regular fa-pen-to-square text-xs"></i>
