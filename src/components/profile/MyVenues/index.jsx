@@ -5,10 +5,10 @@ import { formatPrice } from "../../../js/utils/formatPrice";
 import { BookingsAccordion } from "../../bookings/BookingsAccordion";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 
-export const MyVenues = ({ data }) => {
+export const MyVenues = ({ venuesData }) => {
   return (
     <div className="venues-list">
-      {data.map((venue, index) => {
+      {venuesData.map((venue, index) => {
         const venueImageArray = venue?.media;
         const venueImageUrl = venueImageArray?.[0]?.url ?? ImagePlaceholder;
         const venueTitle = venue?.name;
@@ -22,6 +22,7 @@ export const MyVenues = ({ data }) => {
         const venueDescription = venue?.description || "No description added";
         const formattedPrice = formatPrice(price);
 
+        const bookingsCount = venue?._count?.bookings || 0;
         return (
           <div key={index} className="venue-card my-4 pb-6 md:flex">
             <div className="">
@@ -90,8 +91,10 @@ export const MyVenues = ({ data }) => {
               <p className="max-w-72 text-base font-light md:max-w-96 md:text-lg">
                 {venueDescription}
               </p>
-              <h3 className="mb-1 mt-4 text-lg md:text-xl">Bookings (3)</h3>
-              <BookingsAccordion />
+              <h3 className="mb-1 mt-4 text-lg md:text-xl">
+                Bookings ({bookingsCount})
+              </h3>
+              <BookingsAccordion venueId={venue.id} />
             </div>
           </div>
         );
