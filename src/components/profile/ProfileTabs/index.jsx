@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFetch } from "../../../hooks/useFetch";
 import {
   all_Venues,
@@ -12,14 +12,7 @@ import { MyBookings } from "../MyBookings";
 import { MyVenues } from "../MyVenues";
 
 export const ProfileTabs = () => {
-  const [activeTab, setActiveTab] = useState("bookings");
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
-
   const userProfile = load("profile");
-
   const userId = userProfile?.name;
 
   const {
@@ -39,6 +32,25 @@ export const ProfileTabs = () => {
   const isLoading = isBookingsLoading || isVenuesLoading;
   const hasError = hasBookingsError || hasVenuesError;
 
+  const hasBookings = bookingsData && bookingsData.length > 0;
+  const hasVenues = venuesData && venuesData.length > 0;
+
+  const [activeTab, setActiveTab] = useState(
+    hasVenues ? "venues" : hasBookings ? "bookings" : "none",
+  );
+
+  useEffect(() => {
+    if (hasVenues) {
+      setActiveTab("venues");
+    } else if (hasBookings) {
+      setActiveTab("bookings");
+    }
+  }, [hasVenues, hasBookings]);
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
   let content;
 
   if (isLoading) {
@@ -48,66 +60,53 @@ export const ProfileTabs = () => {
   } else if (!bookingsData && !venuesData) {
     content = <div className="mt-96">Page not found</div>;
   } else {
-    const hasBookings = bookingsData && bookingsData.length > 0;
-    const hasVenues = venuesData && venuesData.length > 0;
+    content = (
+      <div className="mx-auto max-w-screen-lg p-1">
+        <ul className="flex justify-start text-center font-medium text-gray-500">
+          {hasBookings && (
+            <li className="me-2">
+              <button
+                className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
+                  activeTab === "bookings"
+                    ? "bg-light-blue text-dark-blue"
+                    : "text-gray-500"
+                }`}
+                onClick={() => handleTabClick("bookings")}
+              >
+                My bookings ({bookingsData.length})
+              </button>
+            </li>
+          )}
+          {hasVenues && (
+            <li className="me-2">
+              <button
+                className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
+                  activeTab === "venues"
+                    ? "bg-light-blue text-dark-blue"
+                    : "text-gray-500"
+                }`}
+                onClick={() => handleTabClick("venues")}
+              >
+                My venues ({venuesData.length})
+              </button>
+            </li>
+          )}
+        </ul>
 
-    if (!hasBookings && !hasVenues) {
-      content = (
-        <div className="mx-auto my-8 mt-4 w-11/12 rounded-lg bg-light-blue text-center xl:w-8/12">
-          <p className="px-4 py-10 text-center sm:text-xl">
-            You have no bookings or venues at the moment
-          </p>
+        <div className="mb-3 rounded-b-lg rounded-tr-lg bg-light-blue p-3">
+          {activeTab === "bookings" && hasBookings && (
+            <div className="flex flex-col gap-10">
+              <MyBookings data={bookingsData} key={bookingsData} />
+            </div>
+          )}
+          {activeTab === "venues" && hasVenues && (
+            <div className="flex flex-col gap-10">
+              <MyVenues venuesData={venuesData} key={venuesData} />{" "}
+            </div>
+          )}
         </div>
-      );
-    } else {
-      content = (
-        <div className="mx-auto max-w-screen-lg p-1">
-          <ul className="flex justify-start text-center font-medium text-gray-500">
-            {hasBookings && (
-              <li className="me-2">
-                <button
-                  className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
-                    activeTab === "bookings"
-                      ? "bg-light-blue text-dark-blue"
-                      : "text-gray-500"
-                  }`}
-                  onClick={() => handleTabClick("bookings")}
-                >
-                  My bookings ({bookingsData.length})
-                </button>
-              </li>
-            )}
-            {hasVenues && (
-              <li className="me-2">
-                <button
-                  className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
-                    activeTab === "venues"
-                      ? "bg-light-blue text-dark-blue"
-                      : "text-gray-500"
-                  }`}
-                  onClick={() => handleTabClick("venues")}
-                >
-                  My venues ({venuesData.length})
-                </button>
-              </li>
-            )}
-          </ul>
-
-          <div className="mb-3 rounded-b-lg rounded-tr-lg bg-light-blue p-3">
-            {activeTab === "bookings" && hasBookings && (
-              <div className="flex flex-col gap-10">
-                <MyBookings data={bookingsData} key={bookingsData} />
-              </div>
-            )}
-            {activeTab === "venues" && hasVenues && (
-              <div className="flex flex-col gap-10">
-                <MyVenues venuesData={venuesData} key={venuesData} />{" "}
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 
   return <section>{content}</section>;
