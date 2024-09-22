@@ -32,6 +32,7 @@ const schema = yup.object({
   profileImage: yup
     .string()
     .nullable()
+    .transform((value, originalValue) => (originalValue === "" ? null : value))
     .trim()
     .url("Please enter a valid URL")
     .test(
@@ -54,11 +55,21 @@ export const SignUp = () => {
     try {
       const { fullName, email, password, profileImage } = data;
 
+      const payload = {
+        name: fullName,
+        email: email,
+        password: password,
+      };
+
+      if (profileImage) {
+        payload.avatar = profileImage;
+      }
+
       const response = await registerUser(
-        fullName,
-        email,
-        password,
-        profileImage,
+        payload.name,
+        payload.email,
+        payload.password,
+        payload.avatar,
       );
 
       console.log("registration success! :", response);

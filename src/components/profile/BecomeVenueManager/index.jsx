@@ -35,7 +35,7 @@ export const BecomeVenueManager = ({}) => {
   const handleBecomeManager = async () => {
     await putData({ venueManager: true });
 
-    if (!putError) {
+    if (!hasError) {
       setIsVenueManager(true);
     }
 
