@@ -40,6 +40,8 @@ export const BecomeVenueManager = ({}) => {
     }
 
     setIsModalOpen(false);
+
+    window.location.reload();
   };
 
   if (isProfileLoading) {
