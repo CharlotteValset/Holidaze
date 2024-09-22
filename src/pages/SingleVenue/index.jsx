@@ -7,6 +7,7 @@ import { VenueInfo } from "../../components/venues/VenueInfo";
 import { BookVenue } from "../../components/forms/BookVenue";
 import { VenueManagerOwnPageView } from "../../components/venues/VenueManagerOwnPageView";
 import { load } from "../../js/storage/load";
+import { Loader } from "../../components/ui_elements/Loader";
 
 export const SingleVenue = () => {
   let { id } = useParams();
@@ -23,7 +24,12 @@ export const SingleVenue = () => {
   let content;
 
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = (
+      <div className="mt-36">
+        {" "}
+        <Loader />
+      </div>
+    );
   } else if (hasError) {
     content = <div>Error when trying to load the page</div>;
   } else if (!singleVenue) {

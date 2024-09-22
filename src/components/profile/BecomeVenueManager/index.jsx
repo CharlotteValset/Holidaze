@@ -7,6 +7,7 @@ import { usePut } from "../../../hooks/usePut";
 import { useFetch } from "../../../hooks/useFetch";
 import { load } from "../../../js/storage/load";
 import { API_Url, profile_Url } from "../../../js/api/constants";
+import { Loader } from "../../ui_elements/Loader";
 
 export const BecomeVenueManager = ({}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,7 +43,7 @@ export const BecomeVenueManager = ({}) => {
   };
 
   if (isProfileLoading) {
-    return <p>Loading profile...</p>;
+    return <Loader />;
   }
 
   if (profileError) {

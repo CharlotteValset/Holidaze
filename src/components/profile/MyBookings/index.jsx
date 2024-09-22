@@ -5,6 +5,7 @@ import { useFetch } from "../../../hooks/useFetch";
 import { load } from "../../../js/storage/load";
 import { formatPrice } from "../../../js/utils/formatPrice";
 import { formatDate } from "../../../js/utils/formatDate";
+import { Loader } from "../../ui_elements/Loader";
 
 export const MyBookings = () => {
   const [activeTab, setActiveTab] = useState("bookings");
@@ -23,7 +24,7 @@ export const MyBookings = () => {
   let content;
 
   if (isLoading) {
-    content = <div className="mt-96">Loading...</div>;
+    content = <Loader />;
   } else if (hasError) {
     content = <div className="mt-96">Error when trying to load bookings</div>;
   } else if (!bookings || bookings.length === 0) {

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import PlaceholderProfileImage from "../../../assets/images/no_ProfileImg.png";
 import { useFetch } from "../../../hooks/useFetch";
 import { all_Venues, API_Url } from "../../../js/api/constants";
+import { Loader } from "../../ui_elements/Loader";
 
 export const BookingsAccordion = ({ venueId }) => {
   const [openBookingId, setOpenBookingId] = useState(null);
@@ -20,7 +21,7 @@ export const BookingsAccordion = ({ venueId }) => {
   let content;
 
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = <Loader />;
   } else if (hasError) {
     content = <div>Error when trying to load venue bookings</div>;
   } else if (!venueBookings?.bookings?.length) {
