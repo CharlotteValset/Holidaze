@@ -7,6 +7,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { API_Url, profile_Url } from "../../js/api/constants";
 import { load } from "../../js/storage/load";
 import { BecomeVenueManager } from "../../components/profile/BecomeVenueManager";
+import { Loader } from "../../components/ui_elements/Loader";
 
 export const Profile = () => {
   const [isVenueManager, setIsVenueManager] = useState(false);
@@ -27,7 +28,11 @@ export const Profile = () => {
   let content;
 
   if (isLoading) {
-    content = <div className="mt-96">Loading...</div>;
+    content = (
+      <div className="mt-96">
+        <Loader />
+      </div>
+    );
   } else if (hasError) {
     content = (
       <div className="mt-96">Error when trying to load the profile</div>

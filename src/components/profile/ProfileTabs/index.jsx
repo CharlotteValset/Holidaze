@@ -7,6 +7,7 @@ import {
   profile_Url,
 } from "../../../js/api/constants";
 import { load } from "../../../js/storage/load";
+import { Loader } from "../../ui_elements/Loader";
 import { MyBookings } from "../MyBookings";
 import { MyVenues } from "../MyVenues";
 
@@ -41,7 +42,7 @@ export const ProfileTabs = () => {
   let content;
 
   if (isLoading) {
-    content = <div className="mt-96">Loading...</div>;
+    content = <Loader />;
   } else if (hasError) {
     content = <div className="mt-96">Error when trying to load page</div>;
   } else if (!bookingsData && !venuesData) {
