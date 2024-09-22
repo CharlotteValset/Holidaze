@@ -59,6 +59,14 @@ export const ProfileTabs = () => {
     content = <div className="mt-96">Error when trying to load page</div>;
   } else if (!bookingsData && !venuesData) {
     content = <div className="mt-96">Page not found</div>;
+  } else if (!hasBookings && !hasVenues) {
+    content = (
+      <div className="mx-auto my-8 mt-4 w-11/12 rounded-lg bg-light-blue text-center xl:w-8/12">
+        <p className="px-4 py-10 text-center sm:text-xl">
+          You have no bookings or venues at the moment
+        </p>
+      </div>
+    );
   } else {
     content = (
       <div className="mx-auto max-w-screen-lg p-1">
