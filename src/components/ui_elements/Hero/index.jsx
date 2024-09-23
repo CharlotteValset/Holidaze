@@ -9,7 +9,7 @@ export const Hero = ({ onSearch }) => {
           <img
             src={HeroImage}
             className="md:mx-auto md:my-12 md:w-5/6 lg:w-9/12"
-            alt="Fantastic house"
+            alt="Hero image of fantastic house"
           />
         </div>
         <div className="my-auto flex-col justify-center md:w-2/4">

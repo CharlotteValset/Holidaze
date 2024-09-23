@@ -49,7 +49,7 @@ export const Contact = () => {
         <img
           className="w-full md:h-full md:object-cover md:p-4"
           src={ContactImage}
-          alt=""
+          alt="Image of two people sitting at a table and talking to each other"
         />
       </div>
       <div className="mb-4 flex flex-col items-center md:w-6/12">

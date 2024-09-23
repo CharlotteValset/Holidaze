@@ -9,7 +9,7 @@ export const About = () => {
         <img
           className="w-full md:h-full md:object-cover md:p-4"
           src={HolidazeCrew}
-          alt=""
+          alt="Image for Holidaze crew going on a hike"
         />
       </div>
       <div className="mb-4 flex flex-col items-center md:w-5/12">

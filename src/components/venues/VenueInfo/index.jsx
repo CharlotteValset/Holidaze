@@ -90,7 +90,7 @@ export const VenueInfo = ({ data }) => {
             <img
               src={ownerAvatarUrl}
               className="mr-1 h-14 w-14 rounded-full sm:mr-2 sm:h-16 sm:w-16"
-              alt={"Owner Image"}
+              alt="Owners Profile Image"
             />
             <div className="flex flex-col items-start ps-2">
               <p className="text-lg font-light sm:text-2xl">{ownerName}</p>

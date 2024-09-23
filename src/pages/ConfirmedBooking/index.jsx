@@ -29,7 +29,7 @@ export const ConfirmedBooking = () => {
         <div className="mx-auto mb-2 max-w-screen-sm px-2 md:w-10/12">
           <img
             src={venue.media?.[0]?.url || placeholderImage}
-            alt="Luxury Home"
+            alt="Venue image"
             className="rounded-xl"
             onError={handleImageErrors}
           />
@@ -60,7 +60,7 @@ export const ConfirmedBooking = () => {
               <div className="flex flex-row items-center gap-1">
                 <img
                   src={venue.owner.media?.url || ProfileImage}
-                  alt=""
+                  alt="Owners profile image"
                   className="h-6 w-6 rounded-full object-cover"
                 />
                 <p className="md:text-lg">{venue.owner.name}</p>
