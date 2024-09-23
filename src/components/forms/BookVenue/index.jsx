@@ -151,105 +151,104 @@ export const BookVenue = ({ data }) => {
   };
 
   return (
-    <div className="mx-auto mb-5 ml-0 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:max-w-xs md:ml-14">
-      <h3 className="pb-2 pt-4 text-center text-xl lg:text-2xl">
-        Book this venue!
-      </h3>
+    <div className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:max-w-xs md:ml-14">
+      <h3 className="pb-2 pt-4 text-center text-2xl">Book this venue!</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mx-auto flex flex-col py-2">
-          <label htmlFor="checkIn">Check-in</label>
-          <DatePicker
-            selected={selectedCheckInDate}
-            onChange={handleCheckInDateChange}
-            selectsStart
-            startDate={selectedCheckInDate}
-            endDate={selectedCheckOutDate}
-            dateFormat="dd/MM/yyyy"
-            minDate={new Date()}
-            excludeDateIntervals={bookedDates}
-            className="w-full rounded-lg border border-gray-300 p-2 text-center shadow-sm focus:border-blue-500 focus:ring-blue-500"
-          />
-          {errors.checkIn && (
-            <p className="text-sm text-red-500">{errors.checkIn.message}</p>
-          )}
-        </div>
-
-        <div className="mx-auto flex flex-col py-2">
-          <label htmlFor="checkOut" className="my-1 ps-1 sm:text-lg">
-            Check-out
-          </label>
-          <DatePicker
-            {...register("checkOut", {
-              required: true,
-            })}
-            id="checkOut"
-            selected={selectedCheckOutDate}
-            onChange={handleCheckOutDateChange}
-            selectsStart
-            startDate={selectedCheckInDate}
-            endDate={selectedCheckOutDate}
-            dateFormat="dd/MM/yyyy"
-            minDate={new Date(selectedCheckInDate).setDate(
-              selectedCheckInDate.getDate() + minimumStay,
+        <div className="flex flex-col">
+          <div className="mx-auto flex flex-col py-2">
+            <label htmlFor="checkIn">Check-in</label>
+            <DatePicker
+              selected={selectedCheckInDate}
+              onChange={handleCheckInDateChange}
+              selectsStart
+              startDate={selectedCheckInDate}
+              endDate={selectedCheckOutDate}
+              dateFormat="dd/MM/yyyy"
+              minDate={new Date()}
+              excludeDateIntervals={bookedDates}
+              className="w-full rounded-lg border border-gray-300 p-2 text-center shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+            {errors.checkIn && (
+              <p className="text-sm text-red-500">{errors.checkIn.message}</p>
             )}
-            excludeDateIntervals={bookedDates}
-            className="w-full rounded-lg border border-gray-300 p-2 text-center shadow-sm focus:border-blue-500 focus:ring-blue-500"
-          />
-          {errors.checkOut && (
-            <p className="text-sm text-red-500">{errors.checkOut.message}</p>
+          </div>
+
+          <div className="mx-auto flex flex-col py-2">
+            <label htmlFor="checkOut" className="my-1 ps-1 sm:text-lg">
+              Check-out
+            </label>
+            <DatePicker
+              {...register("checkOut", {
+                required: true,
+              })}
+              id="checkOut"
+              selected={selectedCheckOutDate}
+              onChange={handleCheckOutDateChange}
+              selectsStart
+              startDate={selectedCheckInDate}
+              endDate={selectedCheckOutDate}
+              dateFormat="dd/MM/yyyy"
+              minDate={new Date(selectedCheckInDate).setDate(
+                selectedCheckInDate.getDate() + minimumStay,
+              )}
+              excludeDateIntervals={bookedDates}
+              className="w-full rounded-lg border border-gray-300 p-2 text-center shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+            {errors.checkOut && (
+              <p className="text-sm text-red-500">{errors.checkOut.message}</p>
+            )}
+          </div>
+          <div className="mx-auto flex w-[190px] flex-col items-start py-2">
+            <label htmlFor="numberOfGuests" className="pb-1 ps-1 sm:text-lg">
+              Number of guests
+            </label>
+            <select
+              {...register("numberOfGuests", {
+                required: true,
+              })}
+              id="numberOfGuests"
+              className="block w-28 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-sm text-gray-900"
+            >
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+            </select>
+            {errors.numberOfGuests && (
+              <p className="text-sm text-red-500">
+                {errors.numberOfGuests.message}
+              </p>
+            )}
+          </div>
+          <div className="mx-auto mt-6 flex w-[190px] pl-1">
+            <p className="mr-1">Booking is for</p>
+            <span className="mr-1 font-medium">{totalOfNights}</span>
+            <p>nights</p>
+          </div>
+          <div className="mx-auto mt-6 flex w-[190px] gap-6 pl-1">
+            <p className="text-lg">Total price</p>
+            <p className="mr-1 text-xl">$ {totalPrice}</p>
+          </div>
+          {token ? (
+            <PrimaryButton className="mx-auto my-8 w-32" type="submit">
+              Book now
+            </PrimaryButton>
+          ) : (
+            <BookVenueNotLoggedIn />
           )}
         </div>
-        <div className="mx-auto flex flex-col py-2">
-          <label htmlFor="numberOfGuests" className="pb-1 ps-1 sm:text-lg">
-            Number of guests
-          </label>
-          <select
-            {...register("numberOfGuests", {
-              required: true,
-            })}
-            id="numberOfGuests"
-            className="block w-32 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-sm text-gray-900"
-          >
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-          </select>
-          {errors.numberOfGuests && (
-            <p className="text-sm text-red-500">
-              {errors.numberOfGuests.message}
-            </p>
-          )}
-        </div>
-        <div className="mx-auto mt-6 flex">
-          <p className="mr-1">Booking is for</p>
-          <p className="mr-1 font-medium">{totalOfNights}</p>
-          <p>nights</p>
-        </div>
-        <div className="mx-auto mt-6 flex justify-between">
-          <p>Total price</p>
-          <p className="text-xl">
-            <span className="mr-1 text-base">$</span>
-            {totalPrice}
-          </p>
-        </div>
-        {token ? (
-          <PrimaryButton type="submit">Book now</PrimaryButton>
-        ) : (
-          <BookVenueNotLoggedIn />
-        )}
       </form>
     </div>
   );
