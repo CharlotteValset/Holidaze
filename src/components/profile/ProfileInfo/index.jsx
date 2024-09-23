@@ -67,7 +67,7 @@ export const ProfileInfo = ({ data }) => {
   return (
     <article className="my-4 sm:ml-4 sm:mt-8 sm:flex sm:w-full sm:flex-row-reverse sm:justify-end">
       <div className="mx-auto mb-3 flex flex-col items-center sm:ml-4 sm:w-max sm:items-start sm:justify-center">
-        <p className="font-light sm:text-2xl">{userName}</p>
+        <p className="text-lg font-light sm:text-2xl">{userName}</p>
         <p className="text-sm font-light text-dark-gray sm:text-xl">
           {isVenueManager}
         </p>

@@ -156,7 +156,9 @@ export const BookVenue = ({ data }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
           <div className="mx-auto flex flex-col py-2">
-            <label htmlFor="checkIn">Check-in</label>
+            <label className="text-lg" htmlFor="checkIn">
+              Check-in
+            </label>
             <DatePicker
               selected={selectedCheckInDate}
               onChange={handleCheckInDateChange}
@@ -174,7 +176,7 @@ export const BookVenue = ({ data }) => {
           </div>
 
           <div className="mx-auto flex flex-col py-2">
-            <label htmlFor="checkOut" className="my-1 ps-1 sm:text-lg">
+            <label htmlFor="checkOut" className="my-1 ps-1 text-lg">
               Check-out
             </label>
             <DatePicker
@@ -192,14 +194,14 @@ export const BookVenue = ({ data }) => {
                 selectedCheckInDate.getDate() + minimumStay,
               )}
               excludeDateIntervals={bookedDates}
-              className="w-full rounded-lg border border-gray-300 p-2 text-center shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 p-2 text-center text-base shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
             {errors.checkOut && (
               <p className="text-sm text-red-500">{errors.checkOut.message}</p>
             )}
           </div>
           <div className="mx-auto flex w-[190px] flex-col items-start py-2">
-            <label htmlFor="numberOfGuests" className="pb-1 ps-1 sm:text-lg">
+            <label htmlFor="numberOfGuests" className="pb-1 ps-1 text-lg">
               Number of guests
             </label>
             <select
@@ -233,12 +235,12 @@ export const BookVenue = ({ data }) => {
             )}
           </div>
           <div className="mx-auto mt-6 flex w-[190px] pl-1">
-            <p className="mr-1">Booking is for</p>
-            <span className="mr-1 font-medium">{totalOfNights}</span>
-            <p>nights</p>
+            <p className="mr-1 text-lg">Booking is for</p>
+            <span className="mr-1 text-lg font-medium">{totalOfNights}</span>
+            <p className="text-lg">nights</p>
           </div>
           <div className="mx-auto mt-6 flex w-[190px] gap-6 pl-1">
-            <p className="text-lg">Total price</p>
+            <p className="text-xl">Total price</p>
             <p className="mr-1 text-xl">$ {totalPrice}</p>
           </div>
           {token ? (

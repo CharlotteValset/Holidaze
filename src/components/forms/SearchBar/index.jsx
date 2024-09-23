@@ -19,7 +19,7 @@ export const SearchBar = ({ onSearch }) => {
           <input
             type="text"
             id="simple-search"
-            className="block w-full rounded-l-xl border-gray-300 bg-gray-50 p-2.5 ps-3 text-sm text-gray-900"
+            className="block w-full rounded-l-xl border-gray-300 bg-gray-50 p-2.5 ps-3 text-gray-900"
             placeholder="Search"
             value={inputValue}
             onChange={handleInputChange}
