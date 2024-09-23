@@ -75,7 +75,7 @@ export const MyBookings = () => {
               </div>
               <div className="max-w-md xs:w-2/3 sm:w-2/4 md:ml-2 md:mt-1 md:max-w-none">
                 <div className="flex items-center justify-between px-2">
-                  <h2 className="truncate text-[22px] md:pt-2 md:text-3xl">
+                  <h2 className="break-words text-[22px] md:pt-2 md:text-3xl">
                     {venueName}
                   </h2>
                   <span className="flex flex-row items-center rounded px-2 py-0.5 text-sm font-normal text-dark-blue sm:text-base">

@@ -24,7 +24,7 @@ export const VenueInfo = ({ data }) => {
     <div className="mx-auto w-11/12">
       <div className="sm:mr-3 sm:w-full">
         <div className="mt-3 flex justify-between align-middle md:mt-1 lg:gap-3">
-          <h2 className="text-lg sm:text-[22px] md:text-3xl">{venueTitle}</h2>
+          <h2 className="text-lg sm:text-3xl md:text-3xl">{venueTitle}</h2>
           <span className="flex flex-row items-baseline rounded px-2 py-0.5 align-top text-sm font-normal text-dark-blue md:text-base">
             <svg
               className="me-2 h-3 w-3 text-dark-blue"

@@ -53,7 +53,7 @@ export const Contact = () => {
         />
       </div>
       <div className="mb-4 flex flex-col items-center md:w-6/12">
-        <h1 className="sm::ml-16 w-full pt-4 text-center text-[22px] md:text-3xl">
+        <h1 className="sm::ml-16 w-full pt-4 text-center text-2xl md:text-3xl">
           Contact us
         </h1>
         <p className="w-10/12 py-4 text-center text-lg font-light xs:w-11/12 md:text-xl">

@@ -36,7 +36,9 @@ export const MyVenues = ({ venuesData }) => {
             </div>
             <div className="md:ml-4 md:w-2/4">
               <div className="mt-3 flex items-center justify-between md:mt-1">
-                <h2 className="truncate text-2xl md:text-3xl">{venueTitle}</h2>
+                <h2 className="break-words text-2xl md:text-3xl">
+                  {venueTitle}
+                </h2>
                 <Link
                   to="/addEditVenue"
                   state={{ venue, isEdit: true }}
