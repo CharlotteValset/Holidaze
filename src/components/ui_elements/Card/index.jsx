@@ -9,7 +9,7 @@ export const Card = ({ data }) => {
   const imageArray = data?.media;
 
   const imageUrl = imageArray?.[0]?.url ?? ImagePlaceholder;
-
+  const venueTitle = data.name ? data?.name : "Venue title not available";
   const location =
     data.location?.city && data.location?.country
       ? `${data.location.city}, ${data.location.country}`
@@ -32,7 +32,7 @@ export const Card = ({ data }) => {
         <div className="m-1 px-2">
           <div className="flex items-center justify-between">
             <h2 className="cursor-text truncate text-2xl font-normal tracking-tight text-dark-blue">
-              {data.name}
+              {venueTitle}
             </h2>
             <div className="flex">
               <span className="flex flex-row items-baseline rounded px-2 py-0.5 text-base font-normal text-dark-blue">

@@ -44,9 +44,11 @@ export const MyBookings = () => {
             : "Date unavailable";
 
           const venueImageUrl = venue?.media?.[0]?.url || PlaceholderImage;
-          const venueName = venue?.name || "Unnamed Venue";
-          const venueLocation = `${venue?.location?.city}, ${venue?.location?.country}`;
-
+          const venueName = venue?.name || "Venue title not available";
+          const venueLocation =
+            venue.location?.city && venue.location?.country
+              ? `${venue.location.city}, ${venue.location.country}`
+              : "Location not available";
           const totalOfNights = Math.ceil(
             (new Date(dateTo).getTime() - new Date(dateFrom).getTime()) /
               (1000 * 60 * 60 * 24),
