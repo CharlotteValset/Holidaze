@@ -96,7 +96,7 @@ export const ProfileInfo = ({ data }) => {
           >
             <img
               src={avatarImg}
-              alt="Profile"
+              alt="Profile Image"
               className="mx-auto h-40 w-40 rounded-full"
             />
             <form
