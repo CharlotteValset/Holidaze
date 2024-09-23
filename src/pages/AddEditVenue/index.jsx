@@ -27,8 +27,8 @@ const validationSchema = Yup.object().shape({
   breakfast: Yup.boolean(),
   parking: Yup.boolean(),
   maxGuests: Yup.number()
-    .required("Please add maximum allowed guests")
-    .min(1, "Minimum 1 guest required"),
+    .min(1, "Minimum number of guests is 1")
+    .required("Please add the number of guests"),
   pricePrNight: Yup.number()
     .required("Please add price per night")
     .min(1, "Price per night must be at least 1"),
@@ -45,7 +45,7 @@ export const AddEditVenue = () => {
   const methods = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
-      maxGuests: 1,
+      maxGuests: 0,
       pricePrNight: 1,
       images: [""],
     },
@@ -164,7 +164,7 @@ export const AddEditVenue = () => {
             errors={errors}
           />
           <div className="mx-auto my-2 flex w-60 flex-col">
-            <label htmlFor="venueDescription" className="ps-1 sm:text-lg">
+            <label htmlFor="venueDescription" className="ps-1 text-lg">
               Description
             </label>
             <textarea
@@ -248,18 +248,18 @@ export const AddEditVenue = () => {
           <div className="mx-auto my-4 flex w-60 flex-col">
             <div className="ps-1">
               <i className="fa-solid fa-user-group"></i>
-              <label htmlFor="venueMaxGuests" className="pb-1 ps-2 sm:text-lg">
+              <label htmlFor="venueMaxGuests" className="pb-1 ps-2 text-lg">
                 Max guests
               </label>
             </div>
             <select
               {...register("maxGuests", {
-                required: "Please select the maximum number of guests.",
+                required: true,
               })}
               id="venueMaxGuests"
               className="block h-9 w-36 rounded-lg border border-gray-300 bg-gray-50 p-1.5 text-center text-sm text-gray-900"
             >
-              <option value=""></option>
+              <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
