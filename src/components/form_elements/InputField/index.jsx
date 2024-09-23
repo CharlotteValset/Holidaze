@@ -22,7 +22,7 @@ export const InputField = ({
 
   return (
     <div className="mx-auto my-2 flex w-60 flex-col">
-      <label htmlFor={htmlFor} className="ps-1 sm:text-lg">
+      <label htmlFor={htmlFor} className="ps-1 text-lg">
         {icon && <span className="mr-2">{icon}</span>} {label}
       </label>
       <div className="relative flex items-center">

@@ -34,7 +34,7 @@ export const AddImageForm = ({ setImages, errors, isSubmitted, venue }) => {
     <div className="mx-auto my-4 flex w-60 flex-col space-y-2">
       <div className="ps-1">
         <i className="fa-regular fa-image"></i>
-        <label className="ps-2 sm:text-lg">Image url</label>
+        <label className="ps-2 text-lg">Image url</label>
       </div>
       {imageUrls.map((url, index) => (
         <div key={index} className="flex items-center space-x-2">
@@ -62,7 +62,7 @@ export const AddImageForm = ({ setImages, errors, isSubmitted, venue }) => {
       ))}
       <button
         type="button"
-        className="border-0 ps-0 text-left hover:bg-light-blue hover:text-dark-blue hover:underline"
+        className="border-0 ps-2 text-left hover:bg-light-blue hover:text-dark-blue hover:underline"
         onClick={addNewImageUrl}
       >
         <i className="fa-solid fa-plus mr-2 text-sm"></i>

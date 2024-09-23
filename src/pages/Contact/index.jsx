@@ -44,16 +44,16 @@ export const Contact = () => {
   };
 
   return (
-    <section className="mx-auto mb-6 mt-[70px] w-11/12 max-w-screen-lg md:mt-[110px] md:flex md:flex-row-reverse md:gap-6">
+    <section className="mx-auto mb-6 mt-[70px] w-11/12 max-w-screen-lg md:mt-[110px] md:flex md:flex-row-reverse md:gap-1">
       <div className="md:w-7/12">
         <img
           className="w-full md:h-full md:object-cover md:p-4"
           src={ContactImage}
-          alt=""
+          alt="Image of two people sitting at a table and talking to each other"
         />
       </div>
-      <div className="mb-4 flex flex-col items-center md:w-5/12">
-        <h1 className="sm::ml-16 w-11/12 pt-4 text-center text-[22px] md:text-3xl">
+      <div className="mb-4 flex flex-col items-center md:w-6/12">
+        <h1 className="sm::ml-16 w-full pt-4 text-center text-2xl md:text-3xl">
           Contact us
         </h1>
         <p className="w-10/12 py-4 text-center text-lg font-light xs:w-11/12 md:text-xl">

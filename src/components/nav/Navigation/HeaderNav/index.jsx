@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../../../assets/images/holidaze-logo.png";
 import { load } from "../../../../js/storage/load";
 
 export const HeaderNav = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const logout = () => {
@@ -61,12 +62,14 @@ export const HeaderNav = () => {
           } w-full md:block md:w-auto`}
           id="navbar-default"
         >
-          <ul className="mt-0 flex flex-col bg-dark-blue p-1 text-center text-xl font-extralight md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse">
+          <ul className="mt-0 flex flex-col bg-dark-blue p-1 text-center text-xl font-light md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 md:font-extralight rtl:space-x-reverse">
             <li>
               <Link
                 to="/"
                 aria-label="Home"
-                className="block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0"
+                className={`block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0 ${
+                  location.pathname === "/" ? "text-soft-pink" : ""
+                }`}
                 aria-current="page"
                 onClick={closeMenu}
               >
@@ -78,7 +81,9 @@ export const HeaderNav = () => {
                 <Link
                   to="/signUp"
                   aria-label="Sign up"
-                  className="block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0"
+                  className={`block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0 ${
+                    location.pathname === "/signUp" ? "text-soft-pink" : ""
+                  }`}
                   onClick={closeMenu}
                 >
                   Sign up
@@ -92,7 +97,9 @@ export const HeaderNav = () => {
                 <Link
                   to="/logIn"
                   aria-label="Log in"
-                  className="block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0"
+                  className={`block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0 ${
+                    location.pathname === "/logIn" ? "text-soft-pink" : ""
+                  }`}
                   onClick={closeMenu}
                 >
                   Log in
@@ -106,7 +113,9 @@ export const HeaderNav = () => {
                 <Link
                   to="/profile"
                   aria-label="Profile"
-                  className="block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0"
+                  className={`block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0 ${
+                    location.pathname === "/profile" ? "text-soft-pink" : ""
+                  }`}
                   onClick={closeMenu}
                 >
                   My profile
@@ -119,7 +128,9 @@ export const HeaderNav = () => {
               <Link
                 to="/about"
                 aria-label="About"
-                className="block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0"
+                className={`block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0 ${
+                  location.pathname === "/about" ? "text-soft-pink" : ""
+                }`}
                 onClick={closeMenu}
               >
                 About us
@@ -129,7 +140,9 @@ export const HeaderNav = () => {
               <Link
                 to="/contact"
                 aria-label="Contact"
-                className="block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0"
+                className={`block px-3 py-2 text-light-blue hover:text-soft-pink md:p-0 ${
+                  location.pathname === "/contact" ? "text-soft-pink" : ""
+                }`}
                 onClick={closeMenu}
               >
                 Contact

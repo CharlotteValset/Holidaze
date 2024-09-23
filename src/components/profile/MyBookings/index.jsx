@@ -6,6 +6,7 @@ import { load } from "../../../js/storage/load";
 import { formatPrice } from "../../../js/utils/formatPrice";
 import { formatDate } from "../../../js/utils/formatDate";
 import { Loader } from "../../ui_elements/Loader";
+import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 export const MyBookings = () => {
   const [activeTab, setActiveTab] = useState("bookings");
@@ -43,9 +44,11 @@ export const MyBookings = () => {
             : "Date unavailable";
 
           const venueImageUrl = venue?.media?.[0]?.url || PlaceholderImage;
-          const venueName = venue?.name || "Unnamed Venue";
-          const venueLocation = `${venue?.location?.city}, ${venue?.location?.country}`;
-
+          const venueName = venue?.name || "Venue title not available";
+          const venueLocation =
+            venue.location?.city && venue.location?.country
+              ? `${venue.location.city}, ${venue.location.country}`
+              : "Location not available";
           const totalOfNights = Math.ceil(
             (new Date(dateTo).getTime() - new Date(dateFrom).getTime()) /
               (1000 * 60 * 60 * 24),
@@ -67,11 +70,12 @@ export const MyBookings = () => {
                   src={venueImageUrl}
                   alt={venue?.media?.[0]?.alt || "Venue Image"}
                   className="h-full w-full rounded object-cover"
+                  onError={handleImageErrors}
                 />
               </div>
               <div className="max-w-md xs:w-2/3 sm:w-2/4 md:ml-2 md:mt-1 md:max-w-none">
                 <div className="flex items-center justify-between px-2">
-                  <h2 className="truncate text-[22px] md:pt-2 md:text-3xl">
+                  <h2 className="break-words text-[22px] md:pt-2 md:text-3xl">
                     {venueName}
                   </h2>
                   <span className="flex flex-row items-center rounded px-2 py-0.5 text-sm font-normal text-dark-blue sm:text-base">

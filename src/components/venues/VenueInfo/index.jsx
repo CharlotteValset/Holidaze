@@ -2,6 +2,8 @@ import ProfileImage from "../../../assets/images/no_ProfileImg.png";
 import { formatPrice } from "../../../js/utils/formatPrice";
 
 export const VenueInfo = ({ data }) => {
+  const venueTitle = data.name ? data?.name : "Venue title not available";
+
   const location =
     data.location?.city && data.location?.country
       ? `${data.location.city}, ${data.location.country}`
@@ -12,7 +14,9 @@ export const VenueInfo = ({ data }) => {
   const ownerAvatarUrl = data.owner?.avatar?.url || ProfileImage;
   const ownerName = data.owner?.name || "Owner name not available";
   const ownerEmail = data.owner?.email || "Owner email not available";
-
+  const venueDescription = data.description
+    ? data?.description
+    : "No description available";
   const price = data.price || 0;
   const formattedPrice = formatPrice(price);
 
@@ -20,7 +24,7 @@ export const VenueInfo = ({ data }) => {
     <div className="mx-auto w-11/12">
       <div className="sm:mr-3 sm:w-full">
         <div className="mt-3 flex justify-between align-middle md:mt-1 lg:gap-3">
-          <h2 className="text-lg sm:text-[22px] md:text-3xl">{data.name}</h2>
+          <h2 className="text-lg sm:text-3xl md:text-3xl">{venueTitle}</h2>
           <span className="flex flex-row items-baseline rounded px-2 py-0.5 align-top text-sm font-normal text-dark-blue md:text-base">
             <svg
               className="me-2 h-3 w-3 text-dark-blue"
@@ -44,7 +48,7 @@ export const VenueInfo = ({ data }) => {
             <p className="text-base md:text-lg">{maxGuests} guests</p>
           </div>
           <p className="text-lg font-medium md:text-2xl">
-                       $ {formattedPrice}
+            $ {formattedPrice}
             <span className="ml-1 text-base font-normal md:text-lg">
               per night
             </span>
@@ -78,7 +82,7 @@ export const VenueInfo = ({ data }) => {
         </div>
         <h3 className="mb-1 mt-6 text-xl md:text-xl">Description</h3>
         <p className="w-64 ps-0.5 text-lg font-light xs:w-11/12 md:text-lg">
-          {data.description}
+          {venueDescription}
         </p>
         <div className="my-4">
           <h3 className="mb-1 text-xl md:text-xl">Owner</h3>
@@ -86,7 +90,7 @@ export const VenueInfo = ({ data }) => {
             <img
               src={ownerAvatarUrl}
               className="mr-1 h-14 w-14 rounded-full sm:mr-2 sm:h-16 sm:w-16"
-              alt={"Owner Image"}
+              alt="Owners Profile Image"
             />
             <div className="flex flex-col items-start ps-2">
               <p className="text-lg font-light sm:text-2xl">{ownerName}</p>

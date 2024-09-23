@@ -3,6 +3,7 @@ import ProfileImage from "../../assets/images/no_ProfileImg.png";
 import placeholderImage from "../../assets/images/no_img.png";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { formatPrice } from "../../js/utils/formatPrice";
+import { handleImageErrors } from "../../js/utils/handleImageErrors";
 
 export const ConfirmedBooking = () => {
   const location = useLocation();
@@ -13,23 +14,29 @@ export const ConfirmedBooking = () => {
   }
 
   const formattedPrice = formatPrice(totalPrice);
+  const venueTitle = venue.name ? venue?.name : "Venue title not available";
 
+  const venueLocation =
+    venue.location?.city && venue.location?.country
+      ? `${venue.location.city}, ${venue.location.country}`
+      : "Location not available";
   return (
     <>
       <div className="bookings-card mx-auto mb-8 mt-[100px] w-11/12 rounded-lg bg-light-blue md:mt-[120px] md:max-w-screen-md">
         <h1 className="mx-auto py-4 text-center text-[22px] sm:text-3xl md:py-8 md:text-4xl">
           Booking confirmed!
         </h1>
-        <div className="mx-auto mb-2 max-w-screen-sm px-2 md:w-10/12">
+        <div className="mx-auto mb-2 max-w-screen-sm px-2 sm:w-10/12">
           <img
-            src={venue.media[0].url || placeholderImage}
-            alt="Luxury Home"
-            className="rounded-xl"
+            src={venue.media?.[0]?.url || placeholderImage}
+            alt="Venue image"
+            className="h-52 w-full rounded-xl object-cover xs:h-64 sm:h-80 md:h-[400px] md:rounded-xl"
+            onError={handleImageErrors}
           />
         </div>
-        <div className="mx-auto max-w-screen-sm px-2">
+        <div className="mx-auto max-w-screen-sm px-2 sm:w-10/12">
           <div className="flex items-center justify-between px-2">
-            <h2 className="truncate text-[22px] md:text-3xl">{venue.name}</h2>
+            <h2 className="truncate text-[22px] md:text-3xl">{venueTitle}</h2>
             <span className="flex flex-row items-center rounded px-2 py-0.5 text-sm font-normal text-dark-blue md:text-base">
               <svg
                 className="me-2 h-3 w-3 text-dark-blue"
@@ -45,9 +52,7 @@ export const ConfirmedBooking = () => {
           </div>
           <div className="flex items-center gap-1 px-2 pb-2">
             <i className="fa-solid fa-location-dot text-sm"></i>
-            <p className="text-sm font-light md:text-lg">
-              {venue.location.city}, {venue.location.country}
-            </p>
+            <p className="text-sm font-light md:text-lg">{venueLocation}</p>
           </div>
           <div className="px-2 pb-3 pt-1">
             <div className="flex justify-between">
@@ -55,7 +60,7 @@ export const ConfirmedBooking = () => {
               <div className="flex flex-row items-center gap-1">
                 <img
                   src={venue.owner.media?.url || ProfileImage}
-                  alt=""
+                  alt="Owners profile image"
                   className="h-6 w-6 rounded-full object-cover"
                 />
                 <p className="md:text-lg">{venue.owner.name}</p>

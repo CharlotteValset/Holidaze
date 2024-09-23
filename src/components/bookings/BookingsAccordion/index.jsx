@@ -50,7 +50,7 @@ export const BookingsAccordion = ({ venueId }) => {
                 <div className="flex flex-row items-center gap-1">
                   <img
                     src={PlaceholderProfileImage}
-                    alt="Profile"
+                    alt="Profile image"
                     className="h-6 w-6 rounded-full object-cover"
                   />
                   <p className="truncate text-sm">{booking.customer.name}</p>

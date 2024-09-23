@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PlaceholderImage from "../../../assets/images/no_img.png";
+import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 export const Gallery = ({ data }) => {
   const mediaUrls = data.media?.map((mediaItem) => mediaItem.url) || [];
@@ -18,9 +19,10 @@ export const Gallery = ({ data }) => {
     <div className="mx-auto my-5 w-11/12 gap-4">
       <div className="flex-1">
         <img
-          className="h-44 w-full rounded-lg object-cover xs:h-52 sm:h-80 md:h-96 lg:h-[500px]"
+          className="h-44 w-full rounded-lg object-cover xs:h-72 sm:h-80 md:h-96 lg:h-[500px]"
           src={largeImage}
-          alt="Large display"
+          alt="Large venue image"
+          onError={handleImageErrors}
         />
       </div>
 
@@ -34,6 +36,7 @@ export const Gallery = ({ data }) => {
               src={imageSrc}
               alt={`Thumbnail ${index + 1}`}
               onClick={() => handleImageClick(imageSrc)}
+              onError={handleImageErrors}
             />
           </div>
         ))}
