@@ -6,7 +6,7 @@ import { load } from "../../../js/storage/load";
 import { formatPrice } from "../../../js/utils/formatPrice";
 import { formatDate } from "../../../js/utils/formatDate";
 import { Loader } from "../../ui_elements/Loader";
-import { handleImageError } from "../../../js/utils/handleImageError";
+import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 export const MyBookings = () => {
   const [activeTab, setActiveTab] = useState("bookings");
@@ -70,7 +70,7 @@ export const MyBookings = () => {
                   src={venueImageUrl}
                   alt={venue?.media?.[0]?.alt || "Venue Image"}
                   className="h-full w-full rounded object-cover"
-                  onError={handleImageError}
+                  onError={handleImageErrors}
                 />
               </div>
               <div className="max-w-md xs:w-2/3 sm:w-2/4 md:ml-2 md:mt-1 md:max-w-none">

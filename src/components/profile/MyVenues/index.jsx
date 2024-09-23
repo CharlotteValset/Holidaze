@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ImagePlaceholder from "../../../assets/images/no_img.png";
 import { formatPrice } from "../../../js/utils/formatPrice";
-import { handleImageError } from "../../../js/utils/handleImageError";
+import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 import { BookingsAccordion } from "../../bookings/BookingsAccordion";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 
@@ -30,7 +30,7 @@ export const MyVenues = ({ venuesData }) => {
               <img
                 src={venueImageUrl}
                 alt="Venue Image"
-                onError={handleImageError}
+                onError={handleImageErrors}
                 className="h-52 w-full rounded-lg object-cover xs:h-72 sm:h-96 md:h-[350px] md:w-[420px] lg:h-[450px] lg:w-[600px]"
               />
             </div>

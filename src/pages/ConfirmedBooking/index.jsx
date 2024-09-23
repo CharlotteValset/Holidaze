@@ -3,7 +3,7 @@ import ProfileImage from "../../assets/images/no_ProfileImg.png";
 import placeholderImage from "../../assets/images/no_img.png";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { formatPrice } from "../../js/utils/formatPrice";
-import { handleImageError } from "../../js/utils/handleImageError/index";
+import { handleImageErrors } from "../../js/utils/handleImageErrors";
 
 export const ConfirmedBooking = () => {
   const location = useLocation();
@@ -31,7 +31,7 @@ export const ConfirmedBooking = () => {
             src={venue.media?.[0]?.url || placeholderImage}
             alt="Luxury Home"
             className="rounded-xl"
-            onError={handleImageError}
+            onError={handleImageErrors}
           />
         </div>
         <div className="mx-auto max-w-screen-sm px-2">

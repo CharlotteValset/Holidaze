@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import ImagePlaceholder from "../../../assets/images/no_img.png";
 import { formatPrice } from "../../../js/utils/formatPrice";
-import { handleImageError } from "../../../js/utils/handleImageError";
+import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 export const Card = ({ data }) => {
   const imageArray = data?.media;
@@ -26,7 +26,7 @@ export const Card = ({ data }) => {
             className="h-48 w-full rounded-t-xl object-cover xs:h-72 sm:h-48"
             src={imageUrl}
             alt="Venue Image"
-            onError={handleImageError}
+            onError={handleImageErrors}
           />
         </div>
         <div className="m-1 px-2">
