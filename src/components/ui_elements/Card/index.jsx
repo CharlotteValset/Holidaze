@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import ImagePlaceholder from "../../../assets/images/no_img.png";
 import { formatPrice } from "../../../js/utils/formatPrice";
+import { handleImageError } from "../../../js/utils/handleImageError";
 
 export const Card = ({ data }) => {
   const imageArray = data?.media;
@@ -24,7 +25,8 @@ export const Card = ({ data }) => {
           <img
             className="h-48 w-full rounded-t-xl object-cover xs:h-72 sm:h-48"
             src={imageUrl}
-            alt="image"
+            alt="Venue Image"
+            onError={handleImageError}
           />
         </div>
         <div className="m-1 px-2">
@@ -52,9 +54,9 @@ export const Card = ({ data }) => {
             <p className="text-base">{location}</p>
           </div>
           <div className="my-2 flex items-center justify-between">
-        <p className="text-lg font-medium">
+            <p className="text-lg font-medium">
               $ {formattedPrice}{" "}
-                     <span className="text-base font-normal">per night</span>
+              <span className="text-base font-normal">per night</span>
             </p>
             <Link to={`/singleVenue/${data.id}`}>
               <PrimaryButton>View more</PrimaryButton>
