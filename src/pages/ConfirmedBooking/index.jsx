@@ -26,15 +26,15 @@ export const ConfirmedBooking = () => {
         <h1 className="mx-auto py-4 text-center text-[22px] sm:text-3xl md:py-8 md:text-4xl">
           Booking confirmed!
         </h1>
-        <div className="mx-auto mb-2 max-w-screen-sm px-2 md:w-10/12">
+        <div className="mx-auto mb-2 max-w-screen-sm px-2 sm:w-10/12">
           <img
             src={venue.media?.[0]?.url || placeholderImage}
             alt="Venue image"
-            className="rounded-xl"
+            className="h-52 w-full rounded-xl object-cover xs:h-64 sm:h-80 md:h-[400px] md:rounded-xl"
             onError={handleImageErrors}
           />
         </div>
-        <div className="mx-auto max-w-screen-sm px-2">
+        <div className="mx-auto max-w-screen-sm px-2 sm:w-10/12">
           <div className="flex items-center justify-between px-2">
             <h2 className="truncate text-[22px] md:text-3xl">{venueTitle}</h2>
             <span className="flex flex-row items-center rounded px-2 py-0.5 text-sm font-normal text-dark-blue md:text-base">
