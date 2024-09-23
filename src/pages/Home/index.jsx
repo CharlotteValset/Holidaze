@@ -64,10 +64,13 @@ export const Home = () => {
         <div>Error fetching data. Please try again later.</div>
       ) : searchTerm.trim() !== "" && searchResults.length === 0 ? (
         <div className="mx-auto my-4 w-96 rounded-lg bg-light-blue p-4 xs:w-80">
-          <p className="p-3 text-center text-dark-blue">
+          <p className="break-all p-3 text-center text-dark-blue">
             Hmm... No matches for{" "}
           </p>
-          <span className="font-medium">"{searchTerm}"</span>.
+          <span className="block break-words text-center font-medium">
+            "{searchTerm}"
+          </span>
+          .
           <p className="p-3 text-center text-dark-blue">
             Don't give up! Try searching for something else.
           </p>
