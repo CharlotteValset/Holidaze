@@ -30,7 +30,7 @@ export const MyVenues = ({ venuesData }) => {
               <img
                 src={venueImageUrl}
                 alt="Venue Image"
-                onError={handleImageErrors}
+                onError={(e) => handleImageErrors(e, ImagePlaceholder)}
                 className="h-52 w-full rounded-lg object-cover xs:h-72 sm:h-96 md:h-[350px] md:w-[420px] lg:h-[450px] lg:w-[600px]"
               />
             </div>

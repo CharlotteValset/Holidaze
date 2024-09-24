@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import noAvatarImg from "../../../assets/images/no_ProfileImg.png";
+import ProfileImagePlaceholder from "../../../assets/images/no_ProfileImg.png";
 import { usePut } from "../../../hooks/usePut";
 import { Modal } from "../../ui_elements/Modal";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import { InputField } from "../../form_elements/InputField";
 import { API_Url, profile_Url } from "../../../js/api/constants";
 import { load } from "../../../js/storage/load";
+import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 const editProfileImageSchema = yup.object({
   editImg: yup.string().url("Invalid URL").required("Image URL is required"),
@@ -62,7 +63,7 @@ export const ProfileInfo = ({ data }) => {
 
   const userName = data?.name || "Profile name not available";
   const isVenueManager = data.venueManager ? "Venue Manager" : "";
-  const avatarImg = data?.avatar?.url || noAvatarImg;
+  const avatarImg = data?.avatar?.url || ProfileImagePlaceholder;
 
   return (
     <article className="my-4 sm:ml-4 sm:mt-8 sm:flex sm:w-full sm:flex-row-reverse sm:justify-end">
@@ -76,6 +77,7 @@ export const ProfileInfo = ({ data }) => {
         <img
           src={avatarImg}
           alt="Profile Image"
+          onError={(e) => handleImageErrors(e, ProfileImagePlaceholder)}
           className="mx-auto h-20 w-20 rounded-full object-cover sm:h-32 sm:w-32"
         />
         <div className="flex cursor-pointer items-center gap-1 sm:justify-center">
@@ -97,7 +99,8 @@ export const ProfileInfo = ({ data }) => {
             <img
               src={avatarImg}
               alt="Profile Image"
-              className="mx-auto h-40 w-40 rounded-full"
+              className="mx-auto h-40 w-40 rounded-full object-cover"
+              onError={(e) => handleImageErrors(e, ProfileImagePlaceholder)}
             />
             <form
               onSubmit={handleSubmit(onSubmit)}
