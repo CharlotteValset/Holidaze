@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+
 import { Hero } from "../../components/ui_elements/Hero";
 import { Card } from "../../components/ui_elements/Card";
 import { Loader } from "../../components/ui_elements/Loader";
+
 import { useFetch } from "../../hooks/useFetch";
+
 import { all_Venues, API_Url } from "../../js/api/constants";
 
 export const Home = () => {

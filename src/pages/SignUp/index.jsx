@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
+
 import { register as registerUser } from "../../js/api/auth/register.jsx";
 import { login as loginUser } from "../../js/api/auth/login.jsx";
 

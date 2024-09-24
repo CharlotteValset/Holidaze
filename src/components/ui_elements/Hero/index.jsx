@@ -1,4 +1,5 @@
 import HeroImage from "../../../assets/images/heroImage.png";
+
 import { SearchBar } from "../../forms/SearchBar";
 
 export const Hero = ({ onSearch }) => {

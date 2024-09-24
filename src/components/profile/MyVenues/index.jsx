@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import ImagePlaceholder from "../../../assets/images/no_img.png";
-import { formatPrice } from "../../../js/utils/formatPrice";
-import { handleImageErrors } from "../../../js/utils/handleImageErrors";
+
 import { BookingsAccordion } from "../../bookings/BookingsAccordion";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
+
+import { formatPrice } from "../../../js/utils/formatPrice";
+import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 export const MyVenues = ({ venuesData }) => {
   return (

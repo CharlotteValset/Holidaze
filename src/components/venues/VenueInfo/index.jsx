@@ -1,4 +1,5 @@
 import ProfileImagePlaceholder from "../../../assets/images/no_ProfileImg.png";
+
 import { formatPrice } from "../../../js/utils/formatPrice";
 import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 

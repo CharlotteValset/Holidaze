@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import { ProfileInfo } from "../../components/profile/ProfileInfo";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { ProfileTabs } from "../../components/profile/ProfileTabs";
-import { useFetch } from "../../hooks/useFetch";
-import { API_Url, profile_Url } from "../../js/api/constants";
-import { load } from "../../js/storage/load";
 import { BecomeVenueManager } from "../../components/profile/BecomeVenueManager";
 import { Loader } from "../../components/ui_elements/Loader";
+
+import { useFetch } from "../../hooks/useFetch";
+
+import { API_Url, profile_Url } from "../../js/api/constants";
+import { load } from "../../js/storage/load";
 
 export const Profile = () => {
   const [isVenueManager, setIsVenueManager] = useState(false);

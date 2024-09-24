@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
+import { Loader } from "../../ui_elements/Loader";
+import { MyBookings } from "../MyBookings";
+import { MyVenues } from "../MyVenues";
+
 import { useFetch } from "../../../hooks/useFetch";
+
 import {
   all_Venues,
   API_Url,
@@ -7,9 +15,6 @@ import {
   profile_Url,
 } from "../../../js/api/constants";
 import { load } from "../../../js/storage/load";
-import { Loader } from "../../ui_elements/Loader";
-import { MyBookings } from "../MyBookings";
-import { MyVenues } from "../MyVenues";
 
 export const ProfileTabs = () => {
   const userProfile = load("profile");
@@ -61,10 +66,17 @@ export const ProfileTabs = () => {
     content = <div className="mt-96">Page not found</div>;
   } else if (!hasBookings && !hasVenues) {
     content = (
-      <div className="mx-auto my-8 mt-4 w-11/12 rounded-lg bg-light-blue text-center xl:w-8/12">
+      <div className="mx-auto my-8 mt-4 w-11/12 rounded-lg bg-light-blue text-center xl:w-5/12">
         <p className="px-4 py-10 text-center sm:text-xl">
           You have no bookings or venues at the moment
         </p>
+        <Link
+          to="/"
+          aria-label="home"
+          className="flex flex-col items-center pb-10"
+        >
+          <PrimaryButton>Find a venue to book</PrimaryButton>
+        </Link>
       </div>
     );
   } else {

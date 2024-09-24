@@ -1,25 +1,29 @@
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import React, { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import { BookVenueNotLoggedIn } from "../../../components/bookings/BookVenueNotLoggedIn";
-import { load } from "../../../js/storage/load";
-import { all_Venues, API_Url, bookings_Url } from "../../../js/api/constants";
+
 import { usePost } from "../../../hooks/usePost";
 import { useFetch } from "../../../hooks/useFetch";
+
+import { load } from "../../../js/storage/load";
 import { formatDate } from "../../../js/utils/formatDate";
+import { all_Venues, API_Url, bookings_Url } from "../../../js/api/constants";
 
 export const BookVenue = ({ data }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const token = load("accessToken");
+
   const [selectedCheckInDate, setSelectedCheckInDate] = useState(new Date());
   const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(new Date());
   const [totalPrice, setTotalPrice] = useState(0);
-  const token = load("accessToken");
-  const navigate = useNavigate();
 
   const schema = yup
     .object({
@@ -46,44 +50,34 @@ export const BookVenue = ({ data }) => {
     setError,
   } = useForm({ resolver: yupResolver(schema) });
 
-  const { postData, response, isLoading, hasError } = usePost(
-    API_Url + bookings_Url,
-  );
-
-  const { data: bookingsData, isLoading: bookingsLoading } = useFetch(
+  const { postData, isLoading, hasError } = usePost(API_Url + bookings_Url);
+  const { data: bookingsData } = useFetch(
     `${API_Url}${all_Venues}/${id}?_bookings=true`,
   );
 
   const getBookedDates = () => {
-    if (bookingsData && bookingsData.bookings) {
-      return bookingsData.bookings.map((booking) => {
-        const dateFrom = new Date(booking.dateFrom);
-        const dateTo = new Date(booking.dateTo);
-        return { start: dateFrom, end: dateTo };
-      });
+    if (bookingsData?.bookings) {
+      return bookingsData.bookings.map((booking) => ({
+        start: new Date(booking.dateFrom),
+        end: new Date(booking.dateTo),
+      }));
     }
     return [];
   };
 
   const bookedDates = getBookedDates();
-
   const totalOfNights = Math.ceil(
-    (selectedCheckOutDate.getTime() - selectedCheckInDate.getTime()) /
-      (1000 * 60 * 60 * 24),
+    (selectedCheckOutDate - selectedCheckInDate) / (1000 * 60 * 60 * 24),
   );
-
   const pricePerNight = data.price;
 
   useEffect(() => {
-    const calculateTotalPrice = (pricePerNight, totalOfNights) => {
-      return pricePerNight * totalOfNights;
-    };
-
-    const newTotalPrice = calculateTotalPrice(pricePerNight, totalOfNights);
-    const formattedPrice = newTotalPrice
+    const calculateTotalPrice = (pricePerNight, totalOfNights) =>
+      pricePerNight * totalOfNights;
+    const newTotalPrice = calculateTotalPrice(pricePerNight, totalOfNights)
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    setTotalPrice(formattedPrice);
+    setTotalPrice(newTotalPrice);
   }, [selectedCheckInDate, selectedCheckOutDate, pricePerNight, totalOfNights]);
 
   const onSubmit = async (formData) => {
@@ -102,16 +96,10 @@ export const BookVenue = ({ data }) => {
       venueId: id,
     };
 
-    console.log("Submitting payload:", payload);
-
     try {
       const result = await postData(payload);
-
       if (result && !hasError) {
-        console.log("New booking submitted:", result);
-
         reset();
-
         navigate("/confirmedBooking", {
           state: { payload, venue: data, totalPrice },
         });
@@ -123,14 +111,12 @@ export const BookVenue = ({ data }) => {
     }
   };
 
-  const minimumStay = 1;
-
   const handleCheckInDateChange = (date) => {
     setSelectedCheckInDate(date);
     setValue("checkIn", date);
 
     const minCheckOutDate = new Date(date);
-    minCheckOutDate.setDate(minCheckOutDate.getDate() + minimumStay);
+    minCheckOutDate.setDate(minCheckOutDate.getDate() + 1);
 
     if (selectedCheckOutDate < minCheckOutDate) {
       setSelectedCheckOutDate(minCheckOutDate);
@@ -140,7 +126,7 @@ export const BookVenue = ({ data }) => {
 
   const handleCheckOutDateChange = (date) => {
     const minCheckOutDate = new Date(selectedCheckInDate);
-    minCheckOutDate.setDate(minCheckOutDate.getDate() + minimumStay);
+    minCheckOutDate.setDate(minCheckOutDate.getDate() + 1);
 
     if (date < minCheckOutDate) {
       setSelectedCheckOutDate(minCheckOutDate);
@@ -154,6 +140,7 @@ export const BookVenue = ({ data }) => {
   return (
     <div className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:max-w-xs md:ml-14">
       <h3 className="pb-2 pt-4 text-center text-2xl">Book this venue!</h3>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
           <div className="mx-auto flex flex-col py-2">
@@ -181,9 +168,7 @@ export const BookVenue = ({ data }) => {
               Check-out
             </label>
             <DatePicker
-              {...register("checkOut", {
-                required: true,
-              })}
+              {...register("checkOut", { required: true })}
               id="checkOut"
               selected={selectedCheckOutDate}
               onChange={handleCheckOutDateChange}
@@ -192,7 +177,7 @@ export const BookVenue = ({ data }) => {
               endDate={selectedCheckOutDate}
               dateFormat="dd/MM/yyyy"
               minDate={new Date(selectedCheckInDate).setDate(
-                selectedCheckInDate.getDate() + minimumStay,
+                selectedCheckInDate.getDate() + 1,
               )}
               excludeDateIntervals={bookedDates}
               className="w-full rounded-lg border border-gray-300 p-2 text-center text-base shadow-sm focus:border-blue-500 focus:ring-blue-500"
@@ -201,14 +186,13 @@ export const BookVenue = ({ data }) => {
               <p className="text-sm text-red-500">{errors.checkOut.message}</p>
             )}
           </div>
+
           <div className="mx-auto flex w-[190px] flex-col items-start py-2">
             <label htmlFor="numberOfGuests" className="pb-1 ps-1 text-lg">
               Number of guests
             </label>
             <select
-              {...register("numberOfGuests", {
-                required: true,
-              })}
+              {...register("numberOfGuests", { required: true })}
               id="numberOfGuests"
               className="block w-28 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-sm text-gray-900"
             >
@@ -227,18 +211,25 @@ export const BookVenue = ({ data }) => {
               </p>
             )}
           </div>
+
           <div className="mx-auto mt-6 flex w-[190px] pl-1">
             <p className="mr-1 text-lg">Booking is for</p>
             <span className="mr-1 text-lg font-medium">{totalOfNights}</span>
             <p className="text-lg">nights</p>
           </div>
+
           <div className="mx-auto mt-6 flex w-[190px] gap-6 pl-1">
             <p className="text-xl">Total price</p>
             <p className="mr-1 text-xl">$ {totalPrice}</p>
           </div>
+
           {token ? (
-            <PrimaryButton className="mx-auto my-8 w-32" type="submit">
-              Book now
+            <PrimaryButton
+              className="mx-auto my-8 w-32"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? "Booking..." : "Book now"}
             </PrimaryButton>
           ) : (
             <BookVenueNotLoggedIn />

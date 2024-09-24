@@ -1,7 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
+
 import ProfileImagePlaceholder from "../../assets/images/no_ProfileImg.png";
 import ImagePlaceholder from "../../assets/images/no_img.png";
+
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
+
 import { formatPrice } from "../../js/utils/formatPrice";
 import { handleImageErrors } from "../../js/utils/handleImageErrors";
 

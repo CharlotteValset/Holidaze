@@ -1,13 +1,16 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch";
-import { API_Url, all_Venues } from "../../js/api/constants";
+
 import { Gallery } from "../../components/ui_elements/Gallery";
 import { VenueInfo } from "../../components/venues/VenueInfo";
 import { BookVenue } from "../../components/forms/BookVenue";
 import { VenueManagerOwnPageView } from "../../components/venues/VenueManagerOwnPageView";
-import { load } from "../../js/storage/load";
 import { Loader } from "../../components/ui_elements/Loader";
+
+import { useFetch } from "../../hooks/useFetch";
+
+import { API_Url, all_Venues } from "../../js/api/constants";
+import { load } from "../../js/storage/load";
 
 export const SingleVenue = () => {
   let { id } = useParams();
@@ -40,7 +43,7 @@ export const SingleVenue = () => {
         <Link
           to="/"
           aria-label="Home"
-          className="ms-6 mt-20 flex flex-row items-center gap-1 hover:text-soft-pink md:ms-10"
+          className="ms-6 mt-20 flex flex-row items-center gap-1 hover:text-soft-pink md:ms-10 md:mt-28"
         >
           <i className="fa-solid fa-chevron-left"></i>
           <p className="cursor-pointer hover:underline sm:text-lg">Back</p>

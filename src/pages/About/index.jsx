@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+
 import HolidazeCrew from "../../assets/images/holidazeCrew.jpg";
+
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 
 export const About = () => {

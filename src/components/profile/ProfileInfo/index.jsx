@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
 import ProfileImagePlaceholder from "../../../assets/images/no_ProfileImg.png";
+
 import { usePut } from "../../../hooks/usePut";
+
 import { Modal } from "../../ui_elements/Modal";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 import { SecondaryButton } from "../../ui_elements/Buttons/SecondaryButton";
 import { InputField } from "../../form_elements/InputField";
+
 import { API_Url, profile_Url } from "../../../js/api/constants";
 import { load } from "../../../js/storage/load";
+
 import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 const editProfileImageSchema = yup.object({
@@ -29,7 +34,7 @@ export const ProfileInfo = ({ data }) => {
     reset,
   } = useForm({ resolver: yupResolver(editProfileImageSchema) });
 
-  const { putData, response, isLoading, hasError } = usePut(
+  const { putData, response, hasError } = usePut(
     `${API_Url}${profile_Url}/${userId}`,
   );
 
