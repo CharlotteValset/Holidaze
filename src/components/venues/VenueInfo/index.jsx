@@ -90,7 +90,7 @@ export const VenueInfo = ({ data }) => {
           <div className="flex flex-row items-center">
             <img
               src={ownerAvatarUrl}
-              className="mr-1 h-14 w-14 rounded-full sm:mr-2 sm:h-16 sm:w-16"
+              className="mr-1 h-14 w-14 rounded-full object-cover sm:mr-2 sm:h-16 sm:w-16"
               alt="Owners Profile Image"
               onError={(e) => handleImageErrors(e, ProfileImagePlaceholder)}
             />
