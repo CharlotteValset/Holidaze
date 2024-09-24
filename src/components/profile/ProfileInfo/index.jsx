@@ -6,6 +6,7 @@ import ProfileImagePlaceholder from "../../../assets/images/no_ProfileImg.png";
 import { usePut } from "../../../hooks/usePut";
 import { Modal } from "../../ui_elements/Modal";
 import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
+import { SecondaryButton } from "../../ui_elements/Buttons/SecondaryButton";
 import { InputField } from "../../form_elements/InputField";
 import { API_Url, profile_Url } from "../../../js/api/constants";
 import { load } from "../../../js/storage/load";
@@ -95,6 +96,16 @@ export const ProfileInfo = ({ data }) => {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             title="Edit profile image"
+            footer={
+              <>
+                <SecondaryButton onClick={() => setIsModalOpen(false)}>
+                  Cancel
+                </SecondaryButton>
+                <PrimaryButton type="button" onClick={handleSubmit(onSubmit)}>
+                  Save
+                </PrimaryButton>
+              </>
+            }
           >
             <img
               src={avatarImg}
@@ -103,6 +114,7 @@ export const ProfileInfo = ({ data }) => {
               onError={(e) => handleImageErrors(e, ProfileImagePlaceholder)}
             />
             <form
+              id="editProfileForm"
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col justify-center pt-4"
             >
@@ -117,9 +129,6 @@ export const ProfileInfo = ({ data }) => {
                 className="h-9 w-full rounded-lg border-gray-300"
                 errors={errors}
               />
-              <PrimaryButton type="submit" className="mx-auto mt-4 text-center">
-                Save
-              </PrimaryButton>
             </form>
           </Modal>
         )}
