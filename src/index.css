@@ -50,11 +50,6 @@ img {
   opacity: 0.5;
 }
 
-img:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-
 input[type="checkbox"] {
   width: 18px;
   height: 18px;

@@ -15,5 +15,8 @@ export const login = async (email, password) => {
     return profile;
   }
 
-  throw new Error("Could not log in");
+  const errorResponse = await response.json();
+  console.error("API Error Response:", errorResponse);
+
+  throw new Error(errorResponse.errors[0].message || "Could not log in");
 };

@@ -13,23 +13,30 @@ import { usePost } from "../../../hooks/usePost";
 import { useFetch } from "../../../hooks/useFetch";
 import { formatDate } from "../../../js/utils/formatDate";
 
-const schema = yup
-  .object({
-    checkIn: yup
-      .date("Please add a check-in date")
-      .required("Please add a check-in date"),
-    checkOut: yup
-      .date("Please add a check-out date")
-      .required("Please add a check-out date"),
-    numberOfGuests: yup
-      .number("Please add the number of guests")
-      .min(1, "Minimum number of guests is 1")
-      .required("Please add the number of guests"),
-  })
-  .required();
-
 export const BookVenue = ({ data }) => {
   const { id } = useParams();
+  const [selectedCheckInDate, setSelectedCheckInDate] = useState(new Date());
+  const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(new Date());
+  const [totalPrice, setTotalPrice] = useState(0);
+  const token = load("accessToken");
+  const navigate = useNavigate();
+
+  const schema = yup
+    .object({
+      checkIn: yup
+        .date("Please add a check-in date")
+        .required("Please add a check-in date"),
+      checkOut: yup
+        .date("Please add a check-out date")
+        .required("Please add a check-out date"),
+      numberOfGuests: yup
+        .number("Please add the number of guests")
+        .min(1, "Minimum number of guests is 1")
+        .max(data.maxGuests, `Maximum number of guests is ${data.maxGuests}`)
+        .required("Please add the number of guests"),
+    })
+    .required();
+
   const {
     register,
     handleSubmit,
@@ -38,12 +45,6 @@ export const BookVenue = ({ data }) => {
     setValue,
     setError,
   } = useForm({ resolver: yupResolver(schema) });
-
-  const [selectedCheckInDate, setSelectedCheckInDate] = useState(new Date());
-  const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(new Date());
-  const [totalPrice, setTotalPrice] = useState(0);
-  const token = load("accessToken");
-  const navigate = useNavigate();
 
   const { postData, response, isLoading, hasError } = usePost(
     API_Url + bookings_Url,
@@ -212,21 +213,13 @@ export const BookVenue = ({ data }) => {
               className="block w-28 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-center text-sm text-gray-900"
             >
               <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
+              {Array.from({ length: data.maxGuests }, (_, i) => i + 1).map(
+                (num) => (
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
+                ),
+              )}
             </select>
             {errors.numberOfGuests && (
               <p className="text-sm text-red-500">

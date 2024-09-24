@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PlaceholderImage from "../../../assets/images/no_img.png";
+import ImagePlaceholder from "../../../assets/images/no_img.png";
 import { API_Url, profile_Url, bookings_Url } from "../../../js/api/constants";
 import { useFetch } from "../../../hooks/useFetch";
 import { load } from "../../../js/storage/load";
@@ -43,7 +43,7 @@ export const MyBookings = () => {
             ? formatDate(new Date(dateTo))
             : "Date unavailable";
 
-          const venueImageUrl = venue?.media?.[0]?.url || PlaceholderImage;
+          const venueImageUrl = venue?.media?.[0]?.url || ImagePlaceholder;
           const venueName = venue?.name || "Venue title not available";
           const venueLocation =
             venue.location?.city && venue.location?.country
@@ -70,7 +70,7 @@ export const MyBookings = () => {
                   src={venueImageUrl}
                   alt={venue?.media?.[0]?.alt || "Venue Image"}
                   className="h-full w-full rounded object-cover"
-                  onError={handleImageErrors}
+                  onError={(e) => handleImageErrors(e, ImagePlaceholder)}
                 />
               </div>
               <div className="max-w-md xs:w-2/3 sm:w-2/4 md:ml-2 md:mt-1 md:max-w-none">

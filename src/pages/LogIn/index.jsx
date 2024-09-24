@@ -6,6 +6,7 @@ import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButto
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
 import { login as loginUser } from "../../js/api/auth/login.jsx";
+import { useState } from "react";
 
 const schema = yup
   .object({
@@ -25,6 +26,7 @@ const schema = yup
   .required();
 
 export const LogIn = () => {
+  const [formError, setFormError] = useState("");
   const navigate = useNavigate();
   const {
     register,
@@ -34,6 +36,8 @@ export const LogIn = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (data) => {
+    setFormError("");
+
     try {
       const { email, password } = data;
 
@@ -43,7 +47,14 @@ export const LogIn = () => {
       navigate("/");
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed!");
+
+      let errorMessage = "Login failed. Please try again.";
+
+      if (error.message) {
+        errorMessage = error.message;
+      }
+
+      setFormError(errorMessage);
     } finally {
       reset();
     }
@@ -52,6 +63,7 @@ export const LogIn = () => {
   return (
     <div className="mx-auto mb-12 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
       <h1 className="mb-3 mt-6 text-[22px] sm:text-3xl">Please log in</h1>
+      {formError && <div className="mb-4 text-red-600">{formError}</div>}
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 max-w-xs">
         <div className="mx-auto my-1 flex w-52 flex-col sm:w-60">
           <InputField

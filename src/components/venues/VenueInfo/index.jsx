@@ -1,5 +1,6 @@
-import ProfileImage from "../../../assets/images/no_ProfileImg.png";
+import ProfileImagePlaceholder from "../../../assets/images/no_ProfileImg.png";
 import { formatPrice } from "../../../js/utils/formatPrice";
+import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 export const VenueInfo = ({ data }) => {
   const venueTitle = data.name ? data?.name : "Venue title not available";
@@ -11,7 +12,7 @@ export const VenueInfo = ({ data }) => {
 
   const maxGuests = data.maxGuests || "Max guests not available";
 
-  const ownerAvatarUrl = data.owner?.avatar?.url || ProfileImage;
+  const ownerAvatarUrl = data.owner?.avatar?.url || ProfileImagePlaceholder;
   const ownerName = data.owner?.name || "Owner name not available";
   const ownerEmail = data.owner?.email || "Owner email not available";
   const venueDescription = data.description
@@ -89,8 +90,9 @@ export const VenueInfo = ({ data }) => {
           <div className="flex flex-row items-center">
             <img
               src={ownerAvatarUrl}
-              className="mr-1 h-14 w-14 rounded-full sm:mr-2 sm:h-16 sm:w-16"
+              className="mr-1 h-14 w-14 rounded-full object-cover sm:mr-2 sm:h-16 sm:w-16"
               alt="Owners Profile Image"
+              onError={(e) => handleImageErrors(e, ProfileImagePlaceholder)}
             />
             <div className="flex flex-col items-start ps-2">
               <p className="text-lg font-light sm:text-2xl">{ownerName}</p>

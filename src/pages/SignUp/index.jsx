@@ -7,33 +7,32 @@ import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButto
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
 import { register as registerUser } from "../../js/api/auth/register.jsx";
+import { login as loginUser } from "../../js/api/auth/login.jsx";
 
 const schema = yup.object({
-  fullName: yup
+  name: yup
     .string()
-    .min(3, "Full name should be at least 3 characters.")
+    .min(3, "Name should be at least 3 characters.")
     .matches(
       /^[a-zA-Z0-9_]+$/,
-      "Full name can only contain letters, numbers, and underscores.",
+      "Name can only contain letters, numbers, and underscores.",
     )
-    .required("Full name is required."),
+    .required("Name is required."),
   email: yup
     .string()
     .email("Please enter a valid email address")
     .matches(
       /^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/,
-      "Email must be a stud.noroff.no address",
+      "Email must be a stud.noroff.no address.",
     )
-    .required("Please enter a valid email address"),
+    .required("Please enter a valid email address."),
   password: yup
     .string()
     .min(8, "Password should be at least 8 characters.")
     .required(),
-  profileImage: yup
+  profileImageUrl: yup
     .string()
     .nullable()
-    .transform((value, originalValue) => (originalValue === "" ? null : value))
-    .trim()
     .url("Please enter a valid URL")
     .test(
       "is-https",
@@ -43,7 +42,9 @@ const schema = yup.object({
 });
 
 export const SignUp = () => {
+  const [formError, setFormError] = useState("");
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -52,33 +53,34 @@ export const SignUp = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (data) => {
+    setFormError("");
+
     try {
-      const { fullName, email, password, profileImage } = data;
+      const { name, email, password, profileImageUrl } = data;
+      const profileImgUrlString = profileImageUrl
+        ? String(profileImageUrl)
+        : "";
 
-      const payload = {
-        name: fullName,
-        email: email,
-        password: password,
-      };
-
-      if (profileImage) {
-        payload.avatar = profileImage;
-      }
-
-      const response = await registerUser(
-        payload.name,
-        payload.email,
-        payload.password,
-        payload.avatar,
+      const registrationResponse = await registerUser(
+        name,
+        email,
+        password,
+        profileImgUrlString,
       );
 
-      console.log("registration success! :", response);
-      navigate("/login");
+      const loginResponse = await loginUser(email, password);
+
+      navigate("/");
     } catch (error) {
-      console.error("Registration error:", error);
-      alert("registration failed!");
-    } finally {
-      reset();
+      console.error("Error object:", error);
+
+      let errorMessage = "Registration failed. Please try again.";
+
+      if (error.message) {
+        errorMessage = error.message;
+      }
+
+      setFormError(errorMessage);
     }
   };
 
@@ -91,15 +93,18 @@ export const SignUp = () => {
   return (
     <div className="mx-auto mb-12 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
       <h1 className="mb-3 mt-6 text-[22px] sm:text-3xl">Sign up here</h1>
+
+      {formError && <div className="mb-4 text-red-600">{formError}</div>}
+
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 max-w-xs">
         <div className="mx-auto mb-1 mt-2 flex w-52 flex-col sm:w-60">
           <InputField
-            label="Full name"
-            htmlFor="FullName"
+            label="Name"
+            htmlFor="SignUpName"
             register={register}
-            registerYup="fullName"
+            registerYup="name"
             required={true}
-            id="FullName"
+            id="SignUpName"
             type="text"
             className="my-1 h-9 w-52 rounded-lg border-gray-300 sm:w-60"
             errors={errors}
@@ -131,7 +136,7 @@ export const SignUp = () => {
             label="Image url"
             htmlFor="SignUpProfileImage"
             register={register}
-            registerYup="profileImage"
+            registerYup="profileImageUrl"
             required={false}
             id="SignUpProfileImage"
             type="url"

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import ProfileImage from "../../assets/images/no_ProfileImg.png";
-import placeholderImage from "../../assets/images/no_img.png";
+import ProfileImagePlaceholder from "../../assets/images/no_ProfileImg.png";
+import ImagePlaceholder from "../../assets/images/no_img.png";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { formatPrice } from "../../js/utils/formatPrice";
 import { handleImageErrors } from "../../js/utils/handleImageErrors";
@@ -28,10 +28,10 @@ export const ConfirmedBooking = () => {
         </h1>
         <div className="mx-auto mb-2 max-w-screen-sm px-2 sm:w-10/12">
           <img
-            src={venue.media?.[0]?.url || placeholderImage}
+            src={venue.media?.[0]?.url || ImagePlaceholder}
             alt="Venue image"
             className="h-52 w-full rounded-xl object-cover xs:h-64 sm:h-80 md:h-[400px] md:rounded-xl"
-            onError={handleImageErrors}
+            onError={(e) => handleImageErrors(e, ImagePlaceholder)}
           />
         </div>
         <div className="mx-auto max-w-screen-sm px-2 sm:w-10/12">
@@ -59,9 +59,10 @@ export const ConfirmedBooking = () => {
               <p className="font-light md:text-lg">Owner:</p>
               <div className="flex flex-row items-center gap-1">
                 <img
-                  src={venue.owner.media?.url || ProfileImage}
+                  src={venue.owner.avatar.url || ProfileImagePlaceholder}
                   alt="Owners profile image"
                   className="h-6 w-6 rounded-full object-cover"
+                  onError={(e) => handleImageErrors(e, ProfileImagePlaceholder)}
                 />
                 <p className="md:text-lg">{venue.owner.name}</p>
               </div>

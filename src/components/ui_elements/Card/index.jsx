@@ -26,7 +26,7 @@ export const Card = ({ data }) => {
             className="h-48 w-full rounded-t-xl object-cover xs:h-72 sm:h-48"
             src={imageUrl}
             alt="Venue Image"
-            onError={handleImageErrors}
+            onError={(e) => handleImageErrors(e, ImagePlaceholder)}
           />
         </div>
         <div className="m-1 px-2">
