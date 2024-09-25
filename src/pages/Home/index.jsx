@@ -64,11 +64,11 @@ export const Home = () => {
       {isLoading ? (
         <Loader />
       ) : hasError ? (
-        <div className="my-5 flex justify-center text-red-600">
+        <section className="my-5 flex justify-center text-red-600">
           Error fetching data. Please try again later.
-        </div>
+        </section>
       ) : searchTerm.trim() !== "" && searchResults.length === 0 ? (
-        <div className="mx-auto my-4 w-96 rounded-lg bg-light-blue p-4 xs:w-80">
+        <section className="mx-auto my-4 w-96 rounded-lg bg-light-blue p-4 xs:w-80">
           <p className="break-all p-3 text-center text-dark-blue">
             Hmm... No matches for{" "}
           </p>
@@ -79,7 +79,7 @@ export const Home = () => {
           <p className="p-3 text-center text-dark-blue">
             Don't give up! Try searching for something else.
           </p>
-        </div>
+        </section>
       ) : (
         <InfiniteScroll
           dataLength={resultsToDisplay.length}

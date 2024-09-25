@@ -352,10 +352,12 @@ export const AddEditVenue = () => {
           </div>
         </div>
         {hasError && hasPutError && (
-          <p className="text-red-500">
-            Failed to {isEdit ? "update" : "create"} the venue. Please try
-            again.{" "}
-          </p>
+          <section className="text-red-500">
+            <p>
+              Failed to {isEdit ? "update" : "create"} the venue. Please try
+              again.
+            </p>
+          </section>
         )}
       </form>
     </FormProvider>

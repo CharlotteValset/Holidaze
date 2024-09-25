@@ -4,7 +4,7 @@ import { SearchBar } from "../../forms/SearchBar";
 
 export const Hero = ({ onSearch }) => {
   return (
-    <section className="mt-16 max-w-screen-2xl rounded-bl-3xl bg-dark-blue pb-10 md:mt-20">
+    <header className="mt-16 max-w-screen-2xl rounded-bl-3xl bg-dark-blue pb-10 md:mt-20">
       <div className="mx-auto md:flex md:flex-row-reverse">
         <div className="w-full md:w-2/4">
           <img
@@ -20,6 +20,6 @@ export const Hero = ({ onSearch }) => {
           <SearchBar onSearch={onSearch} />
         </div>
       </div>
-    </section>
+    </header>
   );
 };
