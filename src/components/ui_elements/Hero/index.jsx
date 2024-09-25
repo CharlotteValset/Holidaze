@@ -1,4 +1,4 @@
-import HeroImage from "../../../assets/images/heroImage.png";
+import HeroImage from "../../../assets/images/heroImage.jpg";
 
 import { SearchBar } from "../../forms/SearchBar";
 
