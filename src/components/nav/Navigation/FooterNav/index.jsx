@@ -11,15 +11,17 @@ export const FooterNav = () => {
         </Link>
       </div>
       <div className="mb-4 flex flex-row justify-center gap-5">
-        <a href="https://www.twitter.com/">
-          {" "}
-          <i className="fa-brands fa-square-twitter text-4xl text-light-blue hover:text-soft-pink"></i>
+        <a href="https://www.twitter.com/" title="Twitter">
+          <i
+            class="fa-brands fa-square-twitter text-4xl text-light-blue hover:text-soft-pink"
+            aria-hidden="true"
+          ></i>
         </a>
-        <a href="https://www.instagram.com/">
+        <a href="https://www.instagram.com/" title="Instagram">
           {" "}
           <i className="fa-brands fa-square-instagram text-4xl text-light-blue hover:text-soft-pink"></i>
         </a>
-        <a href="https://www.facebook.com/">
+        <a href="https://www.facebook.com/" title="Facebook">
           {" "}
           <i className="fa-brands fa-square-facebook text-4xl text-light-blue hover:text-soft-pink"></i>
         </a>

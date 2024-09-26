@@ -12,6 +12,7 @@ export const Card = ({ data }) => {
   const imageArray = data?.media;
 
   const imageUrl = imageArray?.[0]?.url ?? ImagePlaceholder;
+  const imageAltText = imageArray?.[0]?.alt ?? "Image alt-text not available";
   const venueTitle = data.name ? data?.name : "Venue title not available";
   const location =
     data.location?.city && data.location?.country
@@ -28,7 +29,7 @@ export const Card = ({ data }) => {
           <img
             className="h-48 w-full rounded-t-xl object-cover xs:h-72 sm:h-48"
             src={imageUrl}
-            alt="Venue Image"
+            alt={imageAltText}
             onError={(e) => handleImageErrors(e, ImagePlaceholder)}
           />
         </div>

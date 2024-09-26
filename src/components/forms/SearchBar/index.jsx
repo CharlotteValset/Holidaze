@@ -12,7 +12,7 @@ export const SearchBar = ({ onSearch }) => {
   return (
     <>
       <div className="mx-auto mt-4 flex w-11/12 max-w-xs items-center justify-center">
-        <label htmlFor="simple-search" className="sr-only">
+        <label htmlFor="simple-search" className="sr-only text-white">
           Search
         </label>
         <div className="flex w-72 flex-row xs:w-96">
