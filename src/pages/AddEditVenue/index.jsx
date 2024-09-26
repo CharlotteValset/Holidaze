@@ -33,7 +33,8 @@ const validationSchema = Yup.object().shape({
     .required("Please add the number of guests"),
   pricePrNight: Yup.number()
     .required("Please add price per night")
-    .min(1, "Price per night must be at least 1"),
+    .min(1, "Price per night must be at least 1")
+    .max(10000, "Price per night is max $ 10 000"),
   images: Yup.array()
     .of(
       Yup.string()
@@ -284,6 +285,7 @@ export const AddEditVenue = () => {
             registerYup="pricePrNight"
             required={true}
             min="1"
+            max="10000"
             id="venuePricePrNight"
             type="number"
             className="h-9 max-w-36 rounded-lg border-gray-300 text-center"
