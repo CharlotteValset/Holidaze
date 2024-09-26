@@ -152,6 +152,7 @@ export const BookVenue = ({ data }) => {
               selected={selectedCheckInDate}
               onChange={handleCheckInDateChange}
               selectsStart
+              id="checkIn"
               startDate={selectedCheckInDate}
               endDate={selectedCheckOutDate}
               dateFormat="dd/MM/yyyy"

@@ -45,7 +45,11 @@ export const AddImageForm = ({ setImages, errors, isSubmitted, venue }) => {
               className="mr-2 h-9 w-9 rounded object-cover"
             />
           )}
+          <label htmlFor="imageUrlInput" className="sr-only">
+            Image Url Input
+          </label>
           <input
+            id="imageUrlInput"
             type="text"
             value={url}
             onChange={(e) => updateImageUrl(index, e.target.value)}
