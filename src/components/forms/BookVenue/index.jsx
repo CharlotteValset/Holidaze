@@ -118,7 +118,7 @@ export const BookVenue = ({ data }) => {
     const minCheckOutDate = new Date(date);
     minCheckOutDate.setDate(minCheckOutDate.getDate() + 1);
 
-    if (selectedCheckOutDate < minCheckOutDate) {
+    if (selectedCheckOutDate <= date) {
       setSelectedCheckOutDate(minCheckOutDate);
       setValue("checkOut", minCheckOutDate);
     }
