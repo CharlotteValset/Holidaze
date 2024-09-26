@@ -1,13 +1,16 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch";
-import { API_Url, all_Venues } from "../../js/api/constants";
+
 import { Gallery } from "../../components/ui_elements/Gallery";
 import { VenueInfo } from "../../components/venues/VenueInfo";
 import { BookVenue } from "../../components/forms/BookVenue";
 import { VenueManagerOwnPageView } from "../../components/venues/VenueManagerOwnPageView";
-import { load } from "../../js/storage/load";
 import { Loader } from "../../components/ui_elements/Loader";
+
+import { useFetch } from "../../hooks/useFetch";
+
+import { API_Url, all_Venues } from "../../js/api/constants";
+import { load } from "../../js/storage/load";
 
 export const SingleVenue = () => {
   let { id } = useParams();
@@ -37,17 +40,16 @@ export const SingleVenue = () => {
   } else {
     content = (
       <>
+        <h3 className="sr-only">Single venue page</h3>
         <Link
           to="/"
           aria-label="Home"
-          className="ms-6 mt-20 flex flex-row items-center gap-1 hover:text-soft-pink md:ms-10"
+          className="ms-6 mt-20 flex flex-row items-center gap-1 hover:text-soft-pink md:ms-10 md:mt-28"
         >
           <i className="fa-solid fa-chevron-left"></i>
           <p className="cursor-pointer hover:underline sm:text-lg">Back</p>
         </Link>
-        <div>
-          <Gallery data={singleVenue} key={singleVenue.id} />
-        </div>
+        <Gallery data={singleVenue} key={singleVenue.id} />
         <div className="flex flex-col md:mx-5 md:max-w-screen-lg md:flex-row md:justify-between">
           <VenueInfo data={singleVenue} key={singleVenue.id} />
           {userEmail && venueOwner && userEmail === venueOwner ? (

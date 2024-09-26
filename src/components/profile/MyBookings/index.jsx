@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+
 import ImagePlaceholder from "../../../assets/images/no_img.png";
-import { API_Url, profile_Url, bookings_Url } from "../../../js/api/constants";
+
+import { Loader } from "../../ui_elements/Loader";
+
 import { useFetch } from "../../../hooks/useFetch";
+
+import { API_Url, profile_Url, bookings_Url } from "../../../js/api/constants";
 import { load } from "../../../js/storage/load";
+
 import { formatPrice } from "../../../js/utils/formatPrice";
 import { formatDate } from "../../../js/utils/formatDate";
-import { Loader } from "../../ui_elements/Loader";
 import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 export const MyBookings = () => {
-  const [activeTab, setActiveTab] = useState("bookings");
-
   const loadProfile = load("profile");
   const userId = loadProfile?.name;
 
@@ -61,7 +64,7 @@ export const MyBookings = () => {
           const guestsCount = guests || 0;
 
           return (
-            <div
+            <article
               key={id}
               className="bookings-card mb-4 xs:mb-6 xs:flex xs:gap-2"
             >
@@ -132,12 +135,12 @@ export const MyBookings = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           );
         })}
       </div>
     );
   }
 
-  return <section>{content}</section>;
+  return <div>{content}</div>;
 };

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+
 import ImagePlaceholder from "../../../assets/images/no_img.png";
+
 import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 export const Gallery = ({ data }) => {

@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
+
 import ImagePlaceholder from "../../../assets/images/no_img.png";
+
+import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
+
 import { formatPrice } from "../../../js/utils/formatPrice";
 import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 

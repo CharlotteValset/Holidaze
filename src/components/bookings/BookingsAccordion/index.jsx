@@ -1,9 +1,14 @@
-import { formatDate } from "../../../js/utils/formatDate";
 import React, { useState } from "react";
+
 import ProfileImagePlaceholder from "../../../assets/images/no_ProfileImg.png";
-import { useFetch } from "../../../hooks/useFetch";
-import { all_Venues, API_Url } from "../../../js/api/constants";
+
 import { Loader } from "../../ui_elements/Loader";
+
+import { useFetch } from "../../../hooks/useFetch";
+
+import { all_Venues, API_Url } from "../../../js/api/constants";
+
+import { formatDate } from "../../../js/utils/formatDate";
 import { handleImageErrors } from "../../../js/utils/handleImageErrors";
 
 export const BookingsAccordion = ({ venueId }) => {
@@ -36,7 +41,7 @@ export const BookingsAccordion = ({ venueId }) => {
         ? formatDate(dateFrom)
         : "Date unavailable";
       const formattedDateTo = dateTo ? formatDate(dateTo) : "Date unavailable";
-      const ProfileImagePlaceholder =
+      const ProfileImage =
         booking.customer.avatar.url || ProfileImagePlaceholder;
       return (
         <div key={booking.id} id={`accordion-open-${booking.id}`}>
@@ -51,7 +56,7 @@ export const BookingsAccordion = ({ venueId }) => {
               <div className="flex items-center gap-12">
                 <div className="flex flex-row items-center gap-1">
                   <img
-                    src={ProfileImagePlaceholder}
+                    src={ProfileImage}
                     alt="Profile image"
                     className="h-6 w-6 rounded-full object-cover"
                     onError={(e) =>

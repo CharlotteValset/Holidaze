@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+
 import { SecondaryButton } from "../../../components/ui_elements/Buttons/SecondaryButton";
 import { PrimaryButton } from "../../../components/ui_elements/Buttons/PrimaryButton";
 import { Modal } from "../../../components/ui_elements/Modal";
 import { TextLink } from "../../../components/ui_elements/TextLink";
+import { Loader } from "../../ui_elements/Loader";
+
 import { usePut } from "../../../hooks/usePut";
 import { useFetch } from "../../../hooks/useFetch";
+
 import { load } from "../../../js/storage/load";
 import { API_Url, profile_Url } from "../../../js/api/constants";
-import { Loader } from "../../ui_elements/Loader";
 
 export const BecomeVenueManager = ({}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,7 +60,7 @@ export const BecomeVenueManager = ({}) => {
   }
 
   return (
-    <div className="mb-4 flex justify-center">
+    <aside className="mb-4 flex justify-center">
       {!isVenueManager && (
         <TextLink onClick={() => setIsModalOpen(true)}>
           <p>Want to become a venue Manager?</p>
@@ -85,10 +88,13 @@ export const BecomeVenueManager = ({}) => {
         ></Modal>
       )}
       {hasError && (
-        <p className="text-red-500">
-          Failed to update profile. Please try again.
-        </p>
+        <section>
+          <h3 className="sr-only">Error message</h3>
+          <p className="text-red-500">
+            Failed to update profile. Please try again.
+          </p>
+        </section>
       )}
-    </div>
+    </aside>
   );
 };

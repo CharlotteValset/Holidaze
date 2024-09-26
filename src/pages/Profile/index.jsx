@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import { ProfileInfo } from "../../components/profile/ProfileInfo";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { ProfileTabs } from "../../components/profile/ProfileTabs";
-import { useFetch } from "../../hooks/useFetch";
-import { API_Url, profile_Url } from "../../js/api/constants";
-import { load } from "../../js/storage/load";
 import { BecomeVenueManager } from "../../components/profile/BecomeVenueManager";
 import { Loader } from "../../components/ui_elements/Loader";
+
+import { useFetch } from "../../hooks/useFetch";
+
+import { API_Url, profile_Url } from "../../js/api/constants";
+import { load } from "../../js/storage/load";
 
 export const Profile = () => {
   const [isVenueManager, setIsVenueManager] = useState(false);
@@ -41,8 +44,10 @@ export const Profile = () => {
     content = <div className="mt-96">Profile not found</div>;
   } else {
     content = (
-      <>
-        <h1 className="mt-20 text-center text-2xl sm:hidden">My profile</h1>
+      <section>
+        <header className="mt-20 sm:hidden">
+          <h1 className="text-center text-2xl">My profile</h1>
+        </header>
         <div className="mx-auto flex w-full max-w-screen-lg flex-col sm:mt-16 sm:flex-row sm:justify-around md:mt-20">
           <ProfileInfo data={data} key={data} />
           {isVenueManager && (
@@ -57,7 +62,7 @@ export const Profile = () => {
         </div>
         <BecomeVenueManager />
         <ProfileTabs />
-      </>
+      </section>
     );
     return <section>{content}</section>;
   }

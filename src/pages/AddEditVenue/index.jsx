@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+
 import { InputField } from "../../components/form_elements/InputField";
 import { Checkbox } from "../../components/form_elements/Checkbox";
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { SecondaryButton } from "../../components/ui_elements/Buttons/SecondaryButton";
 import { AddImageForm } from "../../components/forms/AddImageForm";
 import { Modal } from "../../components/ui_elements/Modal";
+
 import { usePost } from "../../hooks/usePost";
-import { all_Venues, API_Url } from "../../js/api/constants";
-import { useEffect } from "react";
 import { usePut } from "../../hooks/usePut";
 import { useDelete } from "../../hooks/useDelete";
+
+import { all_Venues, API_Url } from "../../js/api/constants";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Venue title is required"),
@@ -31,7 +33,8 @@ const validationSchema = Yup.object().shape({
     .required("Please add the number of guests"),
   pricePrNight: Yup.number()
     .required("Please add price per night")
-    .min(1, "Price per night must be at least 1"),
+    .min(1, "Price per night must be at least 1")
+    .max(10000, "Price per night is max $ 10 000"),
   images: Yup.array()
     .of(
       Yup.string()
@@ -64,24 +67,20 @@ export const AddEditVenue = () => {
   const venue = location.state?.venue || {};
   const isEdit = location.state?.isEdit || false;
   const venueId = venue.id;
+  const [imageUrls, setImageUrls] = useState([""]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { postData, postResponse, isPostLoading, hasError } = usePost(
-    API_Url + all_Venues,
-  );
+  const { postData, isPostLoading, hasError } = usePost(API_Url + all_Venues);
   const {
     putData,
-    response: putResponse,
     isLoading: isPutLoading,
     hasError: hasPutError,
   } = usePut(`${API_Url + all_Venues}/${venueId}`);
   const {
     deleteData,
-    response: deleteResponse,
     isLoading: isDeleteLoading,
     hasError: hasDeleteError,
   } = useDelete(`${API_Url + all_Venues}/${venueId}`);
-
-  const [imageUrls, setImageUrls] = useState([""]);
 
   useEffect(() => {
     if (isEdit && venue) {
@@ -128,8 +127,6 @@ export const AddEditVenue = () => {
       navigate("/profile");
     }
   };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = async () => {
     setIsModalOpen(false);
@@ -288,6 +285,7 @@ export const AddEditVenue = () => {
             registerYup="pricePrNight"
             required={true}
             min="1"
+            max="10000"
             id="venuePricePrNight"
             type="number"
             className="h-9 max-w-36 rounded-lg border-gray-300 text-center"
@@ -327,8 +325,9 @@ export const AddEditVenue = () => {
                       onClick={async () => {
                         await handleDelete();
                       }}
+                      disabled={isDeleteLoading}
                     >
-                      Delete venue
+                      {isDeleteLoading ? "Deleting..." : "Delete venue"}
                     </SecondaryButton>
                     <PrimaryButton
                       type="button"
@@ -355,10 +354,13 @@ export const AddEditVenue = () => {
           </div>
         </div>
         {hasError && hasPutError && (
-          <p className="text-red-500">
-            Failed to {isEdit ? "update" : "create"} the venue. Please try
-            again.{" "}
-          </p>
+          <section className="text-red-500">
+            <h3 className="sr-only">Error message</h3>
+            <p>
+              Failed to {isEdit ? "update" : "create"} the venue. Please try
+              again.
+            </p>
+          </section>
         )}
       </form>
     </FormProvider>

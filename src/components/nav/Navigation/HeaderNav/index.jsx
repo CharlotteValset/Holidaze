@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import Logo from "../../../../assets/images/holidaze-logo.png";
+
 import { load } from "../../../../js/storage/load";
 
 export const HeaderNav = () => {

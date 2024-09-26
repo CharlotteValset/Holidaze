@@ -1,12 +1,14 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
 import { PrimaryButton } from "../../components/ui_elements/Buttons/PrimaryButton";
 import { TextLink } from "../../components/ui_elements/TextLink";
 import { InputField } from "../../components/form_elements/InputField";
+
 import { login as loginUser } from "../../js/api/auth/login.jsx";
-import { useState } from "react";
 
 const schema = yup
   .object({
@@ -61,8 +63,10 @@ export const LogIn = () => {
   };
 
   return (
-    <div className="mx-auto mb-12 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
-      <h1 className="mb-3 mt-6 text-[22px] sm:text-3xl">Please log in</h1>
+    <section className="mx-auto mb-12 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
+      <header className="mb-3 mt-6">
+        <h1 className="text-[22px] sm:text-3xl">Please log in</h1>
+      </header>
       {formError && <div className="mb-4 text-red-600">{formError}</div>}
       <form onSubmit={handleSubmit(onSubmit)} className="w-5/6 max-w-xs">
         <div className="mx-auto my-1 flex w-52 flex-col sm:w-60">
@@ -98,16 +102,18 @@ export const LogIn = () => {
           <PrimaryButton type="submit">Log in</PrimaryButton>
         </div>
       </form>
-      <Link
-        to="/signup"
-        aria-label="Sign up"
-        className="mb-6 w-40 text-center sm:mb-8 sm:w-52"
-      >
-        <TextLink>
-          Don’t have an account?{" "}
-          <span className="font-medium">Please sign up</span>
-        </TextLink>
-      </Link>
-    </div>
+      <footer>
+        <Link
+          to="/signup"
+          aria-label="Sign up"
+          className="mb-6 w-40 text-center sm:mb-8 sm:w-52"
+        >
+          <TextLink>
+            Don’t have an account?{" "}
+            <span className="font-medium">Please sign up</span>
+          </TextLink>
+        </Link>
+      </footer>
+    </section>
   );
 };

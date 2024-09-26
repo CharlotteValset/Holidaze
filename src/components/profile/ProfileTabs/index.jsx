@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
+import { Loader } from "../../ui_elements/Loader";
+import { MyBookings } from "../MyBookings";
+import { MyVenues } from "../MyVenues";
+
 import { useFetch } from "../../../hooks/useFetch";
+
 import {
   all_Venues,
   API_Url,
@@ -7,9 +15,6 @@ import {
   profile_Url,
 } from "../../../js/api/constants";
 import { load } from "../../../js/storage/load";
-import { Loader } from "../../ui_elements/Loader";
-import { MyBookings } from "../MyBookings";
-import { MyVenues } from "../MyVenues";
 
 export const ProfileTabs = () => {
   const userProfile = load("profile");
@@ -61,45 +66,56 @@ export const ProfileTabs = () => {
     content = <div className="mt-96">Page not found</div>;
   } else if (!hasBookings && !hasVenues) {
     content = (
-      <div className="mx-auto my-8 mt-4 w-11/12 rounded-lg bg-light-blue text-center xl:w-8/12">
+      <section className="mx-auto my-8 mt-4 w-11/12 rounded-lg bg-light-blue text-center xl:w-5/12">
+        <h2 className="sr-only">No Bookings or Venues</h2>
         <p className="px-4 py-10 text-center sm:text-xl">
           You have no bookings or venues at the moment
         </p>
-      </div>
+        <Link
+          to="/"
+          aria-label="home"
+          className="flex flex-col items-center pb-10"
+        >
+          <PrimaryButton>Find a venue to book</PrimaryButton>
+        </Link>
+      </section>
     );
   } else {
     content = (
-      <div className="mx-auto max-w-screen-lg p-1">
-        <ul className="flex justify-start text-center font-medium text-gray-500">
-          {hasBookings && (
-            <li className="me-2">
-              <button
-                className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
-                  activeTab === "bookings"
-                    ? "bg-light-blue text-dark-blue"
-                    : "text-gray-500"
-                }`}
-                onClick={() => handleTabClick("bookings")}
-              >
-                My bookings ({bookingsData.length})
-              </button>
-            </li>
-          )}
-          {hasVenues && (
-            <li className="me-2">
-              <button
-                className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
-                  activeTab === "venues"
-                    ? "bg-light-blue text-dark-blue"
-                    : "text-gray-500"
-                }`}
-                onClick={() => handleTabClick("venues")}
-              >
-                My venues ({venuesData.length})
-              </button>
-            </li>
-          )}
-        </ul>
+      <section className="mx-auto max-w-screen-lg p-1">
+        <h2 className="sr-only">Manage My Bookings and Venues</h2>
+        <nav>
+          <ul className="flex justify-start text-center font-medium text-gray-500">
+            {hasBookings && (
+              <li className="me-2">
+                <button
+                  className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
+                    activeTab === "bookings"
+                      ? "bg-light-blue text-dark-blue"
+                      : "text-gray-500"
+                  }`}
+                  onClick={() => handleTabClick("bookings")}
+                >
+                  My bookings ({bookingsData.length})
+                </button>
+              </li>
+            )}
+            {hasVenues && (
+              <li className="me-2">
+                <button
+                  className={`inline-block rounded-t-lg px-5 py-3 font-normal sm:text-xl ${
+                    activeTab === "venues"
+                      ? "bg-light-blue text-dark-blue"
+                      : "text-gray-500"
+                  }`}
+                  onClick={() => handleTabClick("venues")}
+                >
+                  My venues ({venuesData.length})
+                </button>
+              </li>
+            )}
+          </ul>
+        </nav>
 
         <div className="mb-3 rounded-b-lg rounded-tr-lg bg-light-blue p-3">
           {activeTab === "bookings" && hasBookings && (
@@ -113,9 +129,9 @@ export const ProfileTabs = () => {
             </div>
           )}
         </div>
-      </div>
+      </section>
     );
   }
 
-  return <section>{content}</section>;
+  return <div>{content}</div>;
 };
