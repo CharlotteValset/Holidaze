@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Helmet } from "react-helmet-async";
 
 import { Hero } from "../../components/ui_elements/Hero";
 import { Card } from "../../components/ui_elements/Card";
@@ -60,6 +61,13 @@ export const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Home | Holidaze</title>
+        <meta
+          name="description"
+          content="Book your next holiday with Holidaze. Find the perfect accommodation for your next trip."
+        />
+      </Helmet>
       <Hero searchTerm={searchTerm} onSearch={handleSearch} />
       {isLoading ? (
         <Loader />

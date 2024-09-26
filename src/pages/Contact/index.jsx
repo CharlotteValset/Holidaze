@@ -1,18 +1,28 @@
+
+import { Helmet } from "react-helmet-async";
+
 import ContactImage from "../../assets/images/contactImage.jpg";
 
 import { ContactForm } from "../../components/forms/ContactForm";
 
 export const Contact = () => {
   return (
-    <section className="mx-auto mb-6 mt-[70px] w-11/12 max-w-screen-lg md:mt-[110px] md:flex md:flex-row-reverse md:gap-1">
-      <div className="md:w-7/12">
-        <img
-          className="w-full md:h-full md:object-cover md:p-4"
-          src={ContactImage}
-          alt="Image of two people sitting at a table and talking to each other"
+    <>
+      <Helmet>
+        <title>Contact us | Holidaze</title>
+        <meta
+          name="description"
+          content="Contact us for any questions or inquiries you may have. We're here to help!"
         />
-      </div>
-
+      </Helmet>
+      <section className="mx-auto mb-6 mt-[70px] w-11/12 max-w-screen-lg md:mt-[110px] md:flex md:flex-row-reverse md:gap-1">
+        <div className="md:w-7/12">
+          <img
+            className="w-full md:h-full md:object-cover md:p-4"
+            src={ContactImage}
+            alt="Image of two people sitting at a table and talking to each other"
+          />
+        </div>
       <div className="mb-4 flex flex-col items-center md:w-6/12">
         <header className="w-full text-center">
           <h1 className="pt-4 text-2xl md:text-3xl">Contact us</h1>
@@ -23,5 +33,6 @@ export const Contact = () => {
         <ContactForm />
       </div>
     </section>
+</>
   );
 };

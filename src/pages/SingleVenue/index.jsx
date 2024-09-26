@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import { Gallery } from "../../components/ui_elements/Gallery";
 import { VenueInfo } from "../../components/venues/VenueInfo";
@@ -40,6 +41,12 @@ export const SingleVenue = () => {
   } else {
     content = (
       <>
+        <Helmet>
+          <title>
+            {singleVenue ? `${singleVenue.name} | Holidaze` : "Loading..."}
+          </title>
+          <meta name="description" content={singleVenue.description} />
+        </Helmet>
         <h3 className="sr-only">Single venue page</h3>
         <Link
           to="/"

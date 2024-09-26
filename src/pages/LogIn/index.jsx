@@ -1,10 +1,18 @@
+
 import { Link } from "react-router-dom";
+
 
 import { LogInForm } from "../../components/forms/LogInForm";
 import { TextLink } from "../../components/ui_elements/TextLink";
 
 export const LogIn = () => {
   return (
+
+    <>
+      <Helmet>
+        <title>Log In | Holidaze</title>
+        <meta name="description" content="Log in to your Holidaze account." />
+      </Helmet>
     <section className="mx-auto mb-12 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
       <header className="mb-3 mt-6">
         <h1 className="text-[22px] sm:text-3xl">Please log in</h1>
@@ -23,5 +31,6 @@ export const LogIn = () => {
         </Link>
       </footer>
     </section>
+
   );
 };
