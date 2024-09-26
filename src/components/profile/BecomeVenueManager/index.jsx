@@ -60,7 +60,7 @@ export const BecomeVenueManager = ({}) => {
   }
 
   return (
-    <div className="mb-4 flex justify-center">
+    <aside className="mb-4 flex justify-center">
       {!isVenueManager && (
         <TextLink onClick={() => setIsModalOpen(true)}>
           <p>Want to become a venue Manager?</p>
@@ -88,10 +88,13 @@ export const BecomeVenueManager = ({}) => {
         ></Modal>
       )}
       {hasError && (
-        <p className="text-red-500">
-          Failed to update profile. Please try again.
-        </p>
+        <section>
+          <h3 className="sr-only">Error message</h3>
+          <p className="text-red-500">
+            Failed to update profile. Please try again.
+          </p>
+        </section>
       )}
-    </div>
+    </aside>
   );
 };

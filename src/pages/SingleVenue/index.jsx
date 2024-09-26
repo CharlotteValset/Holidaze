@@ -40,6 +40,7 @@ export const SingleVenue = () => {
   } else {
     content = (
       <>
+        <h3 className="sr-only">Single venue page</h3>
         <Link
           to="/"
           aria-label="Home"
@@ -48,9 +49,7 @@ export const SingleVenue = () => {
           <i className="fa-solid fa-chevron-left"></i>
           <p className="cursor-pointer hover:underline sm:text-lg">Back</p>
         </Link>
-        <div>
-          <Gallery data={singleVenue} key={singleVenue.id} />
-        </div>
+        <Gallery data={singleVenue} key={singleVenue.id} />
         <div className="flex flex-col md:mx-5 md:max-w-screen-lg md:flex-row md:justify-between">
           <VenueInfo data={singleVenue} key={singleVenue.id} />
           {userEmail && venueOwner && userEmail === venueOwner ? (

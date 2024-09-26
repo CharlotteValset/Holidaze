@@ -28,7 +28,7 @@ export const MyVenues = ({ venuesData }) => {
 
         const bookingsCount = venue?._count?.bookings || 0;
         return (
-          <div key={index} className="venue-card my-4 pb-6 md:flex">
+          <article key={index} className="venue-card my-4 pb-6 md:flex">
             <div className="">
               <img
                 src={venueImageUrl}
@@ -101,7 +101,7 @@ export const MyVenues = ({ venuesData }) => {
               </h3>
               <BookingsAccordion venueId={venue.id} />
             </div>
-          </div>
+          </article>
         );
       })}
     </div>

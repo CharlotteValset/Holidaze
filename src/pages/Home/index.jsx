@@ -65,10 +65,12 @@ export const Home = () => {
         <Loader />
       ) : hasError ? (
         <section className="my-5 flex justify-center text-red-600">
+          <h3 className="sr-only">Error message</h3>
           Error fetching data. Please try again later.
         </section>
       ) : searchTerm.trim() !== "" && searchResults.length === 0 ? (
         <section className="mx-auto my-4 w-96 rounded-lg bg-light-blue p-4 xs:w-80">
+          <h3 className="sr-only">No search result message</h3>
           <p className="break-all p-3 text-center text-dark-blue">
             Hmm... No matches for{" "}
           </p>
@@ -87,11 +89,11 @@ export const Home = () => {
           hasMore={hasMore}
           loader={<Loader />}
         >
-          <section className="mx-auto grid w-11/12 grid-cols-1 gap-3 bg-almost-white py-3 sm:grid-cols-2 lg:max-w-screen-2xl lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mx-auto grid w-11/12 grid-cols-1 gap-3 bg-almost-white py-3 sm:grid-cols-2 lg:max-w-screen-2xl lg:grid-cols-3 xl:grid-cols-4">
             {resultsToDisplay.map((item, index) => (
               <Card data={item} key={`${item.id}-${index}`} />
             ))}
-          </section>
+          </div>
         </InfiniteScroll>
       )}
     </>

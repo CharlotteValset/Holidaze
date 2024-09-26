@@ -138,9 +138,10 @@ export const BookVenue = ({ data }) => {
   };
 
   return (
-    <div className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:max-w-xs md:ml-14">
-      <h3 className="pb-2 pt-4 text-center text-2xl">Book this venue!</h3>
-
+    <section className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:max-w-xs md:ml-14">
+      <header className="pb-2 pt-4">
+        <h3 className="text-center text-2xl">Book this venue!</h3>
+      </header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
           <div className="mx-auto flex flex-col py-2">
@@ -236,6 +237,6 @@ export const BookVenue = ({ data }) => {
           )}
         </div>
       </form>
-    </div>
+    </section>
   );
 };

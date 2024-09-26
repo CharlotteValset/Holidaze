@@ -3,7 +3,7 @@ import Logo from "../../../../assets/images/holidaze-logo.png";
 
 export const FooterNav = () => {
   return (
-    <section className="bg-dark-blue">
+    <footer className="bg-dark-blue">
       <div>
         <Link to="/" aria-label="Home">
           {" "}
@@ -33,6 +33,6 @@ export const FooterNav = () => {
           Charlotte Valset
         </a>
       </p>
-    </section>
+    </footer>
   );
 };

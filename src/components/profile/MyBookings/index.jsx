@@ -64,7 +64,7 @@ export const MyBookings = () => {
           const guestsCount = guests || 0;
 
           return (
-            <div
+            <article
               key={id}
               className="bookings-card mb-4 xs:mb-6 xs:flex xs:gap-2"
             >
@@ -135,12 +135,12 @@ export const MyBookings = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           );
         })}
       </div>
     );
   }
 
-  return <section>{content}</section>;
+  return <div>{content}</div>;
 };

@@ -30,6 +30,8 @@ export const ConfirmedBooking = () => {
           <h1>Booking confirmed!</h1>
         </header>
         <section className="mx-auto mb-2 max-w-screen-sm px-2 sm:w-10/12">
+          <h3 className="sr-only">Venue image</h3>
+
           <img
             src={venue.media?.[0]?.url || ImagePlaceholder}
             alt="Venue image"
@@ -38,6 +40,8 @@ export const ConfirmedBooking = () => {
           />
         </section>
         <section className="mx-auto max-w-screen-sm px-2 sm:w-10/12">
+          <h3 className="sr-only">Booking information</h3>
+
           <div className="flex items-center justify-between px-2">
             <h2 className="truncate text-[22px] md:text-3xl">{venueTitle}</h2>
             <span className="flex items-center rounded px-2 py-0.5 text-sm font-normal text-dark-blue md:text-base">

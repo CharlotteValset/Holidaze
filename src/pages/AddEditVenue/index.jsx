@@ -353,6 +353,7 @@ export const AddEditVenue = () => {
         </div>
         {hasError && hasPutError && (
           <section className="text-red-500">
+            <h3 className="sr-only">Error message</h3>
             <p>
               Failed to {isEdit ? "update" : "create"} the venue. Please try
               again.

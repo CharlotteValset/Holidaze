@@ -44,8 +44,10 @@ export const Profile = () => {
     content = <div className="mt-96">Profile not found</div>;
   } else {
     content = (
-      <>
-        <h1 className="mt-20 text-center text-2xl sm:hidden">My profile</h1>
+      <section>
+        <header className="mt-20 sm:hidden">
+          <h1 className="text-center text-2xl">My profile</h1>
+        </header>
         <div className="mx-auto flex w-full max-w-screen-lg flex-col sm:mt-16 sm:flex-row sm:justify-around md:mt-20">
           <ProfileInfo data={data} key={data} />
           {isVenueManager && (
@@ -60,7 +62,7 @@ export const Profile = () => {
         </div>
         <BecomeVenueManager />
         <ProfileTabs />
-      </>
+      </section>
     );
     return <section>{content}</section>;
   }
