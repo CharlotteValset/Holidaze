@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import ProfileImagePlaceholder from "../../assets/images/no_ProfileImg.png";
 import ImagePlaceholder from "../../assets/images/no_img.png";
@@ -25,6 +26,13 @@ export const ConfirmedBooking = () => {
       : "Location not available";
   return (
     <>
+      <Helmet>
+        <title>Confirmed booking | Holidaze</title>
+        <meta
+          name="description"
+          content="Your booking has been confirmed. We look forward to welcoming you!"
+        />
+      </Helmet>
       <article className="bookings-card mx-auto mb-8 mt-[100px] w-11/12 rounded-lg bg-light-blue md:mt-[120px] md:max-w-screen-md">
         <header className="mx-auto py-4 text-center text-[22px] sm:text-3xl md:py-8 md:text-4xl">
           <h1>Booking confirmed!</h1>
