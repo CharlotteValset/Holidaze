@@ -160,7 +160,7 @@ export const AddEditVenue = () => {
           className="mx-auto mb-8 mt-[100px] w-11/12 rounded-lg bg-light-blue md:mt-[120px] md:flex md:max-w-screen-md md:justify-around"
         >
           <div className="md:w-80 md:pb-8 md:pt-4">
-            <h1 className="mb-2 pt-4 text-center text-[22px] sm:text-3xl md:mb-4 md:ps-11 md:text-left">
+            <h1 className="mb-2 pt-4 text-center text-2xl sm:text-3xl md:mb-4 md:ps-11 md:text-left">
               {isEdit ? "Edit Venue" : "Add new venue"}
             </h1>
             <InputField

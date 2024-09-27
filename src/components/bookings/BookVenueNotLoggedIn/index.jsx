@@ -6,9 +6,9 @@ import { TextLink } from "../../ui_elements/TextLink";
 export const BookVenueNotLoggedIn = () => {
   return (
     <div className="">
-      <h3 className="mx-auto w-52 pb-0 pt-6 text-center text-2xl font-medium">
+      <h2 className="mx-auto w-52 pb-0 pt-6 text-center text-2xl font-medium">
         Please log in to book this venue!
-      </h3>
+      </h2>
       <Link
         to="/logIn"
         aria-label="Sign up"

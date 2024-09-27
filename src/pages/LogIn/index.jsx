@@ -13,7 +13,7 @@ export const LogIn = () => {
       </Helmet>
       <section className="mx-auto mb-12 mt-[90px] flex w-11/12 max-w-sm flex-col items-center justify-center rounded-xl bg-light-blue sm:mt-[115px]">
         <header className="mb-3 mt-6">
-          <h1 className="text-[22px] sm:text-3xl">Please log in</h1>
+          <h1 className="text-2xl sm:text-3xl">Please log in</h1>
         </header>
         <LogInForm />
         <footer className="pb-8">

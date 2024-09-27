@@ -5,9 +5,9 @@ import { PrimaryButton } from "../../ui_elements/Buttons/PrimaryButton";
 export const VenueManagerOwnPageView = ({ venue }) => {
   return (
     <div className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:mx-0 xs:ml-4 xs:max-w-xs">
-      <h3 className="pb-0 pt-6 text-center text-2xl font-medium">
+      <h2 className="pb-0 pt-6 text-center text-2xl font-medium">
         This is your venue!
-      </h3>
+      </h2>
       <Link
         to="/addEditVenue"
         state={{ venue, isEdit: true }}

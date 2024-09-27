@@ -26,7 +26,7 @@ export const VenueInfo = ({ data }) => {
     <article className="mx-auto w-11/12">
       <header className="sm:mr-3 sm:w-full">
         <div className="mt-3 flex justify-between align-middle md:mt-1 lg:gap-3">
-          <h2 className="text-lg sm:text-3xl md:text-3xl">{venueTitle}</h2>
+          <h1 className="text-2xl md:text-3xl">{venueTitle}</h1>
           <span className="flex items-baseline rounded px-2 py-0.5 text-sm font-normal text-dark-blue md:text-base">
             <svg
               className="me-2 h-3 w-3 text-dark-blue"
@@ -94,13 +94,13 @@ export const VenueInfo = ({ data }) => {
         )}
       </section>
       <section>
-        <h3 className="mb-1 mt-6 text-xl md:text-xl">Description</h3>
-        <p className="w-64 ps-0.5 text-lg font-light xs:w-11/12 md:text-lg">
+        <h3 className="mb-1 mt-6 text-xl md:text-[22px]">Description</h3>
+        <p className="w-64 ps-0.5 text-lg font-light xs:w-11/12">
           {venueDescription}
         </p>
       </section>
       <section className="my-4">
-        <h3 className="mb-1 text-xl md:text-xl">Owner</h3>
+        <h3 className="mb-1 text-xl md:text-[22px]">Owner</h3>
         <div className="flex items-center">
           <img
             src={ownerAvatarUrl}

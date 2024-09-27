@@ -140,7 +140,7 @@ export const BookVenue = ({ data }) => {
   return (
     <section className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:max-w-xs md:ml-14">
       <header className="pb-2 pt-4">
-        <h3 className="text-center text-2xl">Book this venue!</h3>
+        <h2 className="text-center text-2xl">Book this venue!</h2>
       </header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
