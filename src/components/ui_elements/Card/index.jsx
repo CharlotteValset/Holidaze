@@ -25,12 +25,13 @@ export const Card = ({ data }) => {
   return (
     <article className="sm:w-74 mx-auto my-1 w-full rounded-xl bg-light-blue md:w-[300px] xl:w-72">
       <div className="flex flex-col">
-        <div className="">
+        <div className="max-w-sm">
           <img
             className="h-48 w-full rounded-t-xl object-cover xs:h-72 sm:h-48"
             src={imageUrl}
             alt={imageAltText}
             onError={(e) => handleImageErrors(e, ImagePlaceholder)}
+            loading="lazy"
           />
         </div>
         <div className="m-1 px-2">
