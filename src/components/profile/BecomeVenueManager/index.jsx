@@ -53,7 +53,7 @@ export const BecomeVenueManager = ({}) => {
 
   if (profileError) {
     return (
-      <p className="text-red-500">
+      <p className="text-red-600">
         Failed to load profile. Please try again later.
       </p>
     );
@@ -90,7 +90,7 @@ export const BecomeVenueManager = ({}) => {
       {hasError && (
         <section>
           <h3 className="sr-only">Error message</h3>
-          <p className="text-red-500">
+          <p className="text-red-600">
             Failed to update profile. Please try again.
           </p>
         </section>
