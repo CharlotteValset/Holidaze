@@ -13,7 +13,7 @@ export const FooterNav = () => {
       <div className="mb-4 flex flex-row justify-center gap-5">
         <a href="https://www.twitter.com/" title="Twitter">
           <i
-            class="fa-brands fa-square-twitter text-4xl text-light-blue hover:text-soft-pink"
+            className="fa-brands fa-square-twitter text-4xl text-light-blue hover:text-soft-pink"
             aria-hidden="true"
           ></i>
         </a>
