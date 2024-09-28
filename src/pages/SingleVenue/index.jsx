@@ -57,7 +57,7 @@ export const SingleVenue = () => {
           <p className="cursor-pointer hover:underline sm:text-lg">Back</p>
         </Link>
         <Gallery data={singleVenue} key={singleVenue.id} />
-        <div className="flex flex-col md:mx-5 md:max-w-screen-lg md:flex-row md:justify-between">
+        <div className="flex flex-col md:max-w-screen-lg md:flex-row md:justify-between">
           <VenueInfo data={singleVenue} key={singleVenue.id} />
           {userEmail && venueOwner && userEmail === venueOwner ? (
             <VenueManagerOwnPageView venue={singleVenue} />
