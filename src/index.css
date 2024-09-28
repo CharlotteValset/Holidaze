@@ -75,11 +75,6 @@ h2.react-datepicker__current-month,
 .react-datepicker__day-name {
   color: #2a3d56;
 }
-/* Selected date */
-.react-datepicker__day--selected {
-  background-color: #2aca52 !important;
-  color: #ffffff !important;
-}
 
 /* Hovered date */
 .react-datepicker__day:hover {
@@ -127,4 +122,18 @@ h2.react-datepicker__current-month,
 /* Datepicker header (Month/Year) */
 .react-datepicker__header {
   background-color: #e9eff4 !important;
+}
+
+/* Highlight booked/unavailable dates */
+.react-datepicker__day--booked {
+  background-color: rgb(255, 255, 255) !important;
+  color: #edecec !important;
+  cursor: not-allowed;
+}
+
+/* Booked/unavailable dates should take priority over selected range */
+.react-datepicker__day--booked.react-datepicker__day--in-range {
+  background-color: rgb(255, 255, 255) !important;
+  color: #edecec !important;
+  cursor: not-allowed;
 }

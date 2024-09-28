@@ -24,6 +24,7 @@ export const BookVenue = ({ data }) => {
   const [selectedCheckInDate, setSelectedCheckInDate] = useState(new Date());
   const [selectedCheckOutDate, setSelectedCheckOutDate] = useState(new Date());
   const [totalPrice, setTotalPrice] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const schema = yup
     .object({
@@ -55,6 +56,10 @@ export const BookVenue = ({ data }) => {
     `${API_Url}${all_Venues}/${id}?_bookings=true`,
   );
 
+  useEffect(() => {
+    register("checkIn");
+  }, [register]);
+
   const getBookedDates = () => {
     if (bookingsData?.bookings) {
       return bookingsData.bookings.map((booking) => ({
@@ -81,14 +86,6 @@ export const BookVenue = ({ data }) => {
   }, [selectedCheckInDate, selectedCheckOutDate, pricePerNight, totalOfNights]);
 
   const onSubmit = async (formData) => {
-    if (data.maxGuests < formData.numberOfGuests) {
-      setError("numberOfGuests", {
-        type: "manual",
-        message: "Exceeded max guests, please reduce number.",
-      });
-      return;
-    }
-
     const payload = {
       dateFrom: formatDate(selectedCheckInDate),
       dateTo: formatDate(selectedCheckOutDate),
@@ -111,16 +108,36 @@ export const BookVenue = ({ data }) => {
     }
   };
 
+  const isDateRangeOverlapping = (checkIn, checkOut, bookedDates) => {
+    return bookedDates.some((booked) => {
+      const bookedStart = new Date(booked.start).setHours(0, 0, 0, 0); // Normalize to midnight
+      const bookedEnd = new Date(booked.end).setHours(23, 59, 59, 999); // Normalize to end of day
+
+      const checkInDate = new Date(checkIn).setHours(0, 0, 0, 0);
+      const checkOutDate = new Date(checkOut).setHours(23, 59, 59, 999);
+
+      return checkInDate <= bookedEnd && checkOutDate >= bookedStart;
+    });
+  };
+
   const handleCheckInDateChange = (date) => {
     setSelectedCheckInDate(date);
     setValue("checkIn", date);
 
-    const minCheckOutDate = new Date(date);
-    minCheckOutDate.setDate(minCheckOutDate.getDate() + 1);
+    const newCheckOutDate = new Date(date);
+    newCheckOutDate.setDate(newCheckOutDate.getDate() + 1);
 
     if (selectedCheckOutDate <= date) {
-      setSelectedCheckOutDate(minCheckOutDate);
-      setValue("checkOut", minCheckOutDate);
+      setSelectedCheckOutDate(newCheckOutDate);
+      setValue("checkOut", newCheckOutDate);
+    }
+
+    if (isDateRangeOverlapping(date, selectedCheckOutDate, bookedDates)) {
+      setErrorMessage(
+        "The selected date range overlaps with unavailable dates. Please choose different dates.",
+      );
+    } else {
+      setErrorMessage("");
     }
   };
 
@@ -135,16 +152,48 @@ export const BookVenue = ({ data }) => {
       setSelectedCheckOutDate(date);
       setValue("checkOut", date);
     }
+
+    if (isDateRangeOverlapping(selectedCheckInDate, date, bookedDates)) {
+      setErrorMessage(
+        "The selected date range overlaps with unavailable dates. Please choose different dates.",
+      );
+    } else {
+      setErrorMessage("");
+    }
+  };
+
+  const isDateBookable = (date) => {
+    return !bookedDates.some(
+      (booked) => date >= booked.start && date <= booked.end,
+    );
+  };
+
+  const getDayClassName = (date) => {
+    let className = "";
+
+    if (
+      date >= selectedCheckInDate &&
+      date <= selectedCheckOutDate &&
+      isDateBookable(date)
+    ) {
+      className += " react-datepicker__day--in-range";
+    }
+
+    if (!isDateBookable(date)) {
+      className += " react-datepicker__day--booked";
+    }
+
+    return className.trim();
   };
 
   return (
     <section className="mx-auto mb-5 mt-8 h-fit w-11/12 rounded-lg bg-light-blue xs:max-w-xs md:ml-14">
-      <header className="pb-2 pt-4">
+      <header className="pb-2 pt-6">
         <h2 className="text-center text-2xl">Book this venue!</h2>
       </header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
-          <div className="mx-auto flex flex-col py-2">
+          <div className="mx-auto flex w-[199px] flex-col py-2">
             <label className="text-lg" htmlFor="checkIn">
               Check-in
             </label>
@@ -158,14 +207,15 @@ export const BookVenue = ({ data }) => {
               dateFormat="dd/MM/yyyy"
               minDate={new Date()}
               excludeDateIntervals={bookedDates}
+              dayClassName={getDayClassName}
               className="w-full rounded-lg border border-gray-300 p-2 text-center shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
             {errors.checkIn && (
-              <p className="text-sm text-red-500">{errors.checkIn.message}</p>
+              <p className="text-sm text-red-600">{errors.checkIn.message}</p>
             )}
           </div>
 
-          <div className="mx-auto flex flex-col py-2">
+          <div className="mx-auto flex w-[199px] flex-col py-2">
             <label htmlFor="checkOut" className="my-1 ps-1 text-lg">
               Check-out
             </label>
@@ -181,15 +231,21 @@ export const BookVenue = ({ data }) => {
               minDate={new Date(selectedCheckInDate).setDate(
                 selectedCheckInDate.getDate() + 1,
               )}
+              dayClassName={getDayClassName}
               excludeDateIntervals={bookedDates}
               className="w-full rounded-lg border border-gray-300 p-2 text-center text-base shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
             {errors.checkOut && (
-              <p className="text-sm text-red-500">{errors.checkOut.message}</p>
+              <p className="text-sm text-red-600">{errors.checkOut.message}</p>
             )}
           </div>
+          {errorMessage && (
+            <p className="mx-auto w-[199px] text-left text-sm text-red-600">
+              {errorMessage}
+            </p>
+          )}
 
-          <div className="mx-auto flex w-[190px] flex-col items-start py-2">
+          <div className="mx-auto flex w-[202px] flex-col items-start py-2">
             <label htmlFor="numberOfGuests" className="pb-1 ps-1 text-lg">
               Number of guests
             </label>
@@ -208,19 +264,19 @@ export const BookVenue = ({ data }) => {
               )}
             </select>
             {errors.numberOfGuests && (
-              <p className="text-sm text-red-500">
+              <p className="text-sm text-red-600">
                 {errors.numberOfGuests.message}
               </p>
             )}
           </div>
 
-          <div className="mx-auto mt-6 flex w-[190px] pl-1">
+          <div className="mx-auto mt-6 flex w-[202px] pl-1">
             <p className="mr-1 text-lg">Booking is for</p>
             <span className="mr-1 text-lg font-medium">{totalOfNights}</span>
             <p className="text-lg">nights</p>
           </div>
 
-          <div className="mx-auto mt-6 flex w-[190px] gap-6 pl-1">
+          <div className="mx-auto mt-6 flex w-[202px] gap-6 pl-1">
             <p className="text-xl">Total price</p>
             <p className="mr-1 text-xl">$ {totalPrice}</p>
           </div>
