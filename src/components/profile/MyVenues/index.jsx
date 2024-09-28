@@ -39,7 +39,7 @@ export const MyVenues = ({ venuesData }) => {
             </div>
             <div className="md:ml-4 md:w-2/4">
               <div className="mt-3 flex items-center justify-between md:mt-1">
-                <h2 className="break-words text-2xl md:text-3xl">
+                <h2 className="break-words text-[22px] md:text-2xl">
                   {venueTitle}
                 </h2>
                 <Link
@@ -92,11 +92,11 @@ export const MyVenues = ({ venuesData }) => {
                   </div>
                 )}
               </div>
-              <h3 className="text-xl md:text-2xl">Description</h3>
+              <h3 className="text-xl md:text-[22px]">Description</h3>
               <p className="max-w-72 text-lg font-light md:max-w-96 md:text-lg">
                 {venueDescription}
               </p>
-              <h3 className="mb-1 mt-4 text-xl md:text-2xl">
+              <h3 className="mb-1 mt-4 text-xl md:text-[22px]">
                 Bookings ({bookingsCount})
               </h3>
               <BookingsAccordion venueId={venue.id} />

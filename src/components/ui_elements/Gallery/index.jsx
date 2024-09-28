@@ -18,7 +18,7 @@ export const Gallery = ({ data }) => {
   };
 
   return (
-    <div className="mx-auto my-5 w-11/12 gap-4">
+    <div className="mx-auto my-5 w-full gap-4">
       <div className="flex-1">
         <img
           className="h-44 w-full rounded-lg object-cover xs:h-72 sm:h-80 md:h-96 lg:h-[500px]"

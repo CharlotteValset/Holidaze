@@ -34,7 +34,7 @@ export const ConfirmedBooking = () => {
         />
       </Helmet>
       <article className="bookings-card mx-auto mb-8 mt-[100px] w-11/12 rounded-lg bg-light-blue md:mt-[120px] md:max-w-screen-md">
-        <header className="mx-auto py-4 text-center text-[22px] sm:text-3xl md:py-8 md:text-4xl">
+        <header className="mx-auto py-4 text-center text-2xl sm:text-3xl md:py-8 md:text-4xl">
           <h1>Booking confirmed!</h1>
         </header>
         <section className="mx-auto mb-2 max-w-screen-sm px-2 sm:w-10/12">
@@ -51,7 +51,7 @@ export const ConfirmedBooking = () => {
           <h3 className="sr-only">Booking information</h3>
 
           <div className="flex items-center justify-between px-2">
-            <h2 className="truncate text-[22px] md:text-3xl">{venueTitle}</h2>
+            <h1 className="truncate text-2xl md:text-3xl">{venueTitle}</h1>
             <span className="flex items-center rounded px-2 py-0.5 text-sm font-normal text-dark-blue md:text-base">
               <svg
                 className="me-2 h-3 w-3 text-dark-blue"

@@ -102,7 +102,7 @@ export const ContactForm = () => {
             className="block w-52 rounded-lg border border-gray-300 p-2.5 sm:w-60"
           ></textarea>
           {errors.contactMessage && (
-            <p className="text-sm text-red-500">
+            <p className="text-sm text-red-600">
               {errors.contactMessage.message}
             </p>
           )}

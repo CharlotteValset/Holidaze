@@ -1,4 +1,3 @@
-
 import { Helmet } from "react-helmet-async";
 
 import ContactImage from "../../assets/images/contactImage.jpg";
@@ -23,16 +22,16 @@ export const Contact = () => {
             alt="Image of two people sitting at a table and talking to each other"
           />
         </div>
-      <div className="mb-4 flex flex-col items-center md:w-6/12">
-        <header className="w-full text-center">
-          <h1 className="pt-4 text-2xl md:text-3xl">Contact us</h1>
-          <p className="w-10/12 py-4 text-center text-lg font-light xs:w-11/12 md:text-xl">
-            Please don’t hesitate to reach out!
-          </p>
-        </header>
-        <ContactForm />
-      </div>
-    </section>
-</>
+        <div className="mb-4 flex flex-col items-center md:w-6/12">
+          <header className="w-full text-center">
+            <h1 className="pt-4 text-2xl md:text-3xl">Contact us</h1>
+            <p className="w-10/12 py-4 text-center text-lg font-light xs:w-11/12 md:text-xl">
+              Please don’t hesitate to reach out!
+            </p>
+          </header>
+          <ContactForm />
+        </div>
+      </section>
+    </>
   );
 };

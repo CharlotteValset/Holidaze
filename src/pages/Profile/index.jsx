@@ -54,7 +54,7 @@ export const Profile = () => {
           />
         </Helmet>
         <section>
-          <header className="mt-20 sm:hidden">
+          <header className="mt-20 sm:sr-only">
             <h1 className="text-center text-2xl">My profile</h1>
           </header>
           <div className="mx-auto flex w-full max-w-screen-lg flex-col sm:mt-16 sm:flex-row sm:justify-around md:mt-20">

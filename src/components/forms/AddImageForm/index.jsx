@@ -76,7 +76,7 @@ export const AddImageForm = ({ setImages, errors, isSubmitted, venue }) => {
         errors?.images &&
         Array.isArray(errors.images) &&
         errors.images.length > 0 && (
-          <p className="text-sm text-red-500">{errors.images[0]?.message}</p>
+          <p className="text-sm text-red-600">{errors.images[0]?.message}</p>
         )}
     </div>
   );

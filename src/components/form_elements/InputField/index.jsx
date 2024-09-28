@@ -47,7 +47,7 @@ export const InputField = ({
         )}
       </div>
       {errors && errors[registerYup] && (
-        <p className="text-sm text-red-500">{errors[registerYup]?.message}</p>
+        <p className="text-sm text-red-600">{errors[registerYup]?.message}</p>
       )}
     </div>
   );
