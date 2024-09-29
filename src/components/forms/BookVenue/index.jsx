@@ -208,7 +208,7 @@ export const BookVenue = ({ data }) => {
               minDate={new Date()}
               excludeDateIntervals={bookedDates}
               dayClassName={getDayClassName}
-              className="w-full rounded-lg border border-gray-300 p-2 text-center shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 p-2 text-center shadow-sm"
             />
             {errors.checkIn && (
               <p className="text-sm text-red-600">{errors.checkIn.message}</p>
@@ -233,7 +233,7 @@ export const BookVenue = ({ data }) => {
               )}
               dayClassName={getDayClassName}
               excludeDateIntervals={bookedDates}
-              className="w-full rounded-lg border border-gray-300 p-2 text-center text-base shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 p-2 text-center text-base shadow-sm"
             />
             {errors.checkOut && (
               <p className="text-sm text-red-600">{errors.checkOut.message}</p>

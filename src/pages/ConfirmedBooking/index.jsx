@@ -116,7 +116,7 @@ export const ConfirmedBooking = () => {
               <p className="md:text-lg">{payload.guests}</p>
             </div>
 
-            <div className="m-3 flex justify-between border-b border-light-gray">
+            <div className="m-3 flex justify-between border-b border-gray-400">
               <p className="md:text-xl">Total amount:</p>
               <p className="font-medium md:text-xl">${formattedPrice}</p>
             </div>

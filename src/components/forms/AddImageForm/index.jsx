@@ -58,7 +58,7 @@ export const AddImageForm = ({ setImages, errors, isSubmitted, venue }) => {
           <button
             type="button"
             onClick={() => removeImageUrl(index)}
-            className="text-sm text-dark-blue hover:text-red-700"
+            className="text-sm text-dark-blue hover:text-red-600"
           >
             <i className="fa-regular fa-trash-can"></i>
           </button>
