@@ -39,8 +39,6 @@ export const ProfileInfo = ({ data }) => {
   );
 
   const handleEditProfileImage = async (formData) => {
-    console.log("Starting handleEditProfileImage with data:", formData);
-
     try {
       const updateData = {
         avatar: {

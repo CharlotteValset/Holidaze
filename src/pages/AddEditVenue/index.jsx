@@ -121,11 +121,9 @@ export const AddEditVenue = () => {
 
     if (isEdit) {
       await putData(payload);
-      console.log("Venue updated:", payload);
       navigate("/profile");
     } else {
       await postData(payload);
-      console.log("New venue submitted:", payload);
       navigate("/profile");
     }
   };
@@ -134,7 +132,6 @@ export const AddEditVenue = () => {
     setIsModalOpen(false);
     await deleteData();
     if (!hasDeleteError) {
-      console.log("DELETED");
       navigate("/profile");
     } else {
       console.error("Failed to delete venue.");

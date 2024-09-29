@@ -44,7 +44,6 @@ export const LogInForm = () => {
 
       const response = await loginUser(email, password);
 
-      console.log("Login success! :", response);
       navigate("/");
     } catch (error) {
       console.error("Login error:", error);
