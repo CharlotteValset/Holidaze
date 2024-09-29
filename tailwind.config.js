@@ -12,7 +12,6 @@ export default {
         "dark-blue": "#2A3D56",
         "soft-pink": "#FFAAA8;",
         "light-blue": "#E9EFF4",
-        "light-gray": "#A6B4C7",
         "dark-gray": "#565656",
         "almost-white": "#fefefe",
       },
